@@ -1,22 +1,16 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Service;
 use App\Category;
 use Illuminate\Http\Request;
-use App\Http\Requests\CategoryRequest;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\ServiceRequest;
 
-//TODO: change flash message (typo)
-class CategoryController extends Controller
+//@TODO: change flash message (typo)
+class ServiceController extends Controller
 {
-    protected $services;
-
-    public function __construct()
-    {
-        $this->services = Service::all();
-    }
-
     /**
      * Display a listing of the resource.
      *
@@ -24,8 +18,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-		$categories = Category::with('service')->get();
-		return view('category.index', ['categories' => $categories]);
+        $services = Service::all();
+		return view('admin.services.index', ['services' => $services]);
     }
 
     /**
@@ -35,7 +29,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('category.create', ['services' => $this->services]);
+        return view('admin.services.create');
     }
 
     /**
@@ -44,21 +38,21 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CategoryRequest $request)
+    public function store(ServiceRequest $request)
     {
-        $category = Category::create($request->all());
-
+        $service = Service::create($request->all());
+        
 		session()->flash('message', 'Your have been added successfully');
-		return redirect(route('category.index'));
+		return redirect(route('services.index'));
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Category  $category
+     * @param  \App\Service  $service
      * @return \Illuminate\Http\Response
      */
-    public function show(Category $category)
+    public function show(Service $service)
     {
         //
     }
@@ -66,24 +60,24 @@ class CategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Category  $category
+     * @param  \App\Service  $service
      * @return \Illuminate\Http\Response
      */
-    public function edit(Category $category)
+    public function edit(Service $service)
     {
-        return view('category.edit', [ 'category' => $category, 'services' => $this->services ]);
+        return view('admin.services.edit', compact('service'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Category  $category
+     * @param  \App\Service  $service
      * @return \Illuminate\Http\Response
      */
-    public function update(CategoryRequest $request, Category $category)
+    public function update(ServiceRequest $request, Service $service)
     {
-        $category->update($request->all());
+        $service->update($request->all());
 		session()->flash('message', 'Your have been updated successfully');
 		return redirect()->back();
     }
@@ -91,13 +85,13 @@ class CategoryController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Category  $category
+     * @param  \App\Service  $service
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Category $category)
+    public function destroy(Service $service)
     {
-		$category->delete();
+        $service->delete();
 		session()->flash('message', 'Your have been deleted successfully');
-		return redirect(route('category.index'));
+		return redirect(route('services.index'));
     }
 }

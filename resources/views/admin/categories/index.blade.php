@@ -24,8 +24,8 @@
 						<td>{{$category->name_en}}</td>
 						<td>{{$category->service->name_en}}</td>
 						<td>{!!$category->description_en!!}</td>
-						<td><a href="{{route('category.edit', $category->id)}}" class="btn btn-info btn-xs webtn">Edit</a> 
-						<form onsubmit="confirm('Are you sure you want to delete?')" class="d-inline-block" method="post" action="{{route('category.destroy', $category->id)}}">
+						<td><a href="{{route('categories.edit', $category->id)}}" class="btn btn-info btn-xs webtn">Edit</a> 
+						<form onsubmit="confirm('Are you sure you want to delete?')" class="d-inline-block" method="post" action="{{route('categories.destroy', $category->id)}}">
 						@csrf
 							@method('delete')
 							<button type="submit" class="btn btn-danger btn-xs webtn">Delete</button>
@@ -36,7 +36,7 @@
 					</tbody>
 				</table>
 				<hr>
-				<a href="{{route('category.create')}}" class="btn btn-success btn-rounded w-md waves-effect waves-light m-b-5">Add New</a>
+				<a href="{{route('categories.create')}}" class="btn btn-success btn-rounded w-md waves-effect waves-light m-b-5">Add New</a>
 			</div>
 		</div>
 	</div>

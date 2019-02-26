@@ -9,12 +9,12 @@
 			</ul> 
 		</div>
 	@endif
-	<form class="form-horizontal" action="{{route('service.store')}}" method="POST" enctype="multipart/form-data" data-parsley-validate novalidate>
+	<form class="form-horizontal" action="{{route('services.store')}}" method="POST" enctype="multipart/form-data" data-parsley-validate novalidate>
 		@csrf
 		<div class="row">
 			<div class="col-xl-8">
 			   <div class="card-box">
-				  <h4 class="header-title m-t-0 m-b-30">Edit Content <a class="back btn btn-secondary btn-rounded w-md waves-effect m-b-5" href="{{route('service.index')}}">Back</a></h4>
+				  <h4 class="header-title m-t-0 m-b-30">Edit Content <a class="back btn btn-secondary btn-rounded w-md waves-effect m-b-5" href="{{route('services.index')}}">Back</a></h4>
 				  <div class="row translate-bg">
 					<label class="col-sm-3 col-form-label tran-title bg-tran">Service Title</label>
 					<div class="col-md-9 bg-tran">

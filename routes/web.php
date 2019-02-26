@@ -18,5 +18,9 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::resource('service', 'ServiceController');
-Route::resource('category', 'CategoryController');
+
+//@TODO: rename controllers to plural ex: ServicesController
+Route::namespace('Admin')->prefix('admin')->group(function () {
+	Route::resource('services', 'ServiceController');
+	Route::resource('categories', 'CategoryController');
+});

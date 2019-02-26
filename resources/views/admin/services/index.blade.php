@@ -24,8 +24,8 @@
 						<td>{{$service->name_en}}</td>
 						<td>{{$service->icon}}</td>
 						<td>{{$service->order}}</td>
-						<td><a href="{{route('service.edit', $service->id)}}" class="btn btn-info btn-xs webtn">Edit</a> 
-						<form onsubmit="confirm('Are you sure you want to delete?')" class="d-inline-block" method="post" action="{{route('service.destroy', $service->id)}}">
+						<td><a href="{{route('services.edit', $service->id)}}" class="btn btn-info btn-xs webtn">Edit</a> 
+						<form onsubmit="confirm('Are you sure you want to delete?')" class="d-inline-block" method="post" action="{{route('services.destroy', $service->id)}}">
 						@csrf
 							@method('delete')
 							<button type="submit" class="btn btn-danger btn-xs webtn">Delete</button>
@@ -36,7 +36,7 @@
 					</tbody>
 				</table>
 				<hr>
-				<a href="{{route('service.create')}}" class="btn btn-success btn-rounded w-md waves-effect waves-light m-b-5">Add New</a>
+				<a href="{{route('services.create')}}" class="btn btn-success btn-rounded w-md waves-effect waves-light m-b-5">Add New</a>
 			</div>
 		</div>
 	</div>

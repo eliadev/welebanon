@@ -82,8 +82,8 @@
                      <li class="has_sub">
                         <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-invert-colors"></i> <span> Getaways </span> <span class="menu-arrow"></span></a>
                         <ul class="list-unstyled">
-                           <li><a href="{{route('service.index')}}">Services</a></li>
-                           <li><a href="#">Categories</a></li>
+                           <li><a href="{!! route('services.index') !!}">Services</a></li>
+                           <li><a href="{!! route('categories.index') !!}">Categories</a></li>
                            <li><a href="#">Sub Categories</a></li>
                            <li><a href="#">Provider</a></li>
                         </ul>

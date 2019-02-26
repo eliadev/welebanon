@@ -1,26 +1,20 @@
 @extends('layouts.cmslayout')
 	@section('content')
-	@if(session()->has('message'))
-		<div class="alert alert-success">
-			{{session()->get('message')}}
-		</div>
-	@endif
 	@if($errors->all())
 		<div class="alert alert-danger">
 			<ul>
 			@foreach($errors->all() as $error)
 				<li>{{$error}}</li>			
 			@endforeach
-			</ul>
+			</ul> 
 		</div>
 	@endif
-    <form class="form-horizontal" action="{{route('category.update', $category->id)}}" method="POST" enctype="multipart/form-data" data-parsley-validate novalidate>
-		@method('put')
+	<form class="form-horizontal" action="{{route('categories.store')}}" method="POST" enctype="multipart/form-data" data-parsley-validate novalidate>
 		@csrf
 		<div class="row">
 			<div class="col-xl-8">
 			   <div class="card-box">
-				  <h4 class="header-title m-t-0 m-b-30">Edit Content <a class="back btn btn-secondary btn-rounded w-md waves-effect m-b-5" href="{{route('service.index')}}">Back</a></h4>
+				  <h4 class="header-title m-t-0 m-b-30">Edit Content <a class="back btn btn-secondary btn-rounded w-md waves-effect m-b-5" href="{{route('services.index')}}">Back</a></h4>
 				  <div class="form-group row">
 					<div class="col-md-1"></div>
 					<label class="col-2 col-form-label">Services</label>
@@ -28,11 +22,7 @@
 							<select class="form-control" name="service_id">
 							 <option disabled selected hidden>-- Select Services --</option>
 								@foreach($services as $service)
-									<option value="{{$service->id}}"	
-									@if($service->id == $category->service_id)
-									selected
-									@endif
-									>{{$service->name_en}}</option>
+									<option value="{{$service->id}}">{{$service->name_en}}</option>
 								@endforeach
 							</select>
 						</div>
@@ -61,7 +51,7 @@
 										<div class="col-md-1"></div>
 										 <label for="titleEn" class="col-sm-2 col-form-label">Title English</label>
 										 <div class="col-sm-8">
-											<input type="text" name="name_en" value="{{$category->name_en}}" class="form-control" id="titleEn" placeholder="Title English">
+											<input type="text" name="name_en" class="form-control" id="titleEn" placeholder="Title English">
 										 </div>
 									</div>
 								</div>
@@ -70,7 +60,7 @@
 										<div class="col-md-1"></div>
 										 <label for="titleAr" class="col-sm-2 col-form-label">Title Arabic</label>
 										 <div class="col-sm-8">
-											<input type="text" name="name_ar" value="{{$category->name_ar}}" class="form-control" id="titleAr" placeholder="Title Arabic">
+											<input type="text" name="name_ar" class="form-control" id="titleAr" placeholder="Title Arabic">
 										 </div>
 									</div>
 								</div>
@@ -102,7 +92,7 @@
 										<div class="col-md-1"></div>
 										 <label for="DescEn" class="col-sm-2 col-form-label">Description English</label>
 										 <div class="col-sm-8">
-											<textarea class="summernote-editor" id="DescEn" name="description_en">{{$category->description_en}}</textarea>
+											<textarea class="summernote-editor" id="DescEn" name="description_en"></textarea>
 										 </div>
 									</div>
 								</div>
@@ -111,7 +101,7 @@
 										<div class="col-md-1"></div>
 										 <label for="DescAr" class="col-sm-2 col-form-label">Description Arabic</label>
 										 <div class="col-sm-8">
-											<textarea class="summernote-editor" id="DescAr" name="description_ar">{{$category->description_ar}}</textarea>
+											<textarea class="summernote-editor" id="DescAr" name="description_ar"></textarea>
 										 </div>
 									</div>
 								</div>
@@ -123,7 +113,7 @@
 					<div class="col-md-1"></div>
 					<label for="order" class="col-sm-2 col-form-label">Order</label>
 					<div class="col-sm-8">
-						<input type="number" name="order" class="form-control" value="{{$category->order}}" id="order" placeholder="Order">
+						<input type="number" name="order" class="form-control" id="order" placeholder="Order">
 					 </div>
 				  </div>
 			   </div>
@@ -131,10 +121,9 @@
 			<div class="col-xl-4">
 			   <div class="card-box">
 				  <h4 class="header-title m-t-0 m-b-30">Action</h4>
-					<button type="submit" class="btn btn-success btn-rounded w-md waves-effect waves-light m-b-5" style="width:100%;">UPDATE</button>
-					<button type="button" class="btn btn-danger btn-rounded w-md waves-effect waves-light m-b-5" style="width:100%;">DELETE</button>
-					<button type="button" class="btn btn-secondary btn-rounded w-md waves-effect waves-light m-b-5" style="width:100%;">ADD NEW</button>
-					<a href="{{route('category.index')}}" class="btn btn-primary btn-rounded w-md waves-effect waves-light m-b-5" style="width:100%;">BACK</a>
+				  <button type="submit" class="btn btn-success btn-rounded w-md waves-effect waves-light m-b-5" style="width:100%;">ADD</button>
+				  <button type="button" class="btn btn-danger btn-rounded w-md waves-effect waves-light m-b-5" style="width:100%;">DELETE</button>
+				  <button type="button" class="btn btn-secondary btn-rounded w-md waves-effect waves-light m-b-5" style="width:100%;">ADD NEW</button>
 			   </div>
 			</div>
 		</div>
