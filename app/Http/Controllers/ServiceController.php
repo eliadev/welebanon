@@ -5,8 +5,9 @@ namespace App\Http\Controllers;
 use App\Service;
 use App\Category;
 use Illuminate\Http\Request;
-use App\Http\Requests\StoreServices;
+use App\Http\Requests\ServiceRequest;
 
+//TODO: change flash message (typo)
 class ServiceController extends Controller
 {
     /**
@@ -36,10 +37,9 @@ class ServiceController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreServices $request)
+    public function store(ServiceRequest $request)
     {
-        $input = $request->all();
-        $service = Service::create($input);
+        $service = Service::create($request->all());
         
 		session()->flash('message', 'Your have been added successfully');
 		return redirect(route('service.index'));
@@ -74,7 +74,7 @@ class ServiceController extends Controller
      * @param  \App\Service  $service
      * @return \Illuminate\Http\Response
      */
-    public function update(StoreServices $request, Service $service)
+    public function update(ServiceRequest $request, Service $service)
     {
         $service->update($request->all());
 		session()->flash('message', 'Your have been updated successfully');

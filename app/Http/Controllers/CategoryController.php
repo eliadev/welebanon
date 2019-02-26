@@ -2,14 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use DB;
 use App\Service;
 use App\Category;
 use Illuminate\Http\Request;
-use App\Http\Requests\StoreCategories;
+use App\Http\Requests\CategoryRequest;
 
+//TODO: change flash message (typo)
 class CategoryController extends Controller
 {
+    protected $services;
+
+    public function __construct()
+    {
+        $this->services = Service::all();
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -17,11 +24,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //$services = Service::all();     
-		//$categories = Category::whereIn('service_id', $services)->get();
 		$categories = Category::with('service')->get();
-
-		//dd($categories[0]->service);
 		return view('category.index', ['categories' => $categories]);
     }
 
@@ -32,8 +35,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        $service = DB::table('services')->get();
-        return view('category.create', ['services' => $service]);
+        return view('category.create', ['services' => $this->services]);
     }
 
     /**
@@ -42,12 +44,9 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreCategories $request)
+    public function store(CategoryRequest $request)
     {
-        $input = $request->all();
-        $input['service_id']= $request->service_id;
-		
-        $category = Category::create($input);
+        $category = Category::create($request->all());
 
 		session()->flash('message', 'Your have been added successfully');
 		return redirect(route('category.index'));
@@ -72,8 +71,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        $services = DB::table('services')->get();
-        return view('category.edit', compact('category', 'services'));
+        return view('category.edit', [ 'category' => $category, 'services' => $this->services ]);
     }
 
     /**
@@ -83,7 +81,7 @@ class CategoryController extends Controller
      * @param  \App\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(StoreCategories $request, Category $category)
+    public function update(CategoryRequest $request, Category $category)
     {
         $category->update($request->all());
 		session()->flash('message', 'Your have been updated successfully');

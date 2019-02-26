@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreServices extends FormRequest
+class ServiceRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -29,7 +29,8 @@ class StoreServices extends FormRequest
 			'icon' 		=> 'required'
         ];
     }
-	
+	   
+    // TODO: rename messages same format as categories
 	public function messages()
     {
         return [
