@@ -17,18 +17,18 @@
 				  <h4 class="header-title m-t-0 m-b-30">Edit Content</h4>
 				  <div class="form-group row">
 					<div class="col-md-1"></div>
-					<label class="col-2 col-form-label">Services</label>
+					<label class="col-2 col-form-label">Categories</label>
 						<div class="col-8">
 							<select class="form-control" name="service_id">
-							 <option disabled selected hidden>-- Select Services --</option>
-								@foreach($services as $service)
-									<option value="{{$service->id}}">{{$service->name_en}}</option>
+							 <option disabled selected hidden>-- Select Categories --</option>
+								@foreach($categories as $category)
+									<option value="{{$category->id}}">{{$category->name_en}}</option>
 								@endforeach
 							</select>
 						</div>
 				  </div>
 				  <div class="row translate-bg">
-					<label class="col-sm-3 col-form-label tran-title bg-tran">Category Title</label>
+					<label class="col-sm-3 col-form-label tran-title bg-tran">Provider Title</label>
 					<div class="col-md-9 bg-tran">
 						<ul class="nav nav-tabs">
 							<li class="nav-item">

@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ServiceRequest extends FormRequest
+class ProviderRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,12 +24,12 @@ class ServiceRequest extends FormRequest
     public function rules()
     {
         return [
+			'category_id' => 'required|exists:categories,id',
             'name_en' 	=> 'required|min:3',
 			'name_ar' 	=> 'required|min:3',
-			'icon' 		=> 'required'
         ];
     }
-	   
+	
 	public function messages()
     {
         return [
@@ -37,6 +37,7 @@ class ServiceRequest extends FormRequest
             'name_en.min' => 'The english title should be minimum 3 characters',
 			'name_ar.required' => 'The arabic title is required',
             'name_ar.min' => 'The arabic title should be minimum 3 characters',
+            'category_id.required' => 'The category is required',
         ];
     }
 }

@@ -20,7 +20,7 @@
 		<div class="row">
 			<div class="col-xl-8">
 			   <div class="card-box">
-				  <h4 class="header-title m-t-0 m-b-30">Edit Content <a class="back btn btn-secondary btn-rounded w-md waves-effect m-b-5" href="{{route('services.index')}}">Back</a></h4>
+				  <h4 class="header-title m-t-0 m-b-30">Edit Content</h4>
 				  <div class="row translate-bg">
 					<label class="col-sm-3 col-form-label tran-title bg-tran">Service Title</label>
 					<div class="col-md-9 bg-tran">
@@ -83,8 +83,11 @@
 			   <div class="card-box">
 				<h4 class="header-title m-t-0 m-b-30">Action</h4>
 				<button type="submit" class="btn btn-success btn-rounded w-md waves-effect waves-light m-b-5" style="width:100%;">UPDATE</button>
-				<button type="button" class="btn btn-danger btn-rounded w-md waves-effect waves-light m-b-5" style="width:100%;">DELETE</button>
-				<button type="button" class="btn btn-secondary btn-rounded w-md waves-effect waves-light m-b-5" style="width:100%;">ADD NEW</button>
+				<form onsubmit="confirm('Are you sure you want to delete?')" class="d-inline-block" method="post" action="{{route('services.destroy', $service->id)}}">
+					@csrf
+					@method('delete')
+					<button type="submit" class="btn btn-danger btn-rounded w-md waves-effect waves-light m-b-5" style="width:100%;">DELETE</button>
+				</form>
 				<a href="{{route('services.index')}}" class="btn btn-primary btn-rounded w-md waves-effect waves-light m-b-5" style="width:100%;">BACK</a>
 			   </div>
 			</div>

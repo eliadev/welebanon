@@ -2,23 +2,31 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Provider;
 use App\Service;
 use App\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\ServiceRequest;
+use App\Http\Requests\ProviderRequest;
 
-class ServiceController extends Controller
+class ProviderController extends Controller
 {
-    /**
+    protected $categories;
+
+    public function __construct()
+    {
+        $this->categories = Category::all();
+    }
+	
+	/**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        $services = Service::all();
-		return view('admin.services.index', ['services' => $services]);
+        $providers = Provider::with('category')->get();
+		return view('admin.providers.index', ['providers' => $providers]);
     }
 
     /**
@@ -28,7 +36,7 @@ class ServiceController extends Controller
      */
     public function create()
     {
-        return view('admin.services.create');
+        return view('admin.providers.create', ['categories' => $this->categories]);
     }
 
     /**
@@ -37,21 +45,21 @@ class ServiceController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ServiceRequest $request)
+    public function store(ProviderRequest $request)
     {
-        $service = Service::create($request->all());
-        
+        $provider = Provider::create($request->all());
+
 		session()->flash('message', 'Your record has been added successfully');
-		return redirect(route('services.index'));
+		return redirect(route('providers.index'));
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Service  $service
+     * @param  \App\Provider  $provider
      * @return \Illuminate\Http\Response
      */
-    public function show(Service $service)
+    public function show(Provider $provider)
     {
         //
     }
@@ -59,38 +67,34 @@ class ServiceController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Service  $service
+     * @param  \App\Provider  $provider
      * @return \Illuminate\Http\Response
      */
-    public function edit(Service $service)
+    public function edit(Provider $provider)
     {
-        return view('admin.services.edit', compact('service'));
+        //
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Service  $service
+     * @param  \App\Provider  $provider
      * @return \Illuminate\Http\Response
      */
-    public function update(ServiceRequest $request, Service $service)
+    public function update(Request $request, Provider $provider)
     {
-        $service->update($request->all());
-		session()->flash('message', 'Your record has been updated successfully');
-		return redirect()->back();
+        //
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Service  $service
+     * @param  \App\Provider  $provider
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Service $service)
+    public function destroy(Provider $provider)
     {
-        $service->delete();
-		session()->flash('message', 'Your record has been deleted successfully');
-		return redirect(route('services.index'));
+        //
     }
 }

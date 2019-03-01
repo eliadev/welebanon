@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCategoriesTable extends Migration
+class CreateProvidersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,20 @@ class CreateCategoriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('categories', function (Blueprint $table) {
+        Schema::create('providers', function (Blueprint $table) {
             $table->increments('id');
 			$table->string('name_en');
 			$table->string('name_ar');
 			$table->longText('description_en')->nullable();
 			$table->longText('description_ar')->nullable();
-			$table->integer('order')->default(0);
+			$table->string('address_en');
+			$table->string('address_ar');
+			$table->decimal('longitude', 10, 7)->nullable();
+			$table->decimal('latitude', 10, 7)->nullable();
+			$table->tinyInteger('featured')->default(0);
 			
-			$table->integer('service_id')->unsigned();
-            $table->foreign('service_id')->references('id')->on('services')->onDelete('cascade');
+			$table->integer('category_id')->unsigned();
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
 			
             $table->timestamps();
         });
@@ -35,6 +39,6 @@ class CreateCategoriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('categories');
+        Schema::dropIfExists('providers');
     }
 }

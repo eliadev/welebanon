@@ -8,7 +8,6 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CategoryRequest;
 
-//@TODO: change flash message (typo)
 class CategoryController extends Controller
 {
     protected $services;
@@ -49,7 +48,7 @@ class CategoryController extends Controller
     {
         $category = Category::create($request->all());
 
-		session()->flash('message', 'Your have been added successfully');
+		session()->flash('message', 'Your record has been added successfully');
 		return redirect(route('categories.index'));
     }
 
@@ -85,7 +84,7 @@ class CategoryController extends Controller
     public function update(CategoryRequest $request, Category $category)
     {
         $category->update($request->all());
-		session()->flash('message', 'Your have been updated successfully');
+		session()->flash('message', 'Your record has been updated successfully');
 		return redirect()->back();
     }
 
@@ -98,7 +97,7 @@ class CategoryController extends Controller
     public function destroy(Category $category)
     {
 		$category->delete();
-		session()->flash('message', 'Your have been deleted successfully');
+		session()->flash('message', 'Your record has been deleted successfully');
 		return redirect(route('categories.index'));
     }
 }

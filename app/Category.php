@@ -15,4 +15,9 @@ class Category extends Model
         return $this->belongsTo('App\Service');
     }
 	
+	public function provider()
+    {
+        return $this->hasMany('App\Provider');
+    }
+	
 }

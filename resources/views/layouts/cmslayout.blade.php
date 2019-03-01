@@ -84,8 +84,7 @@
                         <ul class="list-unstyled">
                            <li><a href="{!! route('services.index') !!}">Services</a></li>
                            <li><a href="{!! route('categories.index') !!}">Categories</a></li>
-                           <li><a href="#">Sub Categories</a></li>
-                           <li><a href="#">Provider</a></li>
+                           <li><a href="{!! route('providers.index') !!}">Provider</a></li>
                         </ul>
                      </li>
                   </ul>

@@ -17,10 +17,10 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
-
 //@TODO: rename controllers to plural ex: ServicesController
-Route::namespace('Admin')->prefix('admin')->group(function () {
+Route::namespace('Admin')->prefix('admin')->middleware(['auth'])->group(function () {
+	Route::get('home', 'HomeController@index')->name('home');
+	Route::resource('providers', 'ProviderController');
 	Route::resource('services', 'ServiceController');
 	Route::resource('categories', 'CategoryController');
 });
