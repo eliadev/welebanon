@@ -1,24 +1,26 @@
 <!DOCTYPE html>
 <html>
-   <head>
-      <meta charset="utf-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel="shortcut icon" href="{{asset('cms/images/favicon.ico')}}">
-      <title>CMS</title>
-      <link href="{{asset('cms/plugins/morris/morris.css')}}" rel="stylesheet" type="text/css" />
-	  <link href="{{asset('cms/plugins/datatables/dataTables.bootstrap4.min.css')}}" rel="stylesheet" type="text/css" />
-	  <link href="{{asset('cms/plugins/datatables/buttons.bootstrap4.min.css')}}" rel="stylesheet" type="text/css" />
-      <link href="{{asset('cms/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css" />
-      <link href="{{asset('cms/css/icons.css')}}" rel="stylesheet" type="text/css" />
-      <link href="{{asset('cms/css/style.css')}}" rel="stylesheet" type="text/css" />
-	  <link href="{{asset('cms/plugins/summernote/summernote-bs4.css')}}" rel="stylesheet" type="text/css" />
-      <script src="{{asset('cms/js/modernizr.min.js')}}"></script>
-   </head>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="shortcut icon" href="{{asset('cms/images/favicon.ico')}}">
+		<title>CMS</title>
+		<link href="{{asset('cms/plugins/morris/morris.css')}}" rel="stylesheet" type="text/css" />
+		<link href="{{asset('cms/plugins/bootstrap-tagsinput/dist/bootstrap-tagsinput.css')}}" rel="stylesheet" />
+		<link href="{{asset('cms/plugins/datatables/dataTables.bootstrap4.min.css')}}" rel="stylesheet" type="text/css" />
+		<link href="{{asset('cms/plugins/datatables/buttons.bootstrap4.min.css')}}" rel="stylesheet" type="text/css" />
+		<link href="{{asset('cms/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css" />
+		<link href="{{asset('cms/css/icons.css')}}" rel="stylesheet" type="text/css" />
+		<link href="{{asset('cms/css/style.css')}}" rel="stylesheet" type="text/css" />
+		<link href="{{asset('cms/plugins/switchery/switchery.min.css')}}" rel="stylesheet" type="text/css" />
+		<link href="{{asset('cms/plugins/summernote/summernote-bs4.css')}}" rel="stylesheet" type="text/css" />
+		<script src="{{asset('cms/js/modernizr.min.js')}}"></script>
+	</head>
    <body class="fixed-left">
       <div id="wrapper">
          <div class="topbar">
             <div class="topbar-left">
-               <a href="index.html" class="logo"><span>Admin<span>to</span></span><i class="mdi mdi-layers"></i></a>
+               <a href="index.html" class="logo">Logo<i class="mdi mdi-layers"></i></a>
             </div>
             <div class="navbar navbar-default" role="navigation">
                <div class="container-fluid">
@@ -65,7 +67,7 @@
                      <img src="{{asset('cms/images/users/avatar-1.jpg')}}" alt="user-img" title="Mat Helme" class="rounded-circle img-thumbnail img-responsive">
                      <div class="user-status offline"><i class="mdi mdi-adjust"></i></div>
                   </div>
-                  <h5><a href="#">Mat Helme</a> </h5>
+                  <h5><a href="#">Elias Elia</a> </h5>
                </div>
                <div id="sidebar-menu">
                   <ul>
@@ -121,6 +123,7 @@
 		<script src="{{asset('cms/plugins/morris/morris.min.js')}}"></script>
 		<script src="{{asset('cms/plugins/raphael/raphael-min.js')}}"></script>
 		<script src="{{asset('cms/pages/jquery.dashboard.js')}}"></script>
+		<script src="{{asset('cms/plugins/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js')}}"></script>
 		<!-- DataTable -->
 		<script src="{{asset('cms/plugins/datatables/jquery.dataTables.min.js')}}"></script>
         <script src="{{asset('cms/plugins/datatables/dataTables.bootstrap4.min.js')}}"></script>
@@ -137,9 +140,9 @@
 		<script src="{{asset('cms/js/jquery.core.js')}}"></script>
 		<script src="{{asset('cms/js/jquery.app.js')}}"></script>
 		<script type="text/javascript">
-         $(document).ready(function() {
-             $('form').parsley();
-         });
+			$(document).ready(function() {
+				$('form').parsley();
+			});
 		</script>
 		<script type="text/javascript">
             $(document).ready(function () {
@@ -172,6 +175,16 @@
                 table.buttons().container()
                     .appendTo('#datatable-buttons_wrapper .col-md-6:eq(0)');
             });
+		</script>
+		<script>
+			function confirmDelete(){
+				var response = confirm('Are you sure?');
+				if(response)
+				{
+					document.getElementById('frm-delete').submit();
+				}
+				return false;
+			}
 		</script>
    </body>
 </html>

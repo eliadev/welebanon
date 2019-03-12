@@ -21,8 +21,8 @@ class CreateProvidersTable extends Migration
 			$table->longText('description_ar')->nullable();
 			$table->string('address_en');
 			$table->string('address_ar');
-			$table->decimal('longitude', 10, 7)->nullable();
-			$table->decimal('latitude', 10, 7)->nullable();
+			$table->string('longitude')->nullable();
+			$table->string('latitude')->nullable();
 			$table->tinyInteger('featured')->default(0);
 			
 			$table->integer('category_id')->unsigned();

@@ -41,14 +41,3 @@
 		</div>
 	</div>
   @endsection
-
-  <script>
-  	function confirmDelete(){
-		var response = confirm('Are you sure?');
-		if(response)
-		{
-			document.getElementById('frm-delete').submit();
-		}
-		return false;
-	}
-  </script>

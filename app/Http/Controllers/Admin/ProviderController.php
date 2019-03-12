@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Provider;
 use App\Service;
 use App\Category;
+use App\Tag;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProviderRequest;
@@ -48,7 +49,21 @@ class ProviderController extends Controller
     public function store(ProviderRequest $request)
     {
         $provider = Provider::create($request->all());
+		
+		//Tags
+        $tags = explode(",", $request['tags']);
+        $tagIds = [];
+        foreach($tags as $tag) {
+            $tag = Tag::firstOrCreate(['name' => $tag]);
+            array_push($tagIds, $tag->id);
+        }
+        $provider->tags()->sync($tagIds);      
 
+		//Add Image
+        if ($request->image) {
+            $provider->addMedia($request->image)->toMediaCollection('provider');
+        }
+		
 		session()->flash('message', 'Your record has been added successfully');
 		return redirect(route('providers.index'));
     }
@@ -72,7 +87,7 @@ class ProviderController extends Controller
      */
     public function edit(Provider $provider)
     {
-        //
+        return view('admin.providers.edit', [ 'provider' => $provider, 'categories' => $this->categories ]);
     }
 
     /**
@@ -84,7 +99,25 @@ class ProviderController extends Controller
      */
     public function update(Request $request, Provider $provider)
     {
-        //
+		if($request->has('delete_existing_image'))
+            $provider->clearMediaCollection('provider');
+        
+        if (isset($request->image)) {
+            $provider->addMedia($request->image)->toMediaCollection('provider');
+        }
+		
+		$tags = explode(",", $request['tag_list']);
+        $tagIds = [];
+        foreach($tags as $tag) {
+            $tag = Tag::firstOrCreate(['name' => $tag]);
+            array_push($tagIds, $tag->id);
+        }
+        // attach tags to project
+        $project->tags()->sync($tagIds);    
+		
+        $provider->update($request->all());
+		session()->flash('message', 'Your record has been updated successfully');
+		return redirect()->back();
     }
 
     /**
@@ -95,6 +128,8 @@ class ProviderController extends Controller
      */
     public function destroy(Provider $provider)
     {
-        //
+        $provider->delete();
+		session()->flash('message', 'Your record has been deleted successfully');
+		return redirect(route('providers.index'));
     }
 }

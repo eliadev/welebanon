@@ -3,7 +3,7 @@
 	<div class="row">
 		<div class="col-12">
 			<div class="card-box table-responsive">
-				<h4 class="m-t-0 header-title">Services Categories</h4>
+				<h4 class="m-t-0 header-title">Providers</h4>
 				@if(session()->has('message'))
 					<div class="alert alert-success">
 						{{session()->get('message')}}
@@ -12,23 +12,25 @@
 				<table id="datatable-buttons" class="table table-striped table-bordered" cellspacing="0" width="100%">
 					<thead>
 					<tr>
+						<th>Image</th>
 						<th>Title</th>
 						<th>Categories</th>
-						<th>Description</th>
+						<th>Address</th>
 						<th>Action</th>
 					</tr>
 					</thead>
 					<tbody>
 					@foreach($providers as $provider)
 					<tr>
+						<td><img class="img-circle" src="{{$provider->getFirstMediaUrl('provider', 'thumb')}}"></td>
 						<td>{{$provider->name_en}}</td>
 						<td>{{$provider->category->name_en}}</td>
 						<td>{!!$provider->address_en!!}</td>
 						<td><a href="{{route('providers.edit', $provider->id)}}" class="btn btn-info btn-xs webtn">Edit</a> 
-						<form onsubmit="confirm('Are you sure you want to delete?')" class="d-inline-block" method="post" action="{{route('providers.destroy', $provider->id)}}">
+						<form id="frm-delete" class="d-inline-block" method="post" action="{{route('providers.destroy', $provider->id)}}">
 						@csrf
 							@method('delete')
-							<button type="submit" class="btn btn-danger btn-xs webtn">Delete</button>
+							<button type="button" onclick="confirmDelete()" class="btn btn-danger btn-xs webtn">Delete</button>
 						</form>
 						</td>
 					</tr>
