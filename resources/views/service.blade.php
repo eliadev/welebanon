@@ -1,6 +1,5 @@
 @extends('layouts.cmslayout')
 @section('content')
-
 <div class="content">
                <div class="container-fluid">
                   <form class="form-horizontal" role="form" data-parsley-validate novalidate>
