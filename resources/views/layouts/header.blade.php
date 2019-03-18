@@ -14,6 +14,12 @@
       <link rel="stylesheet" href="{{asset('assets/css/responsive.css')}}">
       <link rel="stylesheet" href="{{asset('assets/css/owl.carousel.min.css')}}"/>
       <link rel="stylesheet" href="{{asset('assets/css/owl.theme.default.min.css')}}"/>
+
+      @if(App::getLocale() == 'ar')
+         <!-- -->
+      @else
+         <!-- -->
+      @endif
    </head>
    <body>
     <header class="main-header sticky-header header-with-top" id="main-header-2">
@@ -37,7 +43,11 @@
 								<li><a href="contacts.html">Contact</a></li>        
 								<li class="br-right"><a style="margin-top:23px; margin-right:20px; background:#729849; padding:15px 15px; border-radius:7px; color:#fff;" href="#"><i class="fa fa-user"></i> Get Started</a></li>								
 								<li class="br-right">
-									<div class="language"><a class="lang-ar" href="##" >AR</a><span class="lang-ar"> | </span><a class="lang-ar" href="#">EN</a></div>
+									<div class="language">
+                              <a class="lang-ar" href="{!! route('change-language', 'ar')!!}" >AR</a>
+                              <span class="lang-ar"> | </span>
+                              <a class="lang-ar" href="{!! route('change-language', 'en')!!}">EN</a>
+                           </div>
 								</li>
 							</ul>
                         </div>

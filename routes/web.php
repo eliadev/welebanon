@@ -14,16 +14,7 @@
 
 Auth::routes();
 
-// this should be the language selector
-Route::get('change-language', function(){
-	if(Session::get('applocale') == 'en')
-		Session::put('applocale', 'ar');
-	else
-		Session::put('applocale', 'en');
-
-	//return 'language changed to:'.Session::get('applocale');
-});
-
+Route::get('change-language/{lang}', 'LanguageController@index')->name('change-language');
 
 Route::middleware(['language'])->group(function () {
 	Route::get('/', 'HomeController@index')->name('front.home');

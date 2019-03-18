@@ -17,7 +17,7 @@ class Language
      */
     public function handle($request, Closure $next)
     {
-        $activeLanguage = Session::get('applocale', 'ar');
+        $activeLanguage = Session::get('applocale', 'en');
         
         if ($activeLanguage && in_array($activeLanguage, ['en', 'ar'])) {
             App::setLocale($activeLanguage);
