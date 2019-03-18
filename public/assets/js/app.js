@@ -17,17 +17,17 @@ $(function () {
                     $('.sticky-header').addClass('header-shrink');
                 }
                 if($('.do-sticky').length < 1) {
-                    $('.logo img').attr('src', 'assets/img/logo-black.png');
+                    $('.logo img').attr('src', '/assets/img/logo-black.png');
                 }
             }
             else {
                 $('.sticky-header').removeClass('header-shrink');
                 if($('.do-sticky').length < 1) {
-                    $('.logo img').attr('src', 'assets/img/logo-white.png');
+                    $('.logo img').attr('src', '/assets/img/logo-white.png');
                 }
             }
         } else {
-            $('.logo img').attr('src', 'assets/img/logo-black.png');
+            $('.logo img').attr('src', '/assets/img/logo-black.png');
         }
     }
 

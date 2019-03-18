@@ -27,7 +27,7 @@
                               <span class="icon-bar"></span>
                               <span class="icon-bar"></span>
                               </button>
-						<a class="navbar-brand logo navbar-brand" href="#">
+                  <a class="navbar-brand logo navbar-brand" href="{!! route('front.home') !!}">
 							<img src="{{asset('assets/img/logo-black.png')}}" alt="We Lebanon">
 						</a>
 						<div class="navbar-collapse collapse">

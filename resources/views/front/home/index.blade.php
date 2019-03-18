@@ -29,7 +29,7 @@
 		@foreach($services as $service)
 			<div class="featured-block col-md-3 col-sm-6 col-xs-12">
 				<div class="inner-box">
-				<a href="{{route('service', $service->id)}}">
+				<a href="{{route('front.services.show', $service->id)}}">
 					<div class="icon-box">
 						<span class="{{$service->icon}}"></span>
 					</div>

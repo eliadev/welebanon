@@ -30,14 +30,14 @@ Route::get('change-language', function(){
 
 
 Route::middleware(['language'])->group(function () {
-	Route::get('/home', 'HomeController@index');
-	Route::get('/service/{id}/', 'HomeController@categories')->name('service');
+	Route::get('/home', 'HomeController@index')->name('front.home');
+	Route::get('/services/{id}/', 'HomeController@categories')->name('front.services.show');
 	// add all your frontend routes here.
 });
 
 //@TODO: rename controllers to plural ex: ServicesController
 Route::namespace('Admin')->prefix('admin')->middleware(['auth'])->group(function () {
-	Route::get('home', 'HomeController@index')->name('home');
+	Route::get('/', 'HomeController@index')->name('home');
 	Route::resource('providers', 'ProviderController');
 	Route::resource('services', 'ServiceController');
 	Route::resource('categories', 'CategoryController');
