@@ -34,7 +34,7 @@ Route::middleware(['language'])->group(function () {
 //@TODO: rename controllers to plural ex: ServicesController
 Route::namespace('Admin')->prefix('admin')->middleware(['auth', 'is_admin'])->group(function () {
 	Route::get('/', 'HomeController@index')->name('home');
-	Route::resource('providers', 'ProviderController');
-	Route::resource('services', 'ServiceController');
-	Route::resource('categories', 'CategoryController');
+	Route::resource('providers', 'ProviderController')->middleware(['has_permission:providers']);
+	Route::resource('services', 'ServiceController')->middleware(['has_permission:services']);
+	Route::resource('categories', 'CategoryController')->middleware(['has_permission:categories']);
 });

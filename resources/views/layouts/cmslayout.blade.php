@@ -84,9 +84,15 @@
                      <li class="has_sub">
                         <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-invert-colors"></i> <span> Getaways </span> <span class="menu-arrow"></span></a>
                         <ul class="list-unstyled">
-                           <li><a href="{!! route('services.index') !!}">Services</a></li>
-                           <li><a href="{!! route('categories.index') !!}">Categories</a></li>
-                           <li><a href="{!! route('providers.index') !!}">Provider</a></li>
+                            @if(auth()->user()->hasPermission('services'))
+                                <li><a href="{!! route('services.index') !!}">Services</a></li>
+                            @endif
+                            @if(auth()->user()->hasPermission('categories'))
+                                <li><a href="{!! route('categories.index') !!}">Categories</a></li>
+                            @endif
+                            @if(auth()->user()->hasPermission('providers'))
+                                <li><a href="{!! route('providers.index') !!}">Provider</a></li>
+                            @endif
                         </ul>
                      </li>
                   </ul>

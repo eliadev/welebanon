@@ -15,4 +15,13 @@ class Permission extends Model
         'name', 'identifier'
     ];
 
+    /**
+     * User relation.
+     * 
+     * @return type
+     */
+    public function users()
+    {
+        return $this->belongsToMany('App\User');
+    }
 }

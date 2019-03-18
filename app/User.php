@@ -20,7 +20,7 @@ class User extends Authenticatable implements HasMedia
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'is_superadmin'
+        'first_name', 'last_name', 'email', 'password', 'is_superadmin'
     ];
 
     /**
@@ -31,6 +31,39 @@ class User extends Authenticatable implements HasMedia
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    /**
+     * Permission relation.
+     * 
+     * @return type
+     */
+    public function permissions()
+    {
+        return $this->belongsToMany('App\Permission');
+    }
+
+    /**
+     * Check for a given permission
+     * 
+     * @param  [type]  $permission [description]
+     * @return boolean             [description]
+     */
+    public function hasPermission($permission)
+    {
+       $userPermissions = $this->permissions->pluck('identifier')->toArray();
+       
+       return in_array($permission, $userPermissions);
+    }
+
+    /**
+     * Has admin access accessor
+     * 
+     * @return [type] [description]
+     */
+    public function getHasAdminAccessAttribute()
+    {
+        return $this->is_superadmin || $this->permissions->count();
+    }
 
     public function registerMediaConversions(Media $media = null)
     {
