@@ -50,7 +50,10 @@ class User extends Authenticatable implements HasMedia
      */
     public function hasPermission($permission)
     {
-       $userPermissions = $this->permissions->pluck('identifier')->toArray();
+        if($this->is_superadmin)
+            return true;
+
+        $userPermissions = $this->permissions->pluck('identifier')->toArray();
        
        return in_array($permission, $userPermissions);
     }
