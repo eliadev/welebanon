@@ -33,7 +33,7 @@
 					<div class="icon-box">
 						<span class="{{$service->icon}}"></span>
 					</div>
-					<h3>{{$service->name_en}}</h3>
+					<h3>{{$service->translate('name')}}</h3>
 					<div class="text">Lorem ipsum dolor sit amet, consectetur adipisicing elit sedo.</div>
 					</a>
 				</div>

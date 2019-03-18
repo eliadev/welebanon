@@ -21,7 +21,7 @@ Route::get('change-language', function(){
 	else
 		Session::put('applocale', 'en');
 
-	return 'language changed to:'.Session::get('applocale');
+	//return 'language changed to:'.Session::get('applocale');
 });
 
 
