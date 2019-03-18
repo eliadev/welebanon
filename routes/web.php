@@ -12,10 +12,6 @@
 |
 */
 
-Route::get('/', function () {
-    return view('service');
-});
-
 Auth::routes();
 
 // this should be the language selector
@@ -30,7 +26,7 @@ Route::get('change-language', function(){
 
 
 Route::middleware(['language'])->group(function () {
-	Route::get('/home', 'HomeController@index')->name('front.home');
+	Route::get('/', 'HomeController@index')->name('front.home');
 	Route::get('/services/{id}/', 'HomeController@categories')->name('front.services.show');
 	// add all your frontend routes here.
 });

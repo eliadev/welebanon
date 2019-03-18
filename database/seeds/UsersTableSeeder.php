@@ -12,10 +12,9 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(User::class)->create([
-        	'first_name' => 'Sarah',
+        User::updateOrCreate(['email' => 'sarah@bridgeofmind.com'], [
+        	'first_name' => 'Sara',
         	'last_name' => 'Araijy',
-        	'email' => 'sarah@bridgeofmind.com',
         	'is_superadmin' => 1,
         	'password' => bcrypt('123456')
         ]);
