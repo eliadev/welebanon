@@ -1,0 +1,299 @@
+@media only screen  and (min-width : 768px) {
+	.main-banner {
+		padding:15% 0 5%;
+		min-height: 650px;
+		height: 100vh;
+	}
+	.page-title.image-title {
+		height: 450px;
+	}
+	
+	/*-------- Dashboard ----------*/
+	.dashboard-bg {
+		height: 100vh;
+		position: fixed;
+		min-height: 650px;
+		z-index: 11;
+	}
+	.navbar-nav>li.dash-link>a .avatar {
+		position: absolute;
+		display: inline-block;
+		width: 30px;
+		height: 30px;
+		line-height: 36px;
+		text-align: center;
+		border-radius: 100%;
+		background-color: #f5f6f7;
+		color: #fff;
+		text-transform: uppercase;
+		left: -27px;
+		top: 20px;
+	}
+}
+	
+@media only screen  and (min-width : 993px) {
+	section {
+		padding:3em 0 4em 0;
+	}
+	.navbar-default .navbar-brand img {
+		max-width:250px;
+	}
+	.half-box {
+		padding:140px 40px;
+	}
+	.half-box h2{
+		font-size:50px;
+	}
+	nav.navbar.bootsnav.navbar-fixed.navbar-transparent .logo-display, nav.navbar.bootsnav.navbar-fixed.no-background .logo-display {
+		display: block;
+	}
+	nav.navbar.bootsnav.navbar-fixed.navbar-transparent .logo-scrolled, nav.navbar.bootsnav.navbar-fixed.no-background .logo-scrolled {
+		display: none;
+	}
+	nav.navbar.bootsnav.navbar-fixed .logo-display {
+		display: none;
+	}
+}
+
+@media only screen  and (min-width : 1024px) {
+	h1 {
+	  font-size:46px;
+	}
+	h2 {
+	  font-size:36px;
+	}
+	h3 {
+	  font-size:27px;
+	}
+	h4 {
+	  font-size:20px;
+	} 
+	
+	h5 {
+	  font-size:17;
+	}
+	
+	h6 {
+	  font-size:12;
+	}
+	
+	nav.navbar.bootsnav ul.navbar-right li.dropdown ul.dropdown-menu.left-nav li a {
+		text-align:left;
+	}
+	
+	/*------------ Custom Font Style --------------*/
+	.font-50{
+	font-size:50px;
+	}
+
+	.font-60{
+		font-size:60px;
+	}
+
+	.font-80{
+		font-size:80px;
+	}
+
+	.font-100{
+		font-size:100px;
+	}
+
+	.font-150{
+		font-size:150px;
+	}
+
+	.font-200{
+		font-size:200px;
+	}
+
+	.font-250{
+		font-size:250px;
+	}
+
+	.font-300{
+		font-size:300px;
+	}
+
+	.font-400{
+		font-size:400px;
+	}
+
+	.font-450{
+		font-size:450px;
+	}
+
+	.font-500{
+		font-size:500px;
+	}
+
+	.font-bold{
+		font-weight:bold;
+	}
+	.main-banner h2 {
+		font-size: 50px;
+		font-weight: 600;
+		margin-bottom:10px;
+	}
+	.main-banner p{
+		font-size:17px;
+	}
+
+}
+
+@media screen and (max-width: 992px) {
+	.navbar-default .navbar-brand img {
+		max-width: 240px;
+	}
+	.main-banner .form-control{
+		margin-bottom:10px;
+	}
+	
+	.fb-log-btn {
+		margin-bottom: 10px;
+	}
+	
+	.main-banner {
+		padding-top: 120px;
+	}
+	.log-screen {
+		background-image: none !important;
+	}
+	.soon-wrapper {
+		background-image: none;
+	}
+
+}
+
+@media screen and (max-width: 767px) {
+	#navigation .container{
+		margin:0;
+		padding:0;
+	}
+	ul.nav.navbar-nav.pull-right {
+		float: none !important;
+		margin: 0;
+	}
+	.navbar-collapse {
+		background: #fff none repeat scroll 0 0;
+		-webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+		box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+		border-top: 0.5px solid #bbb;
+		margin-top: 12px;
+		overflow-x: visible;
+		padding-left: 15px;
+		padding-right: 15px;
+		width: 101.8%;
+		margin-left: -2px;
+	}
+		
+	ul.nav.navbar-nav.pull-right li a {
+		margin-top: 18px;
+		color: #739849 !important;
+		font-weight: 500;
+		font-size: 16px;
+		margin: 0;
+		position: relative;
+		text-align: center;
+		cursor: pointer;
+		border-top: 1px solid #bbb;
+		text-transform: uppercase;
+	}
+	
+	.navbar-nav>li>a {
+		padding-top: 18px;
+		padding-bottom: 10px;
+		line-height: 24px;
+	}
+	
+	.navbar-toggle .icon-bar {
+		border-radius: 1px;
+		display: block;
+		height: 2px;
+		width: 25px;
+		border: background;
+		border: 1px solid #000;
+	}
+	.bg-change {
+		position: fixed;
+		top: 0;
+		background: #fff;
+		width: 100%;
+		box-shadow: 0 1px 5px rgba(64, 64, 64, 0.34);
+		transition: background 250ms linear;
+	}
+	/*-- General Style--*/
+	html body .mob-padd-0{
+		padding:0;
+	}
+	html body .mob-mrg-0{
+		margin:0;
+	}
+	html body .mob-extra-mrg{
+		margin-left:-15px;
+		margin-right:-15px;
+	}
+	.heading h2 {
+		font-size: 28px;
+	}
+	/*----- Mobile Padding Settings ------*/
+	.mob-padd-0{
+		padding-left:0;
+		padding-right:0;
+	}
+	.mob-mrg-0{
+		margin-left:-15px;
+		margin-right:-15px;
+	}
+	.mob-extra-mrg{
+		margin-left:-15px;
+		margin-right:-15px;
+	}
+	
+	.banner {
+		padding: 100px 0 80px 0;
+	}
+	
+	.mbb-1{
+		border-bottom:1px solid #dde6ef;
+	}
+	.destination-box.list-style, .hotel-box.list-style, .restaurent-box.list-style, .tour-box.list-style {
+    height: auto;
+	}
+	.destination-box.list-style .inner-box, .hotel-box.list-style .inner-box, .restaurent-box.list-style .inner-box, .tour-box.list-style .inner-box  {
+		padding: 30px 20px 30px 20px;
+	}
+	.sl-box{
+		margin-bottom:10px;
+	}
+	.profile-header-nav .theme-btn {
+		width: 100% !important;
+		display: block;
+		float: none !important;
+		margin-bottom: 15px;
+	}
+	.profile-header-nav .fl-right{
+		float:none;
+	}
+	.profile-header-nav .nav-tabs li a {
+		border-right:none;
+	}
+
+	.log-wrapper {
+		display: block !important;
+	}
+	.nice-select ul.list {
+		max-height:150px;
+		overflow-y: scroll;
+	}
+
+}
+
+@media screen and (max-width: 479px) {
+	ul.amenities.third li{
+		width:50%;
+	}
+	ul.amenities.fourth li{
+		width:50%;
+	}
+
+}
