@@ -192,6 +192,12 @@
 							<input type="text" name="tag_list" value="{{$provider->tag_list}}" data-role="tagsinput" placeholder="add tags"/>
 						</div>
 					</div>
+					<div class="form-group row">
+				        <label for="gallery">Photo Gallery</label>
+				        <div class="needsclick dropzone" id="gallery-dropzone">
+
+				        </div>
+				    </div>
 			   </div>
 			</div>
 			<div class="col-xl-4">
@@ -204,4 +210,44 @@
 			</div>
 		</div>   
 	</form>
+@endsection
+
+@section('scripts')
+	<script>
+  var uploadedGalleryMap = {}
+  Dropzone.options.galleryDropzone = {
+    url: '{{ route('providers.storeMedia') }}',
+    maxFilesize: 2, // MB
+    addRemoveLinks: true,
+    headers: {
+      'X-CSRF-TOKEN': "{{ csrf_token() }}"
+    },
+    success: function (file, response) {
+      $('form').append('<input type="hidden" name="gallery_image[]" value="' + response.name + '">')
+      uploadedGalleryMap[file.name] = response.name
+    },
+    removedfile: function (file) {
+      file.previewElement.remove()
+      var name = ''
+      if (typeof file.file_name !== 'undefined') {
+        name = file.file_name
+      } else {
+        name = uploadedGalleryMap[file.name]
+      }
+      $('form').find('input[name="gallery_image[]"][value="' + name + '"]').remove()
+    },
+    init: function () {
+      @if(isset($provider) && $provider->getMedia('gallery'))
+      	@foreach($provider->getMedia('gallery') as $media)
+      		var file ={!! json_encode($media) !!};
+      		var thumbnailUrl = "{!! url($media->getUrl('thumb-medium')) !!}";
+      		this.options.addedfile.call(this, file);
+      		this.options.thumbnail.call(this, file, thumbnailUrl);
+          	file.previewElement.classList.add('dz-complete');
+          	$('form').append('<input type="hidden" name="gallery_image[]" value="' + file.file_name + '">');
+      	@endforeach
+      @endif
+    }
+  }
+</script>
 @endsection

@@ -62,11 +62,11 @@
 			</div>
 		</div>
 	</header>
-	    <div class="page-title image-title" style="background-image:url({{ $providers->getFirstMediaUrl('provider') }});">
+	    <div class="page-title image-title" style="background-image:url({{ $provider->getFirstMediaUrl('provider') }});">
 			<div class="container">
 				<div class="page-title-wrap">
-				   <h2>{{ $providers->translate('name') }}</h2>
-				   <p><a href="/" class="theme-cl">Home</a> | <a href="#" class="theme-cl">Getaways</a> | <span>{{ $providers->translate('name') }}</span></p>
+				   <h2>{{ $provider->translate('name') }}</h2>
+				   <p><a href="/" class="theme-cl">Home</a> | <a href="#" class="theme-cl">Getaways</a> | <span>{{ $provider->translate('name') }}</span></p>
 				</div>
 			</div>
 		</div>  
@@ -82,11 +82,11 @@
                                  <h4><i class="ti-files"></i>Description</h4>
                               </div>
                               <div class="tr-single-body">
-                                 <p>{!! $providers->translate('description') !!}</p>
+                                 <p>{!! $provider->translate('description') !!}</p>
                               </div>
                            </div>
                         </div> 
-                        @if($providers->tags->count())
+                        @if($provider->tags->count())
                         <div class="row">
                            <div class="tr-single-box">
                               <div class="tr-single-header">
@@ -94,7 +94,7 @@
                               </div>
                               <div class="tr-single-body">
                                  <ul class="amenities third"> 
-                                 @foreach($providers->tags as $tag)
+                                 @foreach($provider->tags as $tag)
                                     <li>{{ $tag->name }}</li>
                                  @endforeach          
                                  </ul>
@@ -102,52 +102,26 @@
                            </div>
                         </div>
                         @endif
-                        <div class="row">
-                           <div class="tr-single-box">
-                              <div class="tr-single-header">
-                                 <h4><i class="ti-gallery"></i>Photo Gallery</h4>
-                              </div>
-                              <div class="tr-single-body">
-                                 <ul class="gallery-list">
-                                    <li>
-										<a class="example-image-link" href="assets/img/44.jpg" data-lightbox="example-set" data-title="ewfwefwef">
-											<img class="example-image" src="assets/img/44.jpg" width="100%" alt=""/>
-										</a>
-                                    </li>
-									<li>
-										<a class="example-image-link" href="assets/img/44.jpg" data-lightbox="example-set" data-title="ewfwefwef">
-											<img class="example-image" src="assets/img/44.jpg" width="100%" alt=""/>
-										</a>
-                                    </li>
-									<li>
-										<a class="example-image-link" href="assets/img/44.jpg" data-lightbox="example-set" data-title="ewfwefwef">
-											<img class="example-image" src="assets/img/44.jpg" width="100%" alt=""/>
-										</a>
-                                    </li>
-									<li>
-										<a class="example-image-link" href="assets/img/44.jpg" data-lightbox="example-set" data-title="ewfwefwef">
-											<img class="example-image" src="assets/img/44.jpg" width="100%" alt=""/>
-										</a>
-                                    </li>
-									<li>
-										<a class="example-image-link" href="assets/img/44.jpg" data-lightbox="example-set" data-title="ewfwefwef">
-											<img class="example-image" src="assets/img/44.jpg" width="100%" alt=""/>
-										</a>
-                                    </li>
-									<li>
-										<a class="example-image-link" href="assets/img/44.jpg" data-lightbox="example-set" data-title="ewfwefwef">
-											<img class="example-image" src="assets/img/44.jpg" width="100%" alt=""/>
-										</a>
-                                    </li>
-									<li>
-										<a class="example-image-link" href="assets/img/44.jpg" data-lightbox="example-set" data-title="ewfwefwef">
-											<img class="example-image" src="assets/img/44.jpg" width="100%" alt=""/>
-										</a>
-                                    </li>
-                                 </ul>
+                        @if( $provider->getMedia('gallery')->count() )
+                           <div class="row">
+                              <div class="tr-single-box">
+                                 <div class="tr-single-header">
+                                    <h4><i class="ti-gallery"></i>Photo Gallery</h4>
+                                 </div>
+                                 <div class="tr-single-body">
+                                    <ul class="gallery-list">
+                                       @foreach($provider->getMedia('gallery') as $media )
+                                       <li>
+            										<a class="example-image-link" href=" {!! url($media->getUrl()) !!}" data-lightbox="example-set" data-title="">
+            											<img class="example-image" src=" {!! url($media->getUrl('thumb')) !!}" width="100%" alt=""/>
+            										</a>
+                                       </li>
+                                       @endforeach
+                                    </ul>
+                                 </div>
                               </div>
                            </div>
-                        </div>
+                        @endif
                         <div class="row">
                            <div class="tr-single-box">
                               <div class="tr-single-header">
@@ -272,7 +246,7 @@
 	<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDOZmjVskSQgV7V6oXgCX1_C5TUuwkUKjY"></script>
    <script type="text/javascript">
 		   $(document).ready(function() {
-		           var myCenter = new google.maps.LatLng("{{ $providers->latitude }}", "{{ $providers->longitude }}");
+		           var myCenter = new google.maps.LatLng("{{ $provider->latitude }}", "{{ $provider->longitude }}");
 		   
 		           function initialize() {
 		               var mapProp = {
@@ -293,7 +267,7 @@
 		               });
 		               marker.setMap(map);
 		               var infowindow = new google.maps.InfoWindow({
-		                   content: '<h3 class="title-map">{{ $providers->translate('name') }}</p>'
+		                   content: '<h3 class="title-map">{{ $provider->translate('name') }}</p>'
 		               });
 		   
 		               google.maps.event.addListener(marker, 'click', function() {

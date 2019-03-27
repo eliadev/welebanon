@@ -188,6 +188,13 @@
 							<input type="text" name="tags" data-role="tagsinput" placeholder="add tags"/>
 						</div>
 					</div>
+					<div class="form-group row">
+				        <label for="gallery">Photo Gallery</label>
+				        <div class="needsclick dropzone" id="gallery-dropzone">
+
+				        </div>
+				    </div>
+
 			   </div>
 			</div>
 			<div class="col-xl-4">
@@ -199,4 +206,32 @@
 			</div>
 		</div>
 	</form>
+@endsection
+
+@section('scripts')
+	<script>
+  var uploadedGalleryMap = {}
+  Dropzone.options.galleryDropzone = {
+    url: '{{ route('providers.storeMedia') }}',
+    maxFilesize: 2, // MB
+    addRemoveLinks: true,
+    headers: {
+      'X-CSRF-TOKEN': "{{ csrf_token() }}"
+    },
+    success: function (file, response) {
+      $('form').append('<input type="hidden" name="gallery_image[]" value="' + response.name + '">')
+      uploadedGalleryMap[file.name] = response.name
+    },
+    removedfile: function (file) {
+      file.previewElement.remove()
+      var name = ''
+      if (typeof file.file_name !== 'undefined') {
+        name = file.file_name
+      } else {
+        name = uploadedGalleryMap[file.name]
+      }
+      $('form').find('input[name="gallery_image[]"][value="' + name + '"]').remove()
+    }
+  }
+</script>
 @endsection

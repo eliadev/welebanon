@@ -31,6 +31,10 @@ class Provider extends Model implements HasMedia
 	
 	public function registerMediaConversions(Media $media = null)
     {
+        $this->addMediaConversion('thumb-medium')
+            ->width(120)
+            ->height(110);
+
         $this->addMediaConversion('thumb')
             ->width(50)
             ->height(50);

@@ -27,4 +27,7 @@ Route::namespace('Admin')->prefix('admin')->middleware(['auth', 'is_admin'])->gr
 	Route::resource('providers', 'ProviderController')->middleware(['has_permission:providers']);
 	Route::resource('services', 'ServiceController')->middleware(['has_permission:services']);
 	Route::resource('categories', 'CategoryController')->middleware(['has_permission:categories']);
+
+	Route::post('providers/media', 'ProviderController@storeMedia')->name('providers.storeMedia');
+
 });

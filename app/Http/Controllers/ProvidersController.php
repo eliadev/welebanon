@@ -10,7 +10,7 @@ class ProvidersController extends Controller
 
 	public function show($id)
     {
-		$providers = Provider::with(['tags'])->find($id);
-		return view('front.providers', ['providers' => $providers]);
+		$provider = Provider::with(['tags'])->find($id);
+		return view('front.providers', ['provider' => $provider]);
     }
 }

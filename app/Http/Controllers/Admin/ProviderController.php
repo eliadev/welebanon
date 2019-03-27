@@ -65,6 +65,11 @@ class ProviderController extends Controller
         if ($request->image) {
             $provider->addMedia($request->image)->toMediaCollection('provider');
         }
+
+        // Add multiple images
+        foreach ($request->input('gallery_image', []) as $file) {
+            $provider->addMedia(storage_path('tmp/uploads/' . $file))->toMediaCollection('gallery');
+        }
 		
 		session()->flash('message', 'Your record has been added successfully');
 		return redirect(route('providers.index'));
@@ -114,10 +119,26 @@ class ProviderController extends Controller
             $tag = Tag::firstOrCreate(['name' => $tag]);
             array_push($tagIds, $tag->id);
         }
-       // dd($tagIds);
+
         // attach tags to Provider
         $provider->tags()->sync($tagIds);    
 		
+        // Remove media files removed by the user on edit provider
+        if ( $provider->getMedia('gallery')->count()) {
+            foreach ($provider->getMedia('gallery') as $media) {
+                if (!in_array($media->file_name, $request->input('gallery_image', []))) {
+                    $media->delete();
+                }
+            }
+        }
+        // add media file added by the user on edit provider
+        $media = $provider->getMedia('gallery')->pluck('file_name')->toArray();
+        foreach ($request->input('gallery_image', []) as $file) {
+            if (count($media) === 0 || !in_array($file, $media)) {
+                $provider->addMedia(storage_path('tmp/uploads/' . $file))->toMediaCollection('gallery');
+            }
+        }
+
         $provider->update($request->all());
 		session()->flash('message', 'Your record has been updated successfully');
 		return redirect()->back();
@@ -135,4 +156,31 @@ class ProviderController extends Controller
 		session()->flash('message', 'Your record has been deleted successfully');
 		return redirect(route('providers.index'));
     }
+
+    /**
+     * Handles multiple image updoad.
+     * 
+     * @param  Request $request [description]
+     * @return [type]           [description]
+     */
+    public function storeMedia(Request $request)
+    {
+        $path = storage_path('tmp/uploads');
+
+        if (!file_exists($path)) {
+            mkdir($path, 0777, true);
+        }
+
+        $file = $request->file('file');
+
+        $name = uniqid() . '_' . trim($file->getClientOriginalName());
+
+        $file->move($path, $name);
+
+        return response()->json([
+            'name'          => $name,
+            'original_name' => $file->getClientOriginalName(),
+        ]);
+    }
+
 }
