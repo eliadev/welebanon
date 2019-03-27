@@ -14,14 +14,6 @@ class HomeController extends Controller
     {
         $services = Service::all();
         $providers = Provider::where('featured', 1)->get();
-        return view('front.home.index', ['services' => $services, 'providers' => $providers]);
-    }
-
-    //ToDo in other way
-    public function categories($id)
-    {
-        $services = Service::all();
-        $service = Service::with(['category', 'category.providers'])->find($id);
-        return view('front.home.getaways', ['services' => $services, 'service' => $service]); 
+        return view('front.index', ['services' => $services, 'providers' => $providers]);
     }
 }

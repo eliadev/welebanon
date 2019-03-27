@@ -18,9 +18,8 @@ Route::get('change-language/{lang}', 'LanguageController@index')->name('change-l
 
 Route::middleware(['language'])->group(function () {
 	Route::get('/', 'HomeController@index')->name('front.home');
-	Route::get('/services/{id}/', 'HomeController@categories')->name('front.services.show');
-	Route::get('/providers/{id}/', 'ProviderDetailsController@index')->name('front.providers.show');
-	// add all your frontend routes here.
+	Route::get('/services/{id}', 'ServicesController@show')->name('front.services.show');
+	Route::get('/providers/{id}/', 'ProvidersController@show')->name('front.providers.show');
 });
 
 Route::namespace('Admin')->prefix('admin')->middleware(['auth', 'is_admin'])->group(function () {
