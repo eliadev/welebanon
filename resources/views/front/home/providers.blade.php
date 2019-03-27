@@ -85,21 +85,23 @@
                                  <p>{!! $providers->translate('description') !!}</p>
                               </div>
                            </div>
-                        </div>
+                        </div> 
+                        @if($providers->tags->count())
                         <div class="row">
                            <div class="tr-single-box">
                               <div class="tr-single-header">
                                  <h4><i class="ti-crown"></i>More Info</h4>
                               </div>
                               <div class="tr-single-body">
-                                 <ul class="amenities third">
+                                 <ul class="amenities third"> 
                                  @foreach($providers->tags as $tag)
                                     <li>{{ $tag->name }}</li>
-                                 @endforeach
+                                 @endforeach          
                                  </ul>
                               </div>
                            </div>
                         </div>
+                        @endif
                         <div class="row">
                            <div class="tr-single-box">
                               <div class="tr-single-header">

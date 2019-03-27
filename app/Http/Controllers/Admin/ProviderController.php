@@ -114,6 +114,7 @@ class ProviderController extends Controller
             $tag = Tag::firstOrCreate(['name' => $tag]);
             array_push($tagIds, $tag->id);
         }
+       // dd($tagIds);
         // attach tags to Provider
         $provider->tags()->sync($tagIds);    
 		
