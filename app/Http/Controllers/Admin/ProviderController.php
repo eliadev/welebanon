@@ -48,8 +48,10 @@ class ProviderController extends Controller
      */
     public function store(ProviderRequest $request)
     {
+        $request->has('featured') ? true : false;
+        //dd($request->has('featured'));
         $provider = Provider::create($request->all());
-		
+
 		//Tags
         $tags = explode(",", $request['tags']);
         $tagIds = [];
@@ -97,7 +99,7 @@ class ProviderController extends Controller
      * @param  \App\Provider  $provider
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Provider $provider)
+    public function update(ProviderRequest $request, Provider $provider)
     {
 		if($request->has('delete_existing_image'))
             $provider->clearMediaCollection('provider');
@@ -105,15 +107,15 @@ class ProviderController extends Controller
         if (isset($request->image)) {
             $provider->addMedia($request->image)->toMediaCollection('provider');
         }
-		
+
 		$tags = explode(",", $request['tag_list']);
         $tagIds = [];
         foreach($tags as $tag) {
             $tag = Tag::firstOrCreate(['name' => $tag]);
             array_push($tagIds, $tag->id);
         }
-        // attach tags to project
-        $project->tags()->sync($tagIds);    
+        // attach tags to Provider
+        $provider->tags()->sync($tagIds);    
 		
         $provider->update($request->all());
 		session()->flash('message', 'Your record has been updated successfully');

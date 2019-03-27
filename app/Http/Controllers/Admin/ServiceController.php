@@ -40,6 +40,11 @@ class ServiceController extends Controller
     public function store(ServiceRequest $request)
     {
         $service = Service::create($request->all());
+		
+		//Add Image
+        if ($request->image) {
+            $service->addMedia($request->image)->toMediaCollection('service');
+        }
         
 		session()->flash('message', 'Your record has been added successfully');
 		return redirect(route('services.index'));
@@ -76,7 +81,13 @@ class ServiceController extends Controller
      */
     public function update(ServiceRequest $request, Service $service)
     {
-        $service->update($request->all());
+        if($request->has('delete_existing_image'))
+            $service->clearMediaCollection('service');
+        
+        if (isset($request->image)) {
+            $service->addMedia($request->image)->toMediaCollection('service');
+        }
+		$service->update($request->all());
 		session()->flash('message', 'Your record has been updated successfully');
 		return redirect()->back();
     }

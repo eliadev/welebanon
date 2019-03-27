@@ -19,6 +19,7 @@ class CreateCategoriesTable extends Migration
 			$table->string('name_ar');
 			$table->longText('description_en')->nullable();
 			$table->longText('description_ar')->nullable();
+			$table->string('icon')->nullable();
 			$table->integer('order')->default(0);
 			
 			$table->integer('service_id')->unsigned();

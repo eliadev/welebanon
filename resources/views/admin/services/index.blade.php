@@ -12,6 +12,7 @@
 				<table id="datatable-buttons" class="table table-striped table-bordered" cellspacing="0" width="100%">
 					<thead>
 					<tr>
+						<th>Image</th>
 						<th>Title</th>
 						<th>Icon</th>
 						<th>Order</th>
@@ -21,6 +22,7 @@
 					<tbody>
 					@foreach($services as $service)
 					<tr>
+						<td><img class="img-circle" src="{{$service->getFirstMediaUrl('service', 'thumb')}}"></td>
 						<td>{{$service->name_en}}</td>
 						<td>{{$service->icon}}</td>
 						<td>{{$service->order}}</td>

@@ -56,6 +56,54 @@
 						</div>
 					</div>
 				  </div>
+					<div class="form-group row">
+						<div class="col-md-1"></div>
+						<label for="image" class="col-sm-2 col-form-label">Image</label>
+						<div class="col-sm-8">
+							<input type="file" name="image" class="form-control" id="image">
+						</div>
+					</div>
+					<div class="row translate-bg">
+					<label class="col-sm-3 col-form-label tran-title bg-tran">Description</label>
+					<div class="col-md-9 bg-tran">
+						<ul class="nav nav-tabs">
+							<li class="nav-item">
+								<a href="#descEnCat" data-toggle="tab" aria-expanded="false" class="nav-link active">
+									English
+								</a>
+							</li>
+							<li class="nav-item">
+								<a href="#descArCat" data-toggle="tab" aria-expanded="true" class="nav-link">
+									Arabic
+								</a>
+							</li>
+						</ul>
+					</div>
+					<div class="col-sm-12">
+						 <div>
+							<div class="tab-content">
+								<div role="tabpanel" class="tab-pane show active" id="descEnCat">
+									<div class="form-group row">
+										<div class="col-md-1"></div>
+										 <label for="DescEn" class="col-sm-2 col-form-label">Description English</label>
+										 <div class="col-sm-8">
+											<textarea class="summernote-editor" id="DescEn" name="description_en"></textarea>
+										 </div>
+									</div>
+								</div>
+								<div role="tabpanel" class="tab-pane" id="descArCat">
+									<div class="form-group row">
+										<div class="col-md-1"></div>
+										 <label for="DescAr" class="col-sm-2 col-form-label">Description Arabic</label>
+										 <div class="col-sm-8">
+											<textarea class="summernote-editor" id="DescAr" name="description_ar"></textarea>
+										 </div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				  </div>
 				  <div class="form-group row">
 					<div class="col-md-1"></div>
 					<label for="icon" class="col-sm-2 col-form-label">Icon</label>

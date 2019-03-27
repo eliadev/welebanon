@@ -14,7 +14,7 @@
 			</ul>
 		</div>
 	@endif
-    <form class="form-horizontal" action="{{route('categories.update', $category->id)}}" method="POST" enctype="multipart/form-data" data-parsley-validate novalidate>
+    <form class="form-horizontal" action="{{ route('categories.update', $category->id) }}" method="POST" enctype="multipart/form-data" data-parsley-validate novalidate>
 		@method('put')
 		@csrf
 		<div class="row">
@@ -32,7 +32,7 @@
 									@if($service->id == $category->service_id)
 									selected
 									@endif
-									>{{$service->name_en}}</option>
+									>{{ $service->name_en }}</option>
 								@endforeach
 							</select>
 						</div>
@@ -61,7 +61,7 @@
 										<div class="col-md-1"></div>
 										 <label for="titleEn" class="col-sm-2 col-form-label">Title English</label>
 										 <div class="col-sm-8">
-											<input type="text" name="name_en" value="{{$category->name_en}}" class="form-control" id="titleEn" placeholder="Title English">
+											<input type="text" name="name_en" value="{{ $category->name_en }}" class="form-control" id="titleEn" placeholder="Title English">
 										 </div>
 									</div>
 								</div>
@@ -70,7 +70,7 @@
 										<div class="col-md-1"></div>
 										 <label for="titleAr" class="col-sm-2 col-form-label">Title Arabic</label>
 										 <div class="col-sm-8">
-											<input type="text" name="name_ar" value="{{$category->name_ar}}" class="form-control" id="titleAr" placeholder="Title Arabic">
+											<input type="text" name="name_ar" value="{{ $category->name_ar }}" class="form-control" id="titleAr" placeholder="Title Arabic">
 										 </div>
 									</div>
 								</div>
@@ -102,7 +102,7 @@
 										<div class="col-md-1"></div>
 										 <label for="DescEn" class="col-sm-2 col-form-label">Description English</label>
 										 <div class="col-sm-8">
-											<textarea class="summernote-editor" id="DescEn" name="description_en">{{$category->description_en}}</textarea>
+											<textarea class="summernote-editor" id="DescEn" name="description_en">{!! $category->description_en !!}</textarea>
 										 </div>
 									</div>
 								</div>
@@ -111,7 +111,7 @@
 										<div class="col-md-1"></div>
 										 <label for="DescAr" class="col-sm-2 col-form-label">Description Arabic</label>
 										 <div class="col-sm-8">
-											<textarea class="summernote-editor" id="DescAr" name="description_ar">{{$category->description_ar}}</textarea>
+											<textarea class="summernote-editor" id="DescAr" name="description_ar">{!! $category->description_ar !!}</textarea>
 										 </div>
 									</div>
 								</div>
@@ -119,11 +119,18 @@
 						</div>
 					</div>
 				  </div>
+					<div class="form-group row">
+					<div class="col-md-1"></div>
+					<label for="icon" class="col-sm-2 col-form-label">Icon</label>
+					<div class="col-sm-8">
+						<input type="text" name="icon" class="form-control" value="{{ $category->icon }}" id="icon" placeholder="Icon">
+					 </div>
+				  </div>
 				  <div class="form-group row">
 					<div class="col-md-1"></div>
 					<label for="order" class="col-sm-2 col-form-label">Order</label>
 					<div class="col-sm-8">
-						<input type="number" name="order" class="form-control" value="{{$category->order}}" id="order" placeholder="Order">
+						<input type="number" name="order" class="form-control" value="{{ $category->order }}" id="order" placeholder="Order">
 					 </div>
 				  </div>
 			   </div>

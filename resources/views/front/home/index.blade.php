@@ -8,8 +8,8 @@
 			  <p>Expolore top tours, hotels and restaurants in Lebanon</p>
 		   </div>
 		   <form class="wow-form"> 
-			  <input type="text" placeholder="Search Getaways...">
-			  <button type="submit" class="btn btn-wow theme-btn" name="submit" value="Search"> Find Tour </button>
+			  <input type="text" placeholder="{!! __('messages.search') !!}...">
+			  <button type="submit" class="btn btn-wow theme-btn" name="submit" value="Search"> {!! __('messages.find') !!} </button>
 		   </form>
 		</div>
 	 </div>
@@ -29,12 +29,12 @@
 		@foreach($services as $service)
 			<div class="featured-block col-md-3 col-sm-6 col-xs-12">
 				<div class="inner-box">
-				<a href="{{route('front.services.show', $service->id)}}">
+				<a href="{{ route('front.services.show', $service->id) }}">
 					<div class="icon-box">
-						<span class="{{$service->icon}}"></span>
+						<span class="{{ $service->icon }}"></span>
 					</div>
-					<h3>{{$service->translate('name')}}</h3>
-					<div class="text">Lorem ipsum dolor sit amet, consectetur adipisicing elit sedo.</div>
+					<h3>{{ $service->translate('name') }}</h3>
+					<div class="text">{!! $service->translate('description') !!}</div>
 					</a>
 				</div>
 			</div>
@@ -53,7 +53,7 @@
 		<div class="row">
 		   <div class="col-md-12">
 			  <div class="heading">
-				 <h1>Featured Getaways</h1>
+				 <h1>{!! __('messages.featured') !!}</h1>
 			  </div>
 		   </div>
 		</div>
@@ -61,198 +61,38 @@
 		<div class="row">
 		   <div class="award-slider">
 			  <div class="owl-carousel owl-theme">
+				 @foreach($providers as $provider)
 				 <div class="item">
 					<div class="list-slide-box">
 					   <article class="hotel-box style-1">
 						  <div class="hotel-box-image">
 							 <figure>
-								<a href="hotel-detail.html">
-								   <img src="assets/img/11.jpg" class="img-responsive listing-box-img" alt="" />
+								   <img src="{{$provider->getFirstMediaUrl('provider')}}" class="img-responsive listing-box-img" alt="{!! $provider->name_en !!}" />
 								   <div class="list-overlay"></div>
-								</a>
 								<h4 class="hotel-place">
-								   <a href="#">Beirut, Lebanon</a>
+								   <a>{!! $provider->translate('address') !!}</a>
 								</h4>
 							 </figure>
 						  </div>
 						  <div class="hotel-detail-box">
 							 <div class="hotel-ellipsis">
 								<h4 class="hotel-name">
-								   <a href="hotel-detail.html">Al Mandaloun</a>
+								   <a href="{{ route('front.providers.show', $provider->id) }}">{!! $provider->translate('name') !!}</a>
 								</h4>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit sedo.</p>
+								<p>{!! $provider->translate('description') !!}</p>
 							 </div>
 						  </div>
 						  <div class="hotel-inner inner-box">
 							 <div class="box-inner-ellipsis">
 								<div class="view-box">
-									  <a href="#" class="read_more">read more</a>
+									  <a href="{{ route('front.providers.show', $provider->id) }}" class="read_more">read more</a>
 								</div>
 							 </div>
 						  </div>
 					   </article>
 					</div>
 				 </div>
-				 <div class="item">
-					<div class="list-slide-box">
-					   <article class="hotel-box style-1">
-						  <div class="hotel-box-image">
-							 <figure>
-								<a href="hotel-detail.html">
-								   <img src="assets/img/22.jpg" class="img-responsive listing-box-img" alt="" />
-								   <div class="list-overlay"></div>
-								</a>
-								<h4 class="hotel-place">
-								   <a href="#">Beirut, Lebanon</a>
-								</h4>
-							 </figure>
-						  </div>
-						  <div class="hotel-detail-box">
-							 <div class="hotel-ellipsis">
-								<h4 class="hotel-name">
-								   <a href="hotel-detail.html">Al Mandaloun</a>
-								</h4>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit sedo.</p>
-							 </div>
-						  </div>
-						  <div class="hotel-inner inner-box">
-							 <div class="box-inner-ellipsis">
-								<div class="view-box">
-									  <a href="#" class="read_more">read more</a>
-								</div>
-							 </div>
-						  </div>
-					   </article>
-					</div>
-				 </div>
-				 <div class="item">
-					<div class="list-slide-box">
-					   <article class="hotel-box style-1">
-						  <div class="hotel-box-image">
-							 <figure>
-								<a href="hotel-detail.html">
-								   <img src="assets/img/33.jpg" class="img-responsive listing-box-img" alt="" />
-								   <div class="list-overlay"></div>
-								</a>
-								<h4 class="hotel-place">
-								   <a href="#">Beirut, Lebanon</a>
-								</h4>
-							 </figure>
-						  </div>
-						  <div class="hotel-detail-box">
-							 <div class="hotel-ellipsis">
-								<h4 class="hotel-name">
-								   <a href="hotel-detail.html">Al Mandaloun</a>
-								</h4>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit sedo.</p>
-							 </div>
-						  </div>
-						  <div class="hotel-inner inner-box">
-							 <div class="box-inner-ellipsis">
-								<div class="view-box">
-									  <a href="#" class="read_more">read more</a>
-								</div>
-							 </div>
-						  </div>
-					   </article>
-					</div>
-				 </div>
-				 <div class="item">
-					<div class="list-slide-box">
-					   <article class="hotel-box style-1">
-						  <div class="hotel-box-image">
-							 <figure>
-								<a href="hotel-detail.html">
-								   <img src="assets/img/44.jpg" class="img-responsive listing-box-img" alt="" />
-								   <div class="list-overlay"></div>
-								</a>
-								<h4 class="hotel-place">
-								   <a href="#">Beirut, Lebanon</a>
-								</h4>
-							 </figure>
-						  </div>
-						  <div class="hotel-detail-box">
-							 <div class="hotel-ellipsis">
-								<h4 class="hotel-name">
-								   <a href="hotel-detail.html">Al Mandaloun</a>
-								</h4>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit sedo.</p>
-							 </div>
-						  </div>
-						  <div class="hotel-inner inner-box">
-							 <div class="box-inner-ellipsis">
-								<div class="view-box">
-									  <a href="#" class="read_more">read more</a>
-								</div>
-							 </div>
-						  </div>
-					   </article>
-					</div>
-				 </div>
-				 <div class="item">
-					<div class="list-slide-box">
-					   <article class="hotel-box style-1">
-						  <div class="hotel-box-image">
-							 <figure>
-								<a href="hotel-detail.html">
-								   <img src="assets/img/11.jpg" class="img-responsive listing-box-img" alt="" />
-								   <div class="list-overlay"></div>
-								</a>
-								<h4 class="hotel-place">
-								   <a href="#">Beirut, Lebanon</a>
-								</h4>
-							 </figure>
-						  </div>
-						  <div class="hotel-detail-box">
-							 <div class="hotel-ellipsis">
-								<h4 class="hotel-name">
-								   <a href="hotel-detail.html">Al Mandaloun</a>
-								</h4>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit sedo.</p>
-							 </div>
-						  </div>
-						  <div class="hotel-inner inner-box">
-							 <div class="box-inner-ellipsis">
-								<div class="view-box">
-									  <a href="#" class="read_more">read more</a>
-								</div>
-							 </div>
-						  </div>
-					   </article>
-					</div>
-				 </div>
-				 <div class="item">
-					<div class="list-slide-box">
-					   <article class="hotel-box style-1">
-						  <div class="hotel-box-image">
-							 <figure>
-								<a href="hotel-detail.html">
-								   <img src="assets/img/22.jpg" class="img-responsive listing-box-img" alt="" />
-								   <div class="list-overlay"></div>
-								</a>
-								<h4 class="hotel-place">
-								   <a href="#">Beirut, Lebanon</a>
-								</h4>
-							 </figure>
-						  </div>
-						  <div class="hotel-detail-box">
-							 <div class="hotel-ellipsis">
-								<h4 class="hotel-name">
-								   <a href="hotel-detail.html">Al Mandaloun</a>
-								</h4>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit sedo.</p>
-							 </div>
-						  </div>
-						  <div class="hotel-inner inner-box">
-							 <div class="box-inner-ellipsis">
-								<div class="view-box">
-									  <a href="#" class="read_more">read more</a>
-								</div>
-							 </div>
-						  </div>
-					   </article>
-					</div>
-				 </div>
+				 @endforeach
 			  </div>
 		   </div>
 		</div>
@@ -263,7 +103,7 @@
 		<div class="row">
 		   <div class="col-md-12">
 			  <div class="heading">
-				 <h1>Our Packages</h1>
+				 <h1>{!! __('messages.packages') !!}</h1>
 			  </div>
 		   </div>
 		</div>
@@ -283,7 +123,7 @@
 						<li>32GB Storage</li>
 					</ul>
 				</div>
-				<div class="button"><a href="#" class="btn btn-border btn-sm">Get started</a></div>
+				<div class="button"><a href="#" class="btn btn-border btn-sm">{!! __('messages.getstarted') !!}</a></div>
 			</div>
 		</div>
 		<div class="col-xl-4 col-lg-4 col-md-12 ">
@@ -301,7 +141,7 @@
 						<li>32GB Storage</li>
 					</ul>
 				</div>
-				<div class="button"><a href="#" class="btn btn-sm btn-color">Get started</a></div>
+				<div class="button"><a href="#" class="btn btn-sm btn-color">{!! __('messages.getstarted') !!}</a></div>
 			</div>
 		</div>
 		<div class="col-xl-4 col-lg-4 col-md-12">
@@ -319,11 +159,10 @@
 						<li>32GB Storage</li>
 					</ul>
 				</div>
-				<div class="button"><a href="#" class="btn btn-border btn-sm">Get started</a></div>
+				<div class="button"><a href="#" class="btn btn-border btn-sm">{!! __('messages.getstarted') !!}</a></div>
 			</div>
 		</div>
 	</div>
-
 		<br>
 		<div class="col-md-2"></div>
 		<div class="col-md-8">
@@ -332,4 +171,13 @@
 		<div class="col-md-2"></div>
 		</div>
 	</section>
+	<form id="form" name="form" class="form-inline">
+    <div class="form-group">
+        <label for="startDate">Start Date</label>
+        <input id="startDate" name="startDate" type="text" class="form-control" />
+        &nbsp;
+        <label for="endDate">End Date</label>
+        <input id="endDate" name="endDate" type="text" class="form-control" />
+    </div>
+</form>
 @endsection

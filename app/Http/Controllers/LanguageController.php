@@ -10,6 +10,6 @@ class LanguageController extends Controller
     public function index($lang)
     {
     	Session::put('applocale', $lang);
-    	return redirect()->intended('/');
+    	return redirect()->intended();
     }
 }

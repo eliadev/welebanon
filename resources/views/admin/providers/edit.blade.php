@@ -113,7 +113,7 @@
 										<div class="col-md-1"></div>
 										 <label for="DescEn" class="col-sm-2 col-form-label">Description English</label>
 										 <div class="col-sm-8">
-											<textarea class="summernote-editor" id="DescEn" name="description_en">{{$provider->description_en}}</textarea>
+											<textarea class="summernote-editor" id="DescEn" name="description_en">{!!$provider->description_en!!}</textarea>
 										 </div>
 									</div>
 								</div>
@@ -122,7 +122,7 @@
 										<div class="col-md-1"></div>
 										 <label for="DescAr" class="col-sm-2 col-form-label">Description Arabic</label>
 										 <div class="col-sm-8">
-											<textarea class="summernote-editor" id="DescAr" name="description_ar">{{$provider->description_ar}}</textarea>
+											<textarea class="summernote-editor" id="DescAr" name="description_ar">{!!$provider->description_ar!!}</textarea>
 										 </div>
 									</div>
 								</div>
@@ -189,7 +189,7 @@
 						<div class="col-md-1"></div>
 						<label for="tags" class="col-sm-2 col-form-label">Tags</label>
 						<div class="col-sm-8">
-							<input type="text" name="tags" value="{{$provider->tag_list}}" data-role="tagsinput" placeholder="add tags"/>
+							<input type="text" name="tag_list" value="{{$provider->tag_list}}" data-role="tagsinput" placeholder="add tags"/>
 						</div>
 					</div>
 			   </div>

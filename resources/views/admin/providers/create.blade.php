@@ -171,6 +171,16 @@
 							<input type="text" name="latitude" class="form-control" id="latitude" placeholder="Latitude">
 						</div>
 					</div>
+					<div class="form-group row">
+						<div class="col-md-1"></div>
+						<label for="latitude" class="col-sm-2 col-form-label">Featured</label>
+						<div class="col-sm-1">
+							<label class="switch">
+								<input type="checkbox" name="featured" class="form-control" id="featured" value="1">
+								<span class="slider round"></span>
+							</label>
+						</div>
+					</div>
 				  	<div class="form-group row">
 						<div class="col-md-1"></div>
 						<label for="tags" class="col-sm-2 col-form-label">Tags</label>

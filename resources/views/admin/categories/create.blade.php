@@ -9,7 +9,7 @@
 			</ul> 
 		</div>
 	@endif
-	<form class="form-horizontal" action="{{route('categories.store')}}" method="POST" enctype="multipart/form-data" data-parsley-validate novalidate>
+	<form class="form-horizontal" action="{{ route('categories.store') }}" method="POST" enctype="multipart/form-data" data-parsley-validate novalidate>
 		@csrf
 		<div class="row">
 			<div class="col-xl-8">
@@ -22,7 +22,7 @@
 							<select class="form-control" name="service_id">
 							 <option disabled selected hidden>-- Select Services --</option>
 								@foreach($services as $service)
-									<option value="{{$service->id}}">{{$service->name_en}}</option>
+									<option value="{{$service->id}}">{{ $service->name_en }}</option>
 								@endforeach
 							</select>
 						</div>
@@ -108,6 +108,13 @@
 							</div>
 						</div>
 					</div>
+				  </div>
+				  <div class="form-group row">
+					<div class="col-md-1"></div>
+					<label for="icon" class="col-sm-2 col-form-label">Icon</label>
+					<div class="col-sm-8">
+						<input type="text" name="icon" class="form-control" id="icon" placeholder="Icon">
+					 </div>
 				  </div>
 				  <div class="form-group row">
 					<div class="col-md-1"></div>

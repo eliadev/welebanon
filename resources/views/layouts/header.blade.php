@@ -5,23 +5,29 @@
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <title>We Lebanon | Home</title>
-      <link rel="stylesheet" href="{{asset('assets/css/bootstrap.min.css')}}">
-      <link rel="stylesheet" href="{{asset('assets/css/menu.css')}}">
-      <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
-	  <link rel="stylesheet" href="{{asset('assets/css/flaticon.css')}}">
-      <link rel="stylesheet" href="{{asset('assets/css/animate.css')}}">
-      <link rel="stylesheet" href="{{asset('assets/css/font-awesome.css')}}">
-      <link rel="stylesheet" href="{{asset('assets/css/responsive.css')}}">
-      <link rel="stylesheet" href="{{asset('assets/css/owl.carousel.min.css')}}"/>
-      <link rel="stylesheet" href="{{asset('assets/css/owl.theme.default.min.css')}}"/>
-
       @if(App::getLocale() == 'ar')
-         <!-- -->
+		<link rel="stylesheet" href="{{asset('assets/css/bootstrap-rtl.min.css')}}">
+		<link rel="stylesheet" href="{{asset('assets/css/menu-rtl.css')}}">
+		<link rel="stylesheet" href="{{asset('assets/css/style-rtl.css')}}">
+		<link rel="stylesheet" href="{{asset('assets/css/flaticon.css')}}">
+		<link rel="stylesheet" href="{{asset('assets/css/animate.css')}}">
+		<link rel="stylesheet" href="{{asset('assets/css/font-awesome.css')}}">
+		<link rel="stylesheet" href="{{asset('assets/css/responsive.css')}}">
+		<link rel="stylesheet" href="{{asset('assets/css/owl.carousel.min.css')}}"/>
+		<link rel="stylesheet" href="{{asset('assets/css/owl.theme.default.min.css')}}"/>
       @else
-         <!-- -->
-      @endif
+		<link rel="stylesheet" href="{{asset('assets/css/bootstrap.min.css')}}">
+		<link rel="stylesheet" href="{{asset('assets/css/menu.css')}}">
+		<link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
+		<link rel="stylesheet" href="{{asset('assets/css/flaticon.css')}}">
+		<link rel="stylesheet" href="{{asset('assets/css/animate.css')}}">
+		<link rel="stylesheet" href="{{asset('assets/css/font-awesome.css')}}">
+		<link rel="stylesheet" href="{{asset('assets/css/responsive.css')}}">
+		<link rel="stylesheet" href="{{asset('assets/css/owl.carousel.min.css')}}"/>
+		<link rel="stylesheet" href="{{asset('assets/css/owl.theme.default.min.css')}}"/>
+      @endif	  	
    </head>
-   <body>
+   <body @if(App::getLocale() == 'ar') dir="rtl" @endif>
     <header class="main-header sticky-header header-with-top" id="main-header-2">
 		<div class="container">
 			<div class="row">
@@ -38,16 +44,16 @@
 						</a>
 						<div class="navbar-collapse collapse">
 							<ul class="nav navbar-nav mainmenu pull-right">   
-								<li><a href="index.html">Home</a></li>							  
-								<li><a href="about.html">About Us</a></li>      
-								<li><a href="contacts.html">Contact</a></li>        
-								<li class="br-right"><a style="margin-top:23px; margin-right:20px; background:#729849; padding:15px 15px; border-radius:7px; color:#fff;" href="#"><i class="fa fa-user"></i> Get Started</a></li>								
+								<li><a href="/">{!! __('messages.home') !!}</a></li>							  
+								<li><a href="about.html">{!! __('messages.about') !!}</a></li>      
+								<li><a href="contacts.html">{!! __('messages.contact') !!}</a></li>        
+								<li class="br-right"><a class="getstarted" href="#"><i class="fa fa-user"></i> {!! __('messages.getstarted') !!}</a></li>								
 								<li class="br-right">
-									<div class="language">
-                              <a class="lang-ar" href="{!! route('change-language', 'ar')!!}" >AR</a>
-                              <span class="lang-ar"> | </span>
-                              <a class="lang-ar" href="{!! route('change-language', 'en')!!}">EN</a>
-                           </div>
+								<div class="language">
+								  <a class="lang-ar" href="{!! route('change-language', 'ar')!!}">AR</a>
+								  <span class="lang-ar"> | </span>
+								  <a class="lang-ar" href="{!! route('change-language', 'en')!!}">EN</a>
+							    </div>
 								</li>
 							</ul>
                         </div>
@@ -61,12 +67,12 @@
          <div class="container-fluid padd-0 full-width">
             <div class=" col-md-2 col-sm-2 br-1 mbb-1">
                <div class="data-flex">
-                  <h4>Get in Touch!</h4>
+                  <h4>{!! __('messages.touch') !!}</h4>
                </div>
             </div>
             <div class="col-md-3 col-sm-3 br-1 mbb-1">
                <div class="data-flex text-center">
-                  Achrafieh,Gouraud Street, Azirian Bldg, 1st Floor
+                 {!! __('messages.address') !!}
                </div>
             </div>
             <div class="col-md-3 col-sm-3 br-1 mbb-1">
@@ -87,29 +93,31 @@
             </div>
          </div>
       </section>
-      <footer class="footer dark-bg">
-         <div class="container">
-            <div class="row">
-               <div class="col-md-12">
-                  <div class="copyright text-center">
-                     <p>&copy; Copyright 2019 We Lebanon</p>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </footer>
-      <script type="text/javascript" src="{{asset('assets/js/jquery.min.js')}}"></script>
-      <script type="text/javascript" src="{{asset('assets/js/bootstrap.min.js')}}"></script>
-      <script type="text/javascript" src="{{asset('assets/js/app.js')}}"></script> 
-      <script type="text/javascript" src="{{asset('assets/js/owl.carousel.min.js')}}"></script>
+		<footer class="footer dark-bg">
+			<div class="container">
+				<div class="row">
+				   <div class="col-md-12">
+					  <div class="copyright text-center">
+						 <p>&copy; Copyright 2019 We Lebanon</p>
+					  </div>
+				   </div>
+				</div>
+			</div>
+		</footer>
+		<script type="text/javascript" src="{{asset('assets/js/jquery.min.js')}}"></script>
+		<script type="text/javascript" src="{{asset('assets/js/bootstrap.min.js')}}"></script>
+		<script type="text/javascript" src="{{asset('assets/js/app.js')}}"></script> 
+		<script type="text/javascript" src="{{asset('assets/js/owl.carousel.min.js')}}"></script>
 		<script>
 			$(document).ready(function() {
 				$('.award-slider .owl-carousel').owlCarousel({
 					loop:true,
 					margin:20,
 					nav:false,
-					pagination:true,		    
-					autoplay:false,
+					pagination:true,	
+					{!! __('messages.slider') !!}
+					{!! __('messages.sliderposition') !!}			
+					autoplay:true,
 					responsive:{
 					  0:{
 						  items:1
@@ -127,9 +135,11 @@
 		<script>
          var owl = $('.serv-slider .owl-carousel');
          owl.owlCarousel({
-         loop:true,
+         loop:false,
          nav:true,
          dots: false,
+		 {!! __('messages.slider') !!}
+		 {!! __('messages.sliderposition') !!}
          margin:10,
          navText: ["<img src='https://www.banincharity.org/img/prev1.png' width='25'>","<img src='https://www.banincharity.org/img/next1.png' width='25'>"],
          navClass:['owl-prev', 'owl-next'],

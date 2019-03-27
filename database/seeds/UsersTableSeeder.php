@@ -13,7 +13,7 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
         User::updateOrCreate(['email' => 'sarah@bridgeofmind.com'], [
-        	'first_name' => 'Sara',
+        	'first_name' => 'Sarah',
         	'last_name' => 'Araijy',
         	'is_superadmin' => 1,
         	'password' => bcrypt('123456')

@@ -64,16 +64,16 @@
             <div class="sidebar-inner slimscrollleft">
                <div class="user-box">
                   <div class="user-img">
-                     <img src="{{asset('cms/images/users/avatar-1.jpg')}}" alt="user-img" title="Mat Helme" class="rounded-circle img-thumbnail img-responsive">
+                     <img src="{{ Auth::user()->getFirstMediaUrl('avatars', 'thumb') }}" class="rounded-circle img-thumbnail img-responsive">
                      <div class="user-status offline"><i class="mdi mdi-adjust"></i></div>
                   </div>
-                  <h5><a href="#">Elias Elia</a> </h5>
+                  <h5>&nbsp; {{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</h5>
                </div>
                <div id="sidebar-menu">
                   <ul>
                      <li class="text-muted menu-title">Navigation</li>
                      <li>
-                        <a href="index.html" class="waves-effect"><i class="mdi mdi-view-dashboard"></i> <span> Dashboard </span> </a>
+                        <a href="/admin/" class="waves-effect"><i class="mdi mdi-view-dashboard"></i> <span> Dashboard </span> </a>
                      </li>
 					 <li class="has_sub">
                         <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-invert-colors"></i> <span> Administration </span> <span class="menu-arrow"></span></a>
@@ -110,7 +110,7 @@
                </div>
             </div>
             <footer class="footer text-right">
-               2019 © Adminto. Coderthemes.com
+               2019 © WeLebanon.
             </footer>
          </div>
       </div>

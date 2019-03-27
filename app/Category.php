@@ -10,7 +10,7 @@ class Category extends Model
 	use HasTranslations;
 
     protected $table="categories";
-	protected $fillable = ['service_id', 'name_en', 'name_ar', 'description_en', 'description_ar', 'order'];
+	protected $fillable = ['service_id', 'name_en', 'name_ar', 'icon', 'description_en', 'description_ar', 'order'];
 	
 	protected $translatableFields = [ 'name', 'description' ];
 	
@@ -19,7 +19,7 @@ class Category extends Model
         return $this->belongsTo('App\Service');
     }
 	
-	public function provider()
+	public function providers()
     {
         return $this->hasMany('App\Provider');
     }

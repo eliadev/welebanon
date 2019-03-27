@@ -23,7 +23,7 @@ class CreateProvidersTable extends Migration
 			$table->string('address_ar');
 			$table->string('longitude')->nullable();
 			$table->string('latitude')->nullable();
-			$table->tinyInteger('featured')->default(0);
+			$table->boolean('featured')->default(0);
 			
 			$table->integer('category_id')->unsigned();
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');

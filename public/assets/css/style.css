@@ -41,6 +41,15 @@ body{
 	height:430px;
 }
 
+.getstarted {
+	margin-top:23px !important;
+	margin-right:20px !important; 
+	background:#729849 !important; 
+	padding:15px 15px !important; 
+	border-radius:7px !important; 
+	color:#fff !important;
+}
+
 .language {
     border: 1px solid #fff;
     border-radius: 7px;
@@ -3966,7 +3975,7 @@ span.user-status{
 }
 .tr-single-header h4{
     margin:0;
-    font-size:15px
+    font-size:16px
 }
 .tr-single-header h4>i{
     margin-right:7px
