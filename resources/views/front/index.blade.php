@@ -7,8 +7,8 @@
 			  <h2>Discover Lebanon</h2>
 			  <p>Expolore top tours, hotels and restaurants in Lebanon</p>
 		   </div>
-		   <form class="wow-form"> 
-			  <input type="text" placeholder="{!! __('messages.search') !!}...">
+		   <form class="wow-form" action="{!! route('front.search') !!}"> 
+			  <input type="text" placeholder="{!! __('messages.search') !!}..." name="search_input">
 			  <button type="submit" class="btn btn-wow theme-btn" name="submit" value="Search"> {!! __('messages.find') !!} </button>
 		   </form>
 		</div>

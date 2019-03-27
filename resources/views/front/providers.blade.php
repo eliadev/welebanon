@@ -147,7 +147,8 @@
                         </div>
                      </div>
                      <div class="tr-single-body">
-                        <form class="book-form">
+                        <form class="book-form" action="{!! route('front.providers.book', $provider->id) !!}" method="POST">
+                            @csrf
                            <div class="row">
                               <div class="col-xs-12">
                                  <div class="form-group">
@@ -178,7 +179,7 @@
                            </div>
                            <div class="row">
                               <div class="col-xs-12 mrg-top-15">
-                                 <a href="#" type="submit" class="btn btn-arrow theme-btn full-width">Submit</a>		
+                                 <button type="submit" class="btn btn-arrow theme-btn full-width">Submit</button>		
                               </div>
                            </div>
                         </form>

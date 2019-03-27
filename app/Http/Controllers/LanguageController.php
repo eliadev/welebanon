@@ -7,9 +7,9 @@ use Illuminate\Http\Request;
 
 class LanguageController extends Controller
 {
-    public function index($lang)
+    public function index(Request $request, $lang)
     {
     	Session::put('applocale', $lang);
-    	return redirect()->intended();
+    	return redirect(url()->previous());
     }
 }
