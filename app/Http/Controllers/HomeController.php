@@ -3,11 +3,14 @@
 namespace App\Http\Controllers;
 
 use App;
+use Auth;
 use Session;
+use App\User;
 use App\Service;
 use App\Category;
 use App\Provider;
 use Illuminate\Http\Request;
+use App\Http\Requests\GuestLoginRequest;
 
 class HomeController extends Controller
 {
@@ -27,5 +30,37 @@ class HomeController extends Controller
     		->orWhere('description_'.$activeLanguage, 'LIKE', $input )->get();
 
     	return view('front.search_results', ['providers' => $providers, 'input' => $request->search_input]);
+    }
+
+    public function login()
+    {
+        return view('front.login');
+    }
+
+    public function doLogin(GuestLoginRequest $request)
+    {
+        $valid =  Auth::guard()->attempt(
+            $request->only('email', 'password')
+        );
+        
+        if($valid)
+        {
+            $user = User::where('email', $request->email)->first();
+            Auth::login($user, true);
+            return redirect('/');
+        }
+
+        return redirect()->route('front.login')->with('status', 'Invalid login credentials');
+    }
+
+    /**
+     * Logout the user
+     * 
+     * @return type
+     */
+    public function logout(Request $request)
+    {
+        Auth::logout();
+        return redirect('/');
     }
 }

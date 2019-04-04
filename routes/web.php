@@ -18,6 +18,10 @@ Route::get('change-language/{lang}', 'LanguageController@index')->name('change-l
 
 Route::middleware(['language'])->group(function () {
 	Route::get('/', 'HomeController@index')->name('front.home');
+	Route::get('/guest/login', 'HomeController@login')->name('front.login');
+	Route::post('/guest/doLogin', 'HomeController@doLogin')->name('front.doLogin');
+	Route::get('/logout', 'HomeController@logout')->name('front.logout');
+
 	Route::get('/search-results', 'HomeController@search')->name('front.search');
 	Route::get('/services/{id}', 'ServicesController@show')->name('front.services.show');
 	Route::get('/providers/{id}/', 'ProvidersController@show')->name('front.providers.show');

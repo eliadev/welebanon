@@ -14,5 +14,6 @@ return [
     'service' => 'خدماتنا',
 	'slider' => 'rtl:true,',
 	'sliderposition' => 'startPosition: 0,',
+	'logout' => 'خروج'
 ];
 

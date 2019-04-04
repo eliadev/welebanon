@@ -14,5 +14,6 @@ return [
     'service' => 'Our Services',
 	'slider' => 'rtl:false,',
 	'sliderposition' => '',
+	'logout' => 'Logout',
 ];
 

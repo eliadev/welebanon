@@ -17,11 +17,24 @@ class ServicesController extends Controller
 	public function search(Request $request)
     {
     	$activeLanguage = Session::get('applocale', 'en');
-    	$input =  '%'.$request->input_name.'%';
+        $input_name =  '%'.$request->input_name.'%';
+    	$input_address =  '%'.$request->input_address.'%';
 
-    	$providers = Provider::where('name_'.$activeLanguage, 'LIKE', $input)
-    		->orWhere('description_'.$activeLanguage, 'LIKE', $input )->get();
+    	$query = Provider::query();
 
-    	return view('front.search_results', ['providers' => $providers, 'input' => $request->input_name]);
+        if($request->input_name)
+            $providers->where('name_'.$activeLanguage, 'LIKE', $input_name);
+
+         if($request->input_address)
+    		$providers->where('address_'.$activeLanguage, 'LIKE', $input_address );
+
+        $providers = $query->get();
+        dd($providers->toArray());
+
+    	// return view('front.search_results', [
+     //        'providers' => $providers, 
+     //        'input_name' => $request->input_name,
+     //        'input_address' => $request->input_address
+     //    ]);
     }
 }

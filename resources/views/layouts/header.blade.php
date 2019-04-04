@@ -49,7 +49,16 @@
 								<li><a href="/">{!! __('messages.home') !!}</a></li>							  
 								<li><a href="about.html">{!! __('messages.about') !!}</a></li>      
 								<li><a href="{!! route('front.contact') !!}">{!! __('messages.contact') !!}</a></li>        
-								<li class="br-right"><a class="getstarted" href="#"><i class="fa fa-user"></i> {!! __('messages.getstarted') !!}</a></li>								
+								@guest
+									<li class="br-right">
+										<a class="getstarted" href="{!! route('front.login') !!}">
+											<i class="fa fa-user"></i> {!! __('messages.getstarted') !!}
+										</a>
+									</li>
+								@endguest
+								@auth
+									<li><a href="/logout">{!! __('messages.logout') !!}</a></li>
+								@endauth							
 								<li class="br-right">
 								<div class="language">
 								  <a class="lang-ar" href="{!! route('change-language', 'ar')!!}">AR</a>
