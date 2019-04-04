@@ -15,6 +15,9 @@
 		<link rel="stylesheet" href="{{asset('assets/css/responsive.css')}}">
 		<link rel="stylesheet" href="{{asset('assets/css/owl.carousel.min.css')}}"/>
 		<link rel="stylesheet" href="{{asset('assets/css/owl.theme.default.min.css')}}"/>
+		<link rel="stylesheet" href="{{asset('assets/css/lightbox.min.css')}}"/>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/3.1.3/css/bootstrap-datetimepicker.min.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.3/css/bootstrapValidator.min.css">
 	  @else
 		<link rel="stylesheet" href="{{asset('assets/css/bootstrap.min.css')}}">
 		<link rel="stylesheet" href="{{asset('assets/css/menu.css')}}">
@@ -25,6 +28,9 @@
 		<link rel="stylesheet" href="{{asset('assets/css/responsive.css')}}">
 		<link rel="stylesheet" href="{{asset('assets/css/owl.carousel.min.css')}}"/>
 		<link rel="stylesheet" href="{{asset('assets/css/owl.theme.default.min.css')}}"/>
+		<link rel="stylesheet" href="{{asset('assets/css/lightbox.min.css')}}"/>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/3.1.3/css/bootstrap-datetimepicker.min.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.3/css/bootstrapValidator.min.css">
 	  @endif	  	
 	</head>
 <body @if(App::getLocale() == 'ar') dir="rtl" @endif>
@@ -112,9 +118,9 @@
                                     <ul class="gallery-list">
                                        @foreach($provider->getMedia('gallery') as $media )
                                        <li>
-            										<a class="example-image-link" href=" {!! url($media->getUrl()) !!}" data-lightbox="example-set" data-title="">
-            											<img class="example-image" src=" {!! url($media->getUrl('thumb')) !!}" width="100%" alt=""/>
-            										</a>
+											<a class="example-image-link" href=" {!! url($media->getUrl()) !!}" data-lightbox="example-set" data-title="">
+												<img class="example-image" src=" {!! url($media->getUrl('thumb-medium')) !!}" width="100%" alt=""/>
+											</a>
                                        </li>
                                        @endforeach
                                     </ul>
@@ -147,19 +153,19 @@
                         </div>
                      </div>
                      <div class="tr-single-body">
-                        <form class="book-form" action="{!! route('front.providers.book', $provider->id) !!}" method="POST">
+                        <form class="book-form" id="form" name="form" action="{!! route('front.providers.book', $provider->id) !!}" method="POST">
                             @csrf
                            <div class="row">
                               <div class="col-xs-12">
                                  <div class="form-group">
-                                    <label>From</label>
-                                    <input type="text" name="checkin" id="defpd1" class="form-control" value="12/03/2019" required>
+                                    <label for="checkin">From</label>
+                                    <input type="text" name="checkin" id="checkin" class="form-control" required>
                                  </div>
                               </div>
                               <div class="col-xs-12">
                                  <div class="form-group">
-                                    <label>To</label>
-                                    <input type="text" name="checkout" id="dpefed2" class="form-control" value="19/03/2019" required>
+                                    <label for="checkout">To</label>
+                                    <input type="text" name="checkout" id="checkout" class="form-control" required>
                                  </div>
                               </div>
                            </div>
@@ -177,11 +183,17 @@
                                  </div>
                               </div>
                            </div>
-                           <div class="row">
-                              <div class="col-xs-12 mrg-top-15">
-                                 <button type="submit" class="btn btn-arrow theme-btn full-width">Submit</button>		
-                              </div>
-                           </div>
+							<div class="row">
+								<div class="col-xs-12 mrg-top-15">
+									<button type="submit" class="btn btn-arrow theme-btn full-width">Submit</button>		
+								</div>
+							</div>
+							@if (session('status'))
+								<br>
+								<div class="alert alert-success">
+								  {{ session('status') }}
+								</div>
+							@endif  
                         </form>
                      </div>
                   </div>
@@ -244,7 +256,109 @@
 	<script type="text/javascript" src="{{asset('assets/js/owl.carousel.min.js')}}"></script>
 	<script type="text/javascript" src="{{asset('assets/js/jquery-ui.js')}}"></script>
 	<script type="text/javascript" src="{{asset('assets/js/lightbox-plus-jquery.min.js')}}"></script> 
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.3/js/bootstrapValidator.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/3.1.3/js/bootstrap-datetimepicker.min.js"></script>
 	<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDOZmjVskSQgV7V6oXgCX1_C5TUuwkUKjY"></script>
+	<script>
+   var bindDateRangeValidation = function (f, s, e) {
+    if(!(f instanceof jQuery)){
+			console.log("Not passing a jQuery object");
+    }
+  
+    var jqForm = f,
+        checkinId = s,
+        checkoutId = e;
+  
+    var checkDateRange = function (checkin, checkout) {
+        var isValid = (checkin != "" && checkout != "") ? checkin <= checkout : true;
+        return isValid;
+    }
+
+    var bindValidator = function () {
+        var bstpValidate = jqForm.data('bootstrapValidator');
+        var validateFields = {
+            checkin: {
+                validators: {
+                    notEmpty: { message: 'This field is required.' },
+                    callback: {
+                        message: 'Start Date must less than or equal to End Date.',
+                        callback: function (checkin, validator, $field) {
+                            return checkDateRange(checkin, $('#' + checkoutId).val())
+                        }
+                    }
+                }
+            },
+            checkout: {
+                validators: {
+                    notEmpty: { message: 'This field is required.' },
+                    callback: {
+                        message: 'End Date must greater than or equal to Start Date.',
+                        callback: function (checkout, validator, $field) {
+                            return checkDateRange($('#' + checkinId).val(), checkout);
+                        }
+                    }
+                }
+            },
+          	customize: {
+                validators: {
+                    customize: { message: 'customize.' }
+                }
+            }
+        }
+        if (!bstpValidate) {
+            jqForm.bootstrapValidator({
+                excluded: [':disabled'], 
+            })
+        }
+      
+        jqForm.bootstrapValidator('addField', checkinId, validateFields.checkin);
+        jqForm.bootstrapValidator('addField', checkoutId, validateFields.checkout);
+      
+    };
+
+    var hookValidatorEvt = function () {
+        var dateBlur = function (e, bundleDateId, action) {
+            jqForm.bootstrapValidator('revalidateField', e.target.id);
+        }
+
+        $('#' + checkinId).on("dp.change dp.update blur", function (e) {
+            $('#' + checkoutId).data("DateTimePicker").setMinDate(e.date);
+            dateBlur(e, checkoutId);
+        });
+
+        $('#' + checkoutId).on("dp.change dp.update blur", function (e) {
+            $('#' + checkinId).data("DateTimePicker").setMaxDate(e.date);
+            dateBlur(e, checkinId);
+        });
+    }
+
+    bindValidator();
+    hookValidatorEvt();
+};
+
+
+$(function () {
+    var sd = new Date(), ed = new Date();
+  
+    $('#checkin').datetimepicker({ 
+      pickTime: false, 
+      format: "DD/MM/YYYY", 
+      defaultDate: sd, 
+      maxDate: ed 
+    });
+  
+    $('#checkout').datetimepicker({ 
+      pickTime: false, 
+      format: "DD/MM/YYYY", 
+      defaultDate: ed, 
+      minDate: sd 
+    });
+
+    //passing 1.jquery form object, 2.start date dom Id, 3.end date dom Id
+    bindDateRangeValidation($("#form"), 'checkin', 'checkout');
+});
+   </script>
    <script type="text/javascript">
 		   $(document).ready(function() {
 		           var myCenter = new google.maps.LatLng("{{ $provider->latitude }}", "{{ $provider->longitude }}");

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
 use App\User;
 use App\Provider;
 use Illuminate\Http\Request;
@@ -23,7 +24,8 @@ class ProvidersController extends Controller
 
     	$user->notify( new UserBooking(
     		$provider->name_en,
-    		'Elie Andraos', // this will be the auth user object
+			$user = Auth::user()->first_name.' '.Auth::user()->last_name,
+    		//'Elie Andraos', // this will be the auth user object
     		$request->only(['checkin', 'checkout', 'adult', 'children'])
     	));
 

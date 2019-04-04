@@ -14,8 +14,8 @@
 		<link href="{{asset('cms/css/style.css')}}" rel="stylesheet" type="text/css" />
 		<link href="{{asset('cms/plugins/switchery/switchery.min.css')}}" rel="stylesheet" type="text/css" />
 		<link href="{{asset('cms/plugins/summernote/summernote-bs4.css')}}" rel="stylesheet" type="text/css" />
+		<link href="{{asset('cms/css/dropzone.min.css')}}" rel="stylesheet" type="text/css" />
 		<script src="{{asset('cms/js/modernizr.min.js')}}"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.css" rel="stylesheet" />
 	</head>
    <body class="fixed-left">
       <div id="wrapper">
@@ -146,7 +146,7 @@
 		<script src="{{asset('cms/plugins/summernote/form-summernote.init.js')}}"></script>
 		<script src="{{asset('cms/js/jquery.core.js')}}"></script>
 		<script src="{{asset('cms/js/jquery.app.js')}}"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.js"></script>
+		<script src="{{asset('cms/js/dropzone.min.js')}}"></script>
 		<script type="text/javascript">
 			$(document).ready(function() {
 				$('form').parsley();

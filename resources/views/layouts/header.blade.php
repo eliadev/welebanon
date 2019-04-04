@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-   <head>
+	<head>
       <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,6 +15,7 @@
 		<link rel="stylesheet" href="{{asset('assets/css/responsive.css')}}">
 		<link rel="stylesheet" href="{{asset('assets/css/owl.carousel.min.css')}}"/>
 		<link rel="stylesheet" href="{{asset('assets/css/owl.theme.default.min.css')}}"/>
+		<link rel="stylesheet" href="{{asset('assets/css/owl.theme.default.min.css')}}"/>
       @else
 		<link rel="stylesheet" href="{{asset('assets/css/bootstrap.min.css')}}">
 		<link rel="stylesheet" href="{{asset('assets/css/menu.css')}}">
@@ -25,9 +26,10 @@
 		<link rel="stylesheet" href="{{asset('assets/css/responsive.css')}}">
 		<link rel="stylesheet" href="{{asset('assets/css/owl.carousel.min.css')}}"/>
 		<link rel="stylesheet" href="{{asset('assets/css/owl.theme.default.min.css')}}"/>
-      @endif	  	
-   </head>
-   <body @if(App::getLocale() == 'ar') dir="rtl" @endif>
+		<link rel="stylesheet" href="{{asset('assets/css/owl.theme.default.min.css')}}"/>
+	  @endif	  	
+	</head>
+<body @if(App::getLocale() == 'ar') dir="rtl" @endif>
     <header class="main-header sticky-header header-with-top" id="main-header-2">
 		<div class="container">
 			<div class="row">
@@ -46,7 +48,7 @@
 							<ul class="nav navbar-nav mainmenu pull-right">   
 								<li><a href="/">{!! __('messages.home') !!}</a></li>							  
 								<li><a href="about.html">{!! __('messages.about') !!}</a></li>      
-								<li><a href="contacts.html">{!! __('messages.contact') !!}</a></li>        
+								<li><a href="{!! route('front.contact') !!}">{!! __('messages.contact') !!}</a></li>        
 								<li class="br-right"><a class="getstarted" href="#"><i class="fa fa-user"></i> {!! __('messages.getstarted') !!}</a></li>								
 								<li class="br-right">
 								<div class="language">
@@ -78,7 +80,7 @@
             <div class="col-md-3 col-sm-3 br-1 mbb-1">
                <div class="data-flex text-center">
                   <span class="d-block mrg-bot-0">+961 70 123 456</span>
-                  <a href="#" class="theme-cl"><strong>info@welebanon.com</strong></a>
+                  <a href="#" class="theme-cl"><b>info@welebanon.com</b></a>
                </div>
             </div>
             <div class="col-md-4 col-sm-4 padd-0">
@@ -108,6 +110,7 @@
 		<script type="text/javascript" src="{{asset('assets/js/bootstrap.min.js')}}"></script>
 		<script type="text/javascript" src="{{asset('assets/js/app.js')}}"></script> 
 		<script type="text/javascript" src="{{asset('assets/js/owl.carousel.min.js')}}"></script>
+		@yield('scripts')
 		<script>
 			$(document).ready(function() {
 				$('.award-slider .owl-carousel').owlCarousel({

@@ -189,12 +189,12 @@
 						</div>
 					</div>
 					<div class="form-group row">
-				        <label for="gallery">Photo Gallery</label>
-				        <div class="needsclick dropzone" id="gallery-dropzone">
-
-				        </div>
+					<div class="col-md-1"></div>
+				        <label for="gallery" class="col-sm-2 col-form-label">Photo Gallery</label>
+						<div class="col-sm-8">
+							<div class="needsclick dropzone" id="gallery-dropzone"></div>
+						</div>
 				    </div>
-
 			   </div>
 			</div>
 			<div class="col-xl-4">
@@ -209,7 +209,7 @@
 @endsection
 
 @section('scripts')
-	<script>
+<script>
   var uploadedGalleryMap = {}
   Dropzone.options.galleryDropzone = {
     url: '{{ route('providers.storeMedia') }}',

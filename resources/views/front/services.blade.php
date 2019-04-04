@@ -86,12 +86,19 @@
                      </div>
                      <div id="filter" class="collapse in">
                         <div class="tr-single-body">
-                           <div class="sidebar-input">
-                              <input type="text" class="form-control" placeholder="Title">
-                           </div>
-                           <div class="sidebar-input">
-                              <input type="text" class="form-control" placeholder="Location..">
-                           </div>
+							<form action="#"> 
+								<div class="sidebar-input">
+									<input type="text" class="form-control" placeholder="Title" name="input_name">
+								</div>
+								<div class="sidebar-input">
+									<input type="text" class="form-control" placeholder="Location" name="input_address">
+								</div>
+								<div class="row">
+									<div class="col-xs-12 mrg-top-15">
+										<button type="submit" class="btn btn-arrow theme-btn full-width" name="submit">Search</button>		
+									</div>
+								</div>
+							</form>
                         </div>
                         <div class="tr-inner-single-box">
                            <div class="tr-single-header">
@@ -101,10 +108,6 @@
                               <ul class="side-list-check">
                               @foreach($services as $service)
                                  <li>
-                                    <span class="custom-checkbox">
-                                    <input type="checkbox" id="a">
-                                    <label for="a"></label>
-                                    </span>
                                     <a href="{{ route('front.services.show', $service->id) }}">{{ $service->name_en }}</a>
                                     <span class="pull-right">36</span>
                                  </li>

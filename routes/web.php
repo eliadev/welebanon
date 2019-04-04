@@ -22,6 +22,8 @@ Route::middleware(['language'])->group(function () {
 	Route::get('/services/{id}', 'ServicesController@show')->name('front.services.show');
 	Route::get('/providers/{id}/', 'ProvidersController@show')->name('front.providers.show');
 	Route::post('/providers/{id}/book', 'ProvidersController@book')->name('front.providers.book');
+	Route::get('/contact', 'ContactController@index')->name('front.contact');
+	
 });
 
 Route::namespace('Admin')->prefix('admin')->middleware(['auth', 'is_admin'])->group(function () {

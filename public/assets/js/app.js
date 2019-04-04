@@ -42,4 +42,11 @@ $(function () {
             //$('.do-sticky').removeClass('header-shrink');
         }
     }
+	
+	$('.button-scroll').on('click', function(){   
+        var scrollTo = $(this).attr('data-scrollTo');
+        $('body, html').animate({
+        "scrollTop": $('#'+scrollTo).offset().top - 80
+        }, 1000 );
+    });
 });

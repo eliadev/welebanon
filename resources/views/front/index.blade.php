@@ -7,17 +7,19 @@
 			  <h2>Discover Lebanon</h2>
 			  <p>Expolore top tours, hotels and restaurants in Lebanon</p>
 		   </div>
-		   <form class="wow-form" action="{!! route('front.search') !!}"> 
-			  <input type="text" placeholder="{!! __('messages.search') !!}..." name="search_input">
-			  <button type="submit" class="btn btn-wow theme-btn" name="submit" value="Search"> {!! __('messages.find') !!} </button>
-		   </form>
+			<form class="wow-form" action="{!! route('front.search') !!}"> 
+				<input type="text" placeholder="{!! __('messages.search') !!}..." name="search_input">
+				<button type="submit" class="btn btn-wow theme-btn" name="submit" value="Search"> {!! __('messages.find') !!} </button>
+			</form>
 		</div>
+	 </div>
+	 <div>
+		<div class="button-scroll" data-scrollTo="services"><span></span></div>
 	 </div>
   </div>
   <div class="clearfix"></div>
-  <section class="tour-type">
+  <section class="tour-type" id="services">
 		<div class="container">
-			
 			<div class="row">
 				<div class="col-md-12">
 					<div class="heading">
@@ -171,13 +173,4 @@
 		<div class="col-md-2"></div>
 		</div>
 	</section>
-	<form id="form" name="form" class="form-inline">
-    <div class="form-group">
-        <label for="startDate">Start Date</label>
-        <input id="startDate" name="startDate" type="text" class="form-control" />
-        &nbsp;
-        <label for="endDate">End Date</label>
-        <input id="endDate" name="endDate" type="text" class="form-control" />
-    </div>
-</form>
 @endsection

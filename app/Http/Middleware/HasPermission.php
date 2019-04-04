@@ -15,7 +15,7 @@ class HasPermission
      */
     public function handle($request,  Closure $next, $permission)
     {
-        if( auth()->user()->is_superadmin || auth()->user()->hasPermission($permission))
+        if(auth()->user()->is_superadmin || auth()->user()->hasPermission($permission))
             return $next($request);
        
         abort(401);
