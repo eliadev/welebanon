@@ -9,6 +9,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Plan extends Model
 {
+	use HasTranslations;
+	
     protected $table="plans";
 	protected $fillable = ['name_en', 'name_ar', 'description_en', 'description_ar', 'points', 'price'];
 

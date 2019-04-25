@@ -6,6 +6,7 @@ use DB;
 use App;
 use Auth;
 use Session;
+use App\Plan;
 use App\User;
 use App\Slider;
 use App\Service;
@@ -21,8 +22,9 @@ class HomeController extends Controller
 		$sliders = Slider::inRandomOrder()->limit(1)->get();
 		//$sliders = Slider::orderBy('order', 'DESC')->limit(1)->get();
 		$services = Service::all();
+        $plans = Plan::limit(3)->orderBy('price', 'ASC')->get();
         $providers = Provider::where('featured', 1)->get();
-        return view('front.index', ['sliders' => $sliders, 'services' => $services, 'providers' => $providers]);
+        return view('front.index', ['sliders' => $sliders, 'services' => $services, 'providers' => $providers, 'plans' => $plans]);
     }
 
     public function search(Request $request)

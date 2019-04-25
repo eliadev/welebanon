@@ -112,61 +112,21 @@
 		   </div>
 		</div>
 		<div class="row">
-		<div class="col-xl-4 col-lg-4 col-md-12">
-			<div class="pricing-2">
-				<div class="title">Basic Plan</div>
-				<div class="price-for-user">
-					<div class="price"><sup>$</sup><span class="dolar">49</span><small class="month">per month</small></div>
+			@foreach($plans as $plan)
+				<div class="col-xl-4 col-lg-4 col-md-12">
+					<div class="pricing-2">
+						<div class="title">{!! $plan->translate('name') !!}</div>
+						<div class="price-for-user">
+							<div class="price"><sup>$</sup><span class="dolar">{!! $plan->price !!}</span><small class="month">per month</small></div>
+						</div>
+						<div class="content">
+							{!! $plan->translate('description') !!}
+						</div>
+						<div class="button"><a href="#" class="btn btn-border btn-sm">{!! __('messages.getstarted') !!}</a></div>
+					</div>
 				</div>
-				<div class="content">
-					<ul>
-						<li>20 Projects</li>
-						<li>32GB Storage</li>
-						<li>50 Email Accounts</li>
-						<li>12GB Bandwidth</li>
-						<li>32GB Storage</li>
-					</ul>
-				</div>
-				<div class="button"><a href="#" class="btn btn-border btn-sm">{!! __('messages.getstarted') !!}</a></div>
-			</div>
+			@endforeach
 		</div>
-		<div class="col-xl-4 col-lg-4 col-md-12 ">
-			<div class="pricing-2">
-				<div class="title">Professional</div>
-				<div class="price-for-user">
-					<div class="price"><sup>$</sup><span class="dolar">99</span><small class="month">per month</small></div>
-				</div>
-				<div class="content">
-					<ul>
-						<li>20 Projects</li>
-						<li>32GB Storage</li>
-						<li>50 Email Accounts</li>
-						<li>12GB Bandwidth</li>
-						<li>32GB Storage</li>
-					</ul>
-				</div>
-				<div class="button"><a href="#" class="btn btn-sm btn-color">{!! __('messages.getstarted') !!}</a></div>
-			</div>
-		</div>
-		<div class="col-xl-4 col-lg-4 col-md-12">
-			<div class="pricing-2">
-				<div class="title">Exclusive</div>
-				<div class="price-for-user">
-					<div class="price"><sup>$</sup><span class="dolar">199</span><small class="month">per month</small></div>
-				</div>
-				<div class="content">
-					<ul>
-						<li>20 Projects</li>
-						<li>32GB Storage</li>
-						<li>50 Email Accounts</li>
-						<li>12GB Bandwidth</li>
-						<li>32GB Storage</li>
-					</ul>
-				</div>
-				<div class="button"><a href="#" class="btn btn-border btn-sm">{!! __('messages.getstarted') !!}</a></div>
-			</div>
-		</div>
-	</div>
 		<br>
 		<div class="col-md-2"></div>
 		<div class="col-md-8">
