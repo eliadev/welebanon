@@ -5,9 +5,10 @@ namespace App\Http\Controllers\Admin;
 use App\User;
 use App\Permission;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
-use App\Http\Controllers\Controller;
 use App\Http\Requests\UserRequest;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
+use App\Http\Requests\UpdateUserRequest;
 
 class UserController extends Controller
 {
@@ -47,7 +48,6 @@ class UserController extends Controller
      */
     public function store(UserRequest $request)
     {
-        //dd($request->all());
         $input = $request->all();
         $input['password'] = Hash::make($request->get('password'));
         $user = User::create($input);
@@ -91,7 +91,7 @@ class UserController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(UserRequest $request, User $user)
+    public function update(UpdateUserRequest $request, User $user)
     {
         if($request->has('delete_existing_image'))
             $user->clearMediaCollection('user');
@@ -100,7 +100,11 @@ class UserController extends Controller
             $user->addMedia($request->image)->toMediaCollection('user');
         }
         $input = $request->all();
-        $input['password'] = Hash::make($request->get('password'));
+        if(!$request->get('password'))
+            $input['password'] = $user->password;
+        else
+            $input['password'] = Hash::make($request->get('password'));
+        
         $user->update($input);
         $user->permissions()->sync($request->get('permission'));
         

@@ -58,7 +58,7 @@
 					<div class="col-md-1"></div>
 					<label for="password" class="col-sm-2 col-form-label">Password</label>
 					<div class="col-sm-8">
-						<input type="password" name="password" value="{{$user->password}}" class="form-control" id="password" placeholder="Password">
+						<input type="password" name="password" value="" class="form-control" id="password" placeholder="Password">
 					 </div>
 				  </div>
 				  <div class="form-group row">

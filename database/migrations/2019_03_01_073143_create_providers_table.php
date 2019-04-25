@@ -24,7 +24,7 @@ class CreateProvidersTable extends Migration
 			$table->string('longitude')->nullable();
 			$table->string('latitude')->nullable();
 			$table->boolean('featured')->default(0);
-			$table->integer('points');
+			$table->integer('points')->default(0);
 			
 			$table->integer('category_id')->unsigned();
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
