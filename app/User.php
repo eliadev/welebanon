@@ -53,6 +53,16 @@ class User extends Authenticatable implements HasMedia
     }
 
     /**
+     * Providers relation.
+     * 
+     * @return type
+     */
+    public function providers()
+    {
+        return $this->belongsToMany('App\Provider')->withPivot('nb_adults', 'nb_children', 'from_date', 'to_date', 'is_confirmed');
+    }
+
+    /**
      * Check for a given permission
      * 
      * @param  [type]  $permission [description]

@@ -27,7 +27,7 @@ class AddPlanAndPointsToUser extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumns(['points', 'plan_id']);
+            $table->dropColumn(['points', 'plan_id']);
         });
     }
 }
