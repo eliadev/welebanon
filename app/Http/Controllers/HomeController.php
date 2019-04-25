@@ -69,4 +69,22 @@ class HomeController extends Controller
         Auth::logout();
         return redirect('/');
     }
+
+    public function addPlan(Request $request)
+    {
+        
+        if(!Auth::check())
+        {
+            return redirect()->route('front.login')->with('status', 'Login before chosing a plan!');
+        }
+
+        $user = Auth::user();
+        if(!$user->plan_id)
+        {
+            $user->update(['plan_id' => $request->get('plan_id')]);
+        }
+        
+    
+        return redirect()->route('front.profile')->with('status', 'You are now subscribed to the selected plan.');
+    }
 }

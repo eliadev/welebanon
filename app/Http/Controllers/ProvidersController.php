@@ -22,7 +22,7 @@ class ProvidersController extends Controller
     	$user = User::where('email', 'sarah@bridgeofmind.com')->firstOrFail();
     	$provider = Provider::findOrFail($id);
 
-			if(\Auth::check()){
+			if(Auth::check()){
 				$user->notify( new UserBooking(
 					$provider->name_en,
 					$user = Auth::user()->first_name.' '.Auth::user()->last_name,
@@ -31,7 +31,7 @@ class ProvidersController extends Controller
 				return redirect()->route('front.providers.show', $id)->with('status', 'Booking Reserved!');
 			}
 			else{	
-				return redirect()->route('front.login', $id)->with('status', 'Login Before Booking!');
+				return redirect()->route('front.login')->with('status', 'Login Before Booking!');
 			}
     }
 }

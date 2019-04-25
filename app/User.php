@@ -20,7 +20,7 @@ class User extends Authenticatable implements HasMedia
      * @var array
      */
     protected $fillable = [
-        'first_name', 'last_name', 'email', 'country', 'phone', 'date_of_birth', 'password', 'is_superadmin'
+        'first_name', 'last_name', 'email', 'country', 'phone', 'date_of_birth', 'password', 'is_superadmin', 'plan_id', 'points'
     ];
 
     /**
@@ -31,6 +31,16 @@ class User extends Authenticatable implements HasMedia
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    /**
+     * Plan relation.
+     * 
+     * @return type
+     */
+    public function plan()
+    {
+        return $this->belongsTo('App\Plan');
+    }
 
     /**
      * Permission relation.
@@ -73,5 +83,10 @@ class User extends Authenticatable implements HasMedia
         $this->addMediaConversion('thumb')
             ->width(50)
             ->height(50);
+    }
+
+    public function getRemainingPointsAttribute()
+    {
+        return ($this->plan->points - $this->points);
     }
 }

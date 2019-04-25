@@ -122,7 +122,19 @@
 						<div class="content">
 							{!! $plan->translate('description') !!}
 						</div>
-						<div class="button"><a href="#" class="btn btn-border btn-sm">{!! __('messages.getstarted') !!}</a></div>
+							<form action="{!! route('front.addPlan') !!}" method="POST">
+								@csrf
+								<input type="hidden" value="{!! $plan->id !!}" name="plan_id" />
+								<div class="button">
+									<button 
+										type="submit" 
+										class="btn btn-border btn-sm"
+										@if(auth()->user() && auth()->user()->plan) disabled @endif 
+										>
+										{!! __('messages.getstarted') !!}
+									</button>
+								</div>
+							</form>
 					</div>
 				</div>
 			@endforeach
