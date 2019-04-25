@@ -15,5 +15,6 @@ return [
 	'slider' => 'rtl:false,',
 	'sliderposition' => '',
 	'logout' => 'Logout',
+	'profile' => 'My profile'
 ];
 

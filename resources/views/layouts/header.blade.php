@@ -47,7 +47,10 @@
 						<div class="navbar-collapse collapse">
 							<ul class="nav navbar-nav mainmenu pull-right">   
 								<li><a href="/">{!! __('messages.home') !!}</a></li>							  
-								<li><a href="about.html">{!! __('messages.about') !!}</a></li>      
+								<li><a href="about.html">{!! __('messages.about') !!}</a></li> 
+								@auth
+									<li><a href="{!! route('front.profile') !!}">{!! __('messages.profile') !!}</a></li> 
+								@endauth    
 								<li><a href="{!! route('front.contact') !!}">{!! __('messages.contact') !!}</a></li>        
 								@guest
 									<li class="br-right">

@@ -197,8 +197,19 @@
                               </div>
                            </div>
 							<div class="row">
+
 								<div class="col-xs-12 mrg-top-15">
-									<button type="submit" class="btn btn-arrow theme-btn full-width">Submit</button>		
+									@auth
+                   @if(!auth()->user()->plan)
+                      <a href="/">You must have a plan first.</a>
+                    @else
+                      <button type="submit" class="btn btn-arrow theme-btn full-width">Submit</button>
+                    @endif
+                  @endauth
+                  
+                  @guest
+                    <button type="submit" class="btn btn-arrow theme-btn full-width">Submit</button>
+                  @endguest		
 								</div>
 							</div>
 							@if (session('status'))
