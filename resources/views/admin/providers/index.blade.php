@@ -27,10 +27,10 @@
 						<td>{{$provider->category->name_en}}</td>
 						<td>{!!$provider->address_en!!}</td>
 						<td><a href="{{route('providers.edit', $provider->id)}}" class="btn btn-info btn-xs webtn">Edit</a> 
-						<form id="frm-delete" class="d-inline-block" method="post" action="{{route('providers.destroy', $provider->id)}}">
+						<form onsubmit="return confirm('Are you sure you want to delete?');" class="d-inline-block" method="post" action="{{route('providers.destroy', $provider->id)}}">
 						@csrf
 							@method('delete')
-							<button type="button" onclick="confirmDelete()" class="btn btn-danger btn-xs webtn">Delete</button>
+							<button type="submit" class="btn btn-danger btn-xs webtn">Delete</button>
 						</form>
 						</td>
 					</tr>

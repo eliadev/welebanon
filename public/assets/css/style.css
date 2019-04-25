@@ -4023,6 +4023,9 @@ span.user-status{
         padding:15px;
         margin-top:0
     }
+	.button-scroll {
+		bottom: 1vh;
+	}
 }
 .tr-single-box{
     background:#fff;

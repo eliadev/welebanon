@@ -51,8 +51,8 @@ class UserBooking extends Notification
                     ->greeting('Dear Sarah,')
                     ->line($firstLine)
                     ->line('The booking details are:')
-                    ->line('Check-in:'.$this->data['checkin'])
-                    ->line('Check-out:'.$this->data['checkout'])
+                    ->line('From:'.$this->data['checkin'])
+                    ->line('To:'.$this->data['checkout'])
                     ->line('Nbr. Adults:'.$this->data['adult'])
                     ->line('Nbr. Children:'.$this->data['children']);
     }

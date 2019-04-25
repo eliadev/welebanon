@@ -49,4 +49,16 @@ $(function () {
         "scrollTop": $('#'+scrollTo).offset().top - 80
         }, 1000 );
     });
+	
+	$('#tab-wrapper div:first').addClass('active');
+	$('#tab-body > div').hide();
+	$('#tab-body > div:first').show();
+	$('#tab-wrapper a').click(function() {
+        $('#tab-wrapper div').removeClass('active');
+        $(this).parent().addClass('active');
+        var activeTab = $(this).attr('href');
+        $('#tab-body > div:visible').hide();
+        $(activeTab).show();
+        return false;
+	});
 });

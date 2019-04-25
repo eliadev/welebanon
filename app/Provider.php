@@ -14,7 +14,7 @@ class Provider extends Model implements HasMedia
 	use HasMediaTrait, HasTranslations;
 	
 	protected $table="providers";
-	protected $fillable = ['category_id','name_en', 'name_ar', 'description_en', 'description_ar', 'address_en', 'address_ar', 'longitude', 'latitude', 'featured'];
+	protected $fillable = ['category_id','name_en', 'name_ar', 'description_en', 'description_ar', 'address_en', 'address_ar', 'longitude', 'latitude', 'featured', 'points'];
 	protected $appends = ['tag_list'];
 	
 	protected $translatableFields = [ 'name', 'description', 'address' ];

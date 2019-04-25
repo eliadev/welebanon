@@ -34,7 +34,7 @@
 	  @endif	  	
 	</head>
 <body @if(App::getLocale() == 'ar') dir="rtl" @endif>
-	    <header class="main-header sticky-header header-with-top" id="main-header-2">
+	<header class="main-header sticky-header header-with-top" id="main-header-2">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12">
@@ -52,8 +52,21 @@
 							<ul class="nav navbar-nav mainmenu pull-right">   
 								<li><a href="/">{!! __('messages.home') !!}</a></li>							  
 								<li><a href="about.html">{!! __('messages.about') !!}</a></li>      
-								<li><a href="contacts.html">{!! __('messages.contact') !!}</a></li>        
-								<li class="br-right"><a class="getstarted" href="#"><i class="fa fa-user"></i> {!! __('messages.getstarted') !!}</a></li>								
+								<li><a href="{!! route('front.contact') !!}">{!! __('messages.contact') !!}</a></li>        
+								@guest
+									<li class="br-right">
+										<a class="getstarted" href="{!! route('front.login') !!}">
+											<i class="fa fa-user"></i> {!! __('messages.getstarted') !!}
+										</a>
+									</li>
+								@endguest
+								@auth
+									<li class="br-right">
+										<a class="getstarted" href="/logout">
+											<i class="fa fa-user"></i> {!! __('messages.logout') !!}
+										</a>
+									</li>
+								@endauth							
 								<li class="br-right">
 								<div class="language">
 								  <a class="lang-ar" href="{!! route('change-language', 'ar')!!}">AR</a>
@@ -224,7 +237,7 @@
             <div class="col-md-3 col-sm-3 br-1 mbb-1">
                <div class="data-flex text-center">
                   <span class="d-block mrg-bot-0">+961 70 123 456</span>
-                  <a href="#" class="theme-cl"><strong>info@welebanon.com</strong></a>
+                  <a href="#" class="theme-cl"><b>info@welebanon.com</b></a>
                </div>
             </div>
             <div class="col-md-4 col-sm-4 padd-0">

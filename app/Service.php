@@ -33,7 +33,9 @@ class Service extends Model implements HasMedia
 
     public function getShortDescriptionAttribute()
     {
-        return Str::limit( $this->translate('description'), 20);
+        $string = preg_replace('/\s+/mu', ' ', $this->translate('description'));
+        $string = str_replace('&nbsp;', '', $string);
+        return Str::limit( strip_tags($string), 100);
     }
 
     public function getDescriptionAttribute()

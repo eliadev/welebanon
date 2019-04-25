@@ -20,7 +20,7 @@ class CreateServicesTable extends Migration
 			$table->longText('description_en')->nullable();
 			$table->longText('description_ar')->nullable();
 			$table->string('icon')->nullable();
-			$table->integer('order')->default(0);
+			$table->integer('order')->default(0)->nullable();
             $table->timestamps();
         });
     }

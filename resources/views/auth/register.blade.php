@@ -105,6 +105,7 @@
 								<div class="row">
 									<div class="col-sm-12">
 										<button type="submit" class="btn theme-btn btn-arrow register-btn">{{ __('Register') }}</button>
+										<a href="{!! route('front.login') !!}" class="text-center">&nbsp; I already have a membership</a>
 									</div>
 								</div>
 							</form>

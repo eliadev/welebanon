@@ -65,7 +65,7 @@
             <div class="sidebar-inner slimscrollleft">
                <div class="user-box">
                   <div class="user-img">
-                     <img src="{{ Auth::user()->getFirstMediaUrl('avatars', 'thumb') }}" class="rounded-circle img-thumbnail img-responsive">
+                     <img src="{{ Auth::user()->getFirstMediaUrl('user', 'thumb') }}" class="rounded-circle img-thumbnail img-responsive">
                      <div class="user-status offline"><i class="mdi mdi-adjust"></i></div>
                   </div>
                   <h5>&nbsp; {{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</h5>
@@ -77,13 +77,27 @@
                         <a href="/admin/" class="waves-effect"><i class="mdi mdi-view-dashboard"></i> <span> Dashboard </span> </a>
                      </li>
 					 <li class="has_sub">
-                        <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-invert-colors"></i> <span> Administration </span> <span class="menu-arrow"></span></a>
+                        <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-account-multiple-outline"></i> <span> Administration </span> <span class="menu-arrow"></span></a>
                         <ul class="list-unstyled">
-                           <li><a href="#">Users Management</a></li>
+							@if(auth()->user()->hasPermission('users'))
+                                <li><a href="{!! route('users.index') !!}">Users Management</a></li>
+								<li><a href="{!! route('clients.index') !!}">Clients</a></li>
+                            @endif
                         </ul>
                      </li>
-                     <li class="has_sub">
-                        <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-invert-colors"></i> <span> Getaways </span> <span class="menu-arrow"></span></a>
+                    <li class="has_sub">
+                        <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-layers"></i> <span> Static Pages </span> <span class="menu-arrow"></span></a>
+                        <ul class="list-unstyled">  
+							@if(auth()->user()->hasPermission('sliders'))						
+								<li><a href="{!! route('sliders.index') !!}">Home Slider</a></li>
+							@endif
+							@if(auth()->user()->hasPermission('staticPages'))
+								<li><a href="{!! route('staticPages.index') !!}">About</a></li>
+							@endif
+                        </ul>
+                    </li>
+					<li class="has_sub">
+                        <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-view-list"></i> <span> Getaways </span> <span class="menu-arrow"></span></a>
                         <ul class="list-unstyled">
                             @if(auth()->user()->hasPermission('services'))
                                 <li><a href="{!! route('services.index') !!}">Services</a></li>
@@ -94,8 +108,11 @@
                             @if(auth()->user()->hasPermission('providers'))
                                 <li><a href="{!! route('providers.index') !!}">Provider</a></li>
                             @endif
+							@if(auth()->user()->hasPermission('plans'))
+                                <li><a href="{!! route('plans.index') !!}">Plans</a></li>
+                            @endif
                         </ul>
-                     </li>
+                    </li>
                   </ul>
                   <div class="clearfix"></div>
                </div>
@@ -183,16 +200,6 @@
                 table.buttons().container()
                     .appendTo('#datatable-buttons_wrapper .col-md-6:eq(0)');
             });
-		</script>
-		<script>
-			function confirmDelete(){
-				var response = confirm('Are you sure?');
-				if(response)
-				{
-					document.getElementById('frm-delete').submit();
-				}
-				return false;
-			}
 		</script>
      @yield('scripts')
    </body>

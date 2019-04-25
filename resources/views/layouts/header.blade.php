@@ -57,7 +57,11 @@
 									</li>
 								@endguest
 								@auth
-									<li><a href="/logout">{!! __('messages.logout') !!}</a></li>
+									<li class="br-right">
+										<a class="getstarted" href="/logout">
+											<i class="fa fa-user"></i> {!! __('messages.logout') !!}
+										</a>
+									</li>
 								@endauth							
 								<li class="br-right">
 								<div class="language">
@@ -147,7 +151,7 @@
 		<script>
          var owl = $('.serv-slider .owl-carousel');
          owl.owlCarousel({
-         loop:false,
+         loop:true,
          nav:true,
          dots: false,
 		 {!! __('messages.slider') !!}

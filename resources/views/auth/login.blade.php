@@ -17,7 +17,7 @@
       <div class="clearfix"></div>
       <div class="wrapper-page">
          <div class="text-center">
-            <a href="index.html" class="logo"><span>Admin<span>to</span></span></a>
+            <a href="#" class="logo"><span>OUI<span> SOCIAL</span></span></a>
          </div>
          <div class="m-t-40 card-box">
             <div class="text-center">

@@ -27,10 +27,10 @@
 						<td>{{$service->icon}}</td>
 						<td>{{$service->order}}</td>
 						<td><a href="{{route('services.edit', $service->id)}}" class="btn btn-info btn-xs webtn">Edit</a> 
-						<form id="frm-delete" class="d-inline-block" method="post" action="{{route('services.destroy', $service->id)}}">
+						<form onsubmit="return confirm('Are you sure you want to delete?');" class="d-inline-block" method="post" action="{{route('services.destroy', $service->id)}}">
 						@csrf
 							@method('delete')
-							<button type="button" onclick="confirmDelete()" class="btn btn-danger btn-xs webtn">Delete</button>
+							<button type="submit" class="btn btn-danger btn-xs webtn">Delete</button>
 						</form>
 						</td>
 					</tr>

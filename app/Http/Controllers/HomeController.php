@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use DB;
 use App;
 use Auth;
 use Session;
 use App\User;
+use App\Slider;
 use App\Service;
 use App\Category;
 use App\Provider;
@@ -16,9 +18,11 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $services = Service::all();
+		$sliders = Slider::inRandomOrder()->limit(1)->get();
+		//$sliders = Slider::orderBy('order', 'DESC')->limit(1)->get();
+		$services = Service::all();
         $providers = Provider::where('featured', 1)->get();
-        return view('front.index', ['services' => $services, 'providers' => $providers]);
+        return view('front.index', ['sliders' => $sliders, 'services' => $services, 'providers' => $providers]);
     }
 
     public function search(Request $request)

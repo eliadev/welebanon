@@ -15,7 +15,7 @@
 					<div class="form-box">
 							<i class="c-icon ti-map-alt theme-cl"></i>
 							<div class="c-detail">
-								<strong>Address:</strong>
+								<b>Address:</b>
 								<p>Achrafieh,Gouraud Street, Azirian Bldg, 1st Floor</p>
 							</div>
 						</div>
@@ -23,7 +23,7 @@
 						<div class="form-box">
 							<i class="c-icon ti-email theme-cl"></i>
 							<div class="c-detail">
-								<strong>Email:</strong>
+								<b>Email:</b>
 								<p>info@welebanon.com</p>
 							</div>
 						</div>
@@ -31,7 +31,7 @@
 						<div class="form-box">
 							<i class="c-icon ti-headphone-alt theme-cl"></i>
 							<div class="c-detail">
-								<strong>Call Us:</strong>
+								<b>Call Us:</b>
 								<p>+961 70 111 222</p>
 							</div>
 						</div>

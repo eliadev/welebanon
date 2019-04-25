@@ -1,14 +1,15 @@
 @extends('layouts.header')
 @section('content')
-<div class="main-banner" style="background-image:url(assets/img/bg1.jpg);">
+@foreach($sliders as $slider)
+<div class="main-banner" style="background-image:url({{ $slider->getFirstMediaUrl('slider') }});">
 	 <div class="container">
 		<div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1">
 		   <div class="caption text-center cl-white">
-			  <h2>Discover Lebanon</h2>
-			  <p>Expolore top tours, hotels and restaurants in Lebanon</p>
+			  <h2>{{ $slider->translate('name') }}</h2>
+			  <div>{!! $slider->translate('description') !!}</div>
 		   </div>
 			<form class="wow-form" action="{!! route('front.search') !!}"> 
-				<input type="text" placeholder="{!! __('messages.search') !!}..." name="search_input">
+				<input type="text" placeholder="{!! __('messages.search') !!}..." name="search_input" required>
 				<button type="submit" class="btn btn-wow theme-btn" name="submit" value="Search"> {!! __('messages.find') !!} </button>
 			</form>
 		</div>
@@ -17,6 +18,7 @@
 		<div class="button-scroll" data-scrollTo="services"><span></span></div>
 	 </div>
   </div>
+@endforeach
   <div class="clearfix"></div>
   <section class="tour-type" id="services">
 		<div class="container">
@@ -36,7 +38,7 @@
 						<span class="{{ $service->icon }}"></span>
 					</div>
 					<h3>{{ $service->translate('name') }}</h3>
-					<div class="text">{!! $service->translate('description') !!}</div>
+					<div class="text">{!! $service->ShortDescription !!}</div>
 					</a>
 				</div>
 			</div>

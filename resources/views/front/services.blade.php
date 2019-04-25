@@ -13,9 +13,9 @@
             <div class="row"> 
                <div class="col-md-12 col-sm-12">
 						<div class="serv-slider">
-							<div class="loop owl-carousel owl-theme tab" role="tablist">
+							<div class="loop owl-carousel owl-theme" id="tab-wrapper">
 							@foreach($service->category as $category)
-								<div class="item"><a href="#{{$category->id}}" role="tab" data-toggle="tab"><span class="flaticon-eat fontFlatSize"></span> {{$category->translate('name')}}</a></div>
+								<div class="item"><a href="#{{$category->id}}" role="tab" data-toggle="tab"><span class="{{$category->icon}} fontFlatSize"></span> {{$category->translate('name')}}</a></div>
 							@endforeach
 							</div>
 						</div>
@@ -27,9 +27,9 @@
          <div class="container">
             <div class="row">
                <div class="col-md-8 col-sm-12 simple-features-list">
-                  <div class="tab-content tabs">		
+                  <div id="tab-body">	
 				  @foreach($service->category as $category)
-					<div role="tabpanel" class="tab-pane fade in" id="{{$category->id}}">
+					<div id="{{$category->id}}">
 					@if ($category->providers->count())
 						@foreach ($category->providers as $provider)
 					<div class="col-md-6 col-sm-6">
@@ -37,13 +37,13 @@
                             <article class="hotel-box style-1">
                                 <div class="hotel-box-image">
                                  <figure>
-										<a href="{{ route('front.providers.show', $provider->id) }}">
-											<img src="{{$provider->getFirstMediaUrl('provider')}}" class="img-responsive listing-box-img" alt="{{$provider->name_en}}"/>
-											<div class="list-overlay"></div>
-										</a>
-										<h4 class="hotel-place">
-											<a href="{{ route('front.providers.show', $provider->id) }}">{{ $provider->translate('address') }}</a>
-										</h4>
+									<a href="{{ route('front.providers.show', $provider->id) }}">
+										<img src="{{$provider->getFirstMediaUrl('provider')}}" class="img-responsive listing-box-img" alt="{{$provider->name_en}}"/>
+										<div class="list-overlay"></div>
+									</a>
+									<h4 class="hotel-place">
+										<a href="{{ route('front.providers.show', $provider->id) }}">{{ $provider->translate('address') }}</a>
+									</h4>
                                  </figure>
                                 </div>
                                 <div class="hotel-detail-box">
@@ -86,7 +86,7 @@
                      </div>
                      <div id="filter" class="collapse in">
                         <div class="tr-single-body">
-							<form action="#"> 
+							<form action="{!! route('front.search.prov') !!}"> 
 								<div class="sidebar-input">
 									<input type="text" class="form-control" placeholder="Title" name="input_name">
 								</div>
@@ -95,7 +95,7 @@
 								</div>
 								<div class="row">
 									<div class="col-xs-12 mrg-top-15">
-										<button type="submit" class="btn btn-arrow theme-btn full-width" name="submit">Search</button>		
+										<button type="submit" class="btn btn-arrow theme-btn full-width" name="submit" value="Search">Search</button>		
 									</div>
 								</div>
 							</form>

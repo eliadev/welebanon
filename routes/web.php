@@ -23,8 +23,9 @@ Route::middleware(['language'])->group(function () {
 	Route::get('/logout', 'HomeController@logout')->name('front.logout');
 
 	Route::get('/search-results', 'HomeController@search')->name('front.search');
+	Route::get('/search-res', 'ServicesController@search')->name('front.search.prov');
 	Route::get('/services/{id}', 'ServicesController@show')->name('front.services.show');
-	Route::get('/providers/{id}/', 'ProvidersController@show')->name('front.providers.show');
+	Route::get('/providers/{id}', 'ProvidersController@show')->name('front.providers.show');
 	Route::post('/providers/{id}/book', 'ProvidersController@book')->name('front.providers.book');
 	Route::get('/contact', 'ContactController@index')->name('front.contact');
 	
@@ -35,6 +36,12 @@ Route::namespace('Admin')->prefix('admin')->middleware(['auth', 'is_admin'])->gr
 	Route::resource('providers', 'ProviderController')->middleware(['has_permission:providers']);
 	Route::resource('services', 'ServiceController')->middleware(['has_permission:services']);
 	Route::resource('categories', 'CategoryController')->middleware(['has_permission:categories']);
+	Route::resource('users', 'UserController')->middleware(['has_permission:users']);
+	Route::resource('sliders', 'SliderController')->middleware(['has_permission:sliders']);
+	Route::resource('staticPages', 'StaticPageController')->middleware(['has_permission:staticPages']);
+	Route::resource('plans', 'PlanController')->middleware(['has_permission:plans']);
+	Route::get('clients', 'ClientsController@index')->name('clients.index')->middleware(['has_permission:users']);
+	Route::post('clients/{id}/delete', 'ClientsController@destroy')->name('clients.destroy');
 
 	Route::post('providers/media', 'ProviderController@storeMedia')->name('providers.storeMedia');
 

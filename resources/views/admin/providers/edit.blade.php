@@ -185,6 +185,13 @@
 						<input type="text" name="latitude" value="{{$provider->latitude}}" class="form-control" id="latitude" placeholder="Latitude">
 					 </div>
 				  </div>
+				  <div class="form-group row">
+					<div class="col-md-1"></div>
+					<label for="points" class="col-sm-2 col-form-label">Points</label>
+					<div class="col-sm-8">
+						<input type="text" name="points" value="{{$provider->points}}" class="form-control" id="points" placeholder="Points">
+					 </div>
+				  </div>
 					<div class="form-group row">
 						<div class="col-md-1"></div>
 						<label for="tags" class="col-sm-2 col-form-label">Tags</label>

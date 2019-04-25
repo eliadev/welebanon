@@ -65,8 +65,8 @@
 					<div class="form-group row">
 						<div class="col-md-1"></div>
 						<label for="image" class="col-sm-2 col-form-label">Image</label>
-						<div class="col-md-3"><input type="file" name="image"></div>
-						<div class="col-md-3">
+						<div class="col-md-4"><input type="file" name="image"></div>
+						<div class="col-md-2">
 							<img src="{{$service->getFirstMediaUrl('service', 'thumb')}}">
 						</div>
 						<div class="col-md-2">
