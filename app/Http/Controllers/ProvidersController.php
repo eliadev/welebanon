@@ -21,7 +21,7 @@ class ProvidersController extends Controller
     public function book(Request $request, $id)
     {
     	$provider = Provider::findOrFail($id);
-    		
+    	
 			if(Auth::check()){
 				auth()->user()->providers()->attach([
 					$provider->id => [

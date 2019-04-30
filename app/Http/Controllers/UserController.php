@@ -22,7 +22,8 @@ class UserController extends Controller
     		return $value->pivot->is_confirmed === 0;
     	});
 		
-		$pointSum = number_format(($user->providers)->sum('points'));
+		$pointSum = $this->getCheckoutPoints();
+
     	return view('front.user_show', [
     		'user' => $user,
     		'user_providers' => $user_providers,
@@ -41,6 +42,13 @@ class UserController extends Controller
     public function checkout(Request $request)
     {
         $user = Auth::user();
+
+        // check if the total points are greater than the plan points.
+        $totalPoints = $this->getCheckoutPoints() + $user->points;
+
+        if($totalPoints > $user->points)
+            return redirect()->route('front.profile')->with('status', 'You have exceeded your plan points!');
+        
         $userProviders = UserProvider::where('is_confirmed', 0)
                         ->where('user_id', $user->id)
                         ->get();
@@ -66,6 +74,16 @@ class UserController extends Controller
 
         $user->update(['points' => $updatedUserPoints]);
         return redirect(route('front.profile'))->with('status', 'Thank you for you reservation. we will contact you very soon!');
+    }
+
+    protected function getCheckoutPoints()
+    {
+        $user = Auth::user();
+        $user_providers = collect($user->providers)->filter(function ($value, $key){
+            return $value->pivot->is_confirmed === 0;
+        });
+        
+       return number_format($user_providers->sum('points'));
     }
 	
 
