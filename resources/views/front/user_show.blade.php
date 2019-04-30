@@ -51,12 +51,13 @@
                         </table>
 
                         <!-- 
-                          Add the points to the user
-                          make sure points = full plan points
-                          reset the user plan
-                          send the notification
-                        
-                       <button type="submit">Confirm</button>
+                          Before confirm:
+                          - Make sure points = full plan points
+                          After Confirm:
+                          - Add the points to the user
+                          - reset the user plan
+                          - send the notification
+                        <button type="submit">Confirm</button>
                     @endif
 					@else
 						You did not select any plan yet.
