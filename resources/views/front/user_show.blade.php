@@ -31,7 +31,7 @@
 					<p>Remaining Points: <b>{!! $user->remaining_points !!}</b></p>
 				</div>
 
-				@if(!$user_providers->count())
+				@if(!$user_providers->count() && !$resetPlan)
 					<a class="btn theme-btn" type="button" href="{{ route('front.services') }}">Add provider</a>
 				@endif
 				
@@ -117,7 +117,7 @@
 												<input type="hidden" name="checkout" value="{!! $user_provider->pivot->to_date !!}"/>
 												<input type="hidden" name="adult" value="{!! $user_provider->pivot->nb_adults !!}"/>
 												<input type="hidden" name="children" value="{!! $user_provider->pivot->nb_children !!}"/>
-												
+
 												<button type="submit " class="btn btn-success">Checkout</button>
 											</form>
 									</div>
@@ -125,12 +125,12 @@
 							</div>
 						</div>
 					</div>
-					{{-- Before confirm:
-                          - Make sure points = full plan points?
-                          After Confirm:
-                          - Add the points to the user
-                          - reset the user plan?
-                          - send the notification --}}
+					@if($resetPlan)
+					<h4>
+						You have reached the maximum allowed points of your plan.
+						Choose another plan to proceed.
+					</h4>
+					@endif
 				</div>
 				@endif
 				@else
