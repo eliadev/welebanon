@@ -9,14 +9,24 @@ class UserController extends Controller
 {
     public function show()
     {
-    	$user = Auth::user();
+		if(!Auth::check())
+        {
+            return redirect()->route('front.login')->with('status', 'Login before chosing a plan!');
+        }
+		
+		$user = Auth::user();
     	$user_providers = collect($user->providers)->filter(function ($value, $key){
     		return $value->pivot->is_confirmed === 0;
     	});
+		
+		$pointSum = number_format(($user->providers)->sum('points'));
 
     	return view('front.user_show', [
     		'user' => $user,
-    		'user_providers' => $user_providers
+    		'user_providers' => $user_providers,
+			'pointSum' => $pointSum,
     	]);
     }
+	
+
 }

@@ -83,8 +83,6 @@ class HomeController extends Controller
         {
             $user->update(['plan_id' => $request->get('plan_id')]);
         }
-        
-    
         return redirect()->route('front.profile')->with('status', 'You are now subscribed to the selected plan.');
     }
 }

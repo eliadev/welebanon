@@ -3,6 +3,7 @@
 namespace App;
 
 use App;
+use Illuminate\Support\Str;
 use App\Traits\HasTranslations;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
@@ -44,5 +45,17 @@ class Provider extends Model implements HasMedia
     {
         $tags = $this->tags->pluck('name')->toArray();
         return implode("," , $tags);
+    }
+	
+	public function getShortDescriptionAttribute()
+    {
+        $string = preg_replace('/\s+/mu', ' ', $this->translate('description'));
+        $string = str_replace('&nbsp;', '', $string);
+        return Str::limit( strip_tags($string), 75);
+    }
+
+    public function getDescriptionAttribute()
+    {
+        return $this->translate('description');
     }
 }

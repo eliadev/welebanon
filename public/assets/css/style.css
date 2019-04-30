@@ -31,6 +31,12 @@ body{
     line-height:24px
 }
 
+button.remove {
+    border: none;
+    background: none;
+    outline: none;
+}
+
 #map{
 	width:100%;
 	height:550px;
@@ -39,6 +45,22 @@ body{
 #map-details{
 	width:100%;
 	height:430px;
+}
+ul.dropdown-menu li a{
+	display: block;
+    background-color: #fff;
+    color: #4b4b4b;
+    font-weight: 500;
+    font-size: 12px;
+    font-family: 'Montserrat', sans-serif;
+    text-transform: uppercase;
+    border-top: 1px solid #eaeaea;
+    padding: 10px 15px;
+    line-height: 20px;
+}
+
+a.remove {
+    color: #797979;
 }
 
 strong {
@@ -311,6 +333,8 @@ span.fontFlatSize:before {
     font-size: 16px;
     font-weight: 600;
 	color:#729849;
+	background: transparent;
+	outline: none !important;
 	border:none;
 	box-shadow:none;
     text-transform: uppercase;
@@ -347,6 +371,24 @@ ul.nav.navbar-nav.pull-right li a {
     font-size: 15px;
 	letter-spacing:0.5px;
 	text-transform: uppercase;
+}
+
+ul.dropdown-menu li a {
+    margin-top: 0 !important;
+    color: #000 !important;
+    font-weight: 500;
+    font-size: 14px !important;
+	letter-spacing:0.5px;
+	text-transform: uppercase;
+}
+
+.dropdown-menu{
+	padding: 0 !important;
+}
+
+.nav .open>a, .nav .open>a:focus, .nav .open>a:hover {
+    background-color: transparent;
+    border-color: #337ab7;
 }
 
 .nav>li>a:focus, .nav>li>a:hover {
@@ -1008,6 +1050,7 @@ div.datedropper.my-style.picker-lkd .pick-submit{
 }
 table.table td a{
     font-weight:500;
+	font-size:15px;
     display:inline-block;
     text-decoration:none
 }
@@ -3742,6 +3785,18 @@ span.featured-tour{
 .hotel-place a:hover,.hotel-place>*,.hotel-place>:focus{
     color:#fff
 }
+
+.points-place{
+    position:absolute;
+    bottom:20px;
+    right:20px;
+    z-index:1;
+    font-size:14px
+}
+.points-place:hover,.points-place>*,.points-place>:focus{
+    color:#fff
+}
+
 .hotel-detail-box{
     padding:10px 20px
 }
@@ -4413,9 +4468,7 @@ span.guider-status{
 .tg-cartproductdetail table tr td,.tg-cartproductdetail table tr th,ul.countdown li{
     vertical-align:middle
 }
-.tg-cartproductdetail table tr td:first-child,.tg-cartproductdetail table tr th:first-child{
-    width:60%
-}
+
 .tg-tourname{
     width:100%;
     float:left;

@@ -41,15 +41,16 @@
                               <span class="icon-bar"></span>
                               <span class="icon-bar"></span>
                               </button>
-                  <a class="navbar-brand logo navbar-brand" href="{!! route('front.home') !!}">
+						<a class="navbar-brand logo navbar-brand" href="{!! route('front.home') !!}">
 							<img src="{{asset('assets/img/logo-black.png')}}" alt="We Lebanon">
 						</a>
 						<div class="navbar-collapse collapse">
 							<ul class="nav navbar-nav mainmenu pull-right">   
 								<li><a href="/">{!! __('messages.home') !!}</a></li>							  
 								<li><a href="about.html">{!! __('messages.about') !!}</a></li> 
+								<li><a href="{!! route('front.services') !!}">{!! __('messages.services') !!}</a></li> 
 								@auth
-									<li><a href="{!! route('front.profile') !!}">{!! __('messages.profile') !!}</a></li> 
+									<!--<li><a href="{!! route('front.profile') !!}">{!! __('messages.profile') !!}</a></li>--> 
 								@endauth    
 								<li><a href="{!! route('front.contact') !!}">{!! __('messages.contact') !!}</a></li>        
 								@guest
@@ -60,17 +61,25 @@
 									</li>
 								@endguest
 								@auth
-									<li class="br-right">
+									<!--<li class="br-right">
 										<a class="getstarted" href="/logout">
 											<i class="fa fa-user"></i> {!! __('messages.logout') !!}
 										</a>
-									</li>
-								@endauth							
+									</li>-->
+								<li class="dropdown">
+								   <a href="#" class="dropdown-toggle getstarted" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user"></i> User <span class="caret"></span></a>
+								   <ul class="dropdown-menu">
+									  <li><a href="#">Elias Elia</a></li>
+									  <li><a href="{!! route('front.profile') !!}">{!! __('messages.profile') !!}</a></li>
+									  <li><a href="/logout"><i class="fa fa-user"></i> {!! __('messages.logout') !!}</a></li>
+								   </ul>
+								</li>
+								@endauth
 								<li class="br-right">
 								<div class="language">
-								  <a class="lang-ar" href="{!! route('change-language', 'ar')!!}">AR</a>
-								  <span class="lang-ar"> | </span>
-								  <a class="lang-ar" href="{!! route('change-language', 'en')!!}">EN</a>
+									<a class="lang-ar" href="{!! route('change-language', 'en')!!}">EN</a>
+										<span class="lang-ar"> | </span>
+									<a class="lang-ar" href="{!! route('change-language', 'ar')!!}">AR</a>
 							    </div>
 								</li>
 							</ul>

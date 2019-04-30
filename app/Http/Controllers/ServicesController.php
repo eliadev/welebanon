@@ -13,11 +13,17 @@ use Illuminate\Http\Request;
 
 class ServicesController extends Controller
 {
-    public function show($id)
+    public function index()
+    {
+        $services = Service::all();
+        return view('front.services', ['services' => $services]); 
+    }
+	
+	public function show($id)
     {
         $services = Service::all();
         $service = Service::with(['category', 'category.providers'])->find($id);
-        return view('front.services', ['services' => $services, 'service' => $service]); 
+        return view('front.service', ['services' => $services, 'service' => $service]); 
     }
 	
 	public function search(Request $request)

@@ -30,7 +30,8 @@ Route::middleware(['language'])->group(function () {
 
 	// services routes
 	Route::get('/search-res', 'ServicesController@search')->name('front.search.prov');
-	Route::get('/services/{id}', 'ServicesController@show')->name('front.services.show');
+	Route::get('/service/{id}', 'ServicesController@show')->name('front.services.show');
+	Route::get('/services', 'ServicesController@index')->name('front.services');
 
 	// providers routes
 	Route::get('/providers/{id}', 'ProvidersController@show')->name('front.providers.show');

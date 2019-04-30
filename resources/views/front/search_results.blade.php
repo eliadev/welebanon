@@ -19,15 +19,15 @@
 							<div class="list-slide-box">
 								<article class="hotel-box style-1">
 									<div class="hotel-box-image">
-									 <figure>
-											<a href="{{ route('front.providers.show', $provider->id) }}">
-												<img src="{!! $provider->getFirstMediaUrl('provider') !!}" class="img-responsive listing-box-img" alt="{{$provider->name_en}}"/>
-												<div class="list-overlay"></div>
-											</a>
-											<h4 class="hotel-place">
-												<a href="{{ route('front.providers.show', $provider->id) }}">{{ $provider->translate('address') }}</a>
-											</h4>
-									 </figure>
+									<figure>
+										<a href="{{ route('front.providers.show', $provider->id) }}">
+											<img src="{!! $provider->getFirstMediaUrl('provider') !!}" class="img-responsive listing-box-img" alt="{{$provider->name_en}}"/>
+											<div class="list-overlay"></div>
+										</a>
+										<h4 class="hotel-place">
+											<a href="{{ route('front.providers.show', $provider->id) }}">{{ $provider->translate('address') }}</a>
+										</h4>
+									</figure>
 									</div>
 									<div class="hotel-detail-box">
 										<div class="hotel-ellipsis">

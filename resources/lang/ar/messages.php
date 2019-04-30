@@ -3,6 +3,7 @@
 return [
 	'home' => 'الرئيسية',
 	'about' => 'من نحن',
+	'services' => 'خدمات',
 	'contact' => 'اتصل بنا',
 	'getstarted' => 'البدء',
 	'find' => 'بحث',

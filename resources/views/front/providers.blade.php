@@ -51,7 +51,8 @@
 						<div class="navbar-collapse collapse">
 							<ul class="nav navbar-nav mainmenu pull-right">   
 								<li><a href="/">{!! __('messages.home') !!}</a></li>							  
-								<li><a href="about.html">{!! __('messages.about') !!}</a></li>      
+								<li><a href="about.html">{!! __('messages.about') !!}</a></li> 
+								<li><a href="{!! route('front.services') !!}">{!! __('messages.services') !!}</a></li> 								
 								<li><a href="{!! route('front.contact') !!}">{!! __('messages.contact') !!}</a></li>        
 								@guest
 									<li class="br-right">
@@ -69,9 +70,9 @@
 								@endauth							
 								<li class="br-right">
 								<div class="language">
-								  <a class="lang-ar" href="{!! route('change-language', 'ar')!!}">AR</a>
-								  <span class="lang-ar"> | </span>
-								  <a class="lang-ar" href="{!! route('change-language', 'en')!!}">EN</a>
+									<a class="lang-ar" href="{!! route('change-language', 'en')!!}">EN</a>
+										<span class="lang-ar"> | </span>
+									<a class="lang-ar" href="{!! route('change-language', 'ar')!!}">AR</a>
 							    </div>
 								</li>
 							</ul>
@@ -197,19 +198,17 @@
                               </div>
                            </div>
 							<div class="row">
-
 								<div class="col-xs-12 mrg-top-15">
-									@auth
-                   @if(!auth()->user()->plan)
-                      <a href="/">You must have a plan first.</a>
-                    @else
-                      <button type="submit" class="btn btn-arrow theme-btn full-width">Submit</button>
-                    @endif
-                  @endauth
-                  
-                  @guest
-                    <button type="submit" class="btn btn-arrow theme-btn full-width">Submit</button>
-                  @endguest		
+								@auth
+									@if(!auth()->user()->plan)
+										<a href="/">You must have a plan first.</a>
+									@else
+										<button type="submit" class="btn btn-arrow theme-btn full-width">Submit</button>
+									@endif
+								@endauth
+								@guest
+									<button type="submit" class="btn btn-arrow theme-btn full-width">Submit</button>
+								@endguest		
 								</div>
 							</div>
 							@if (session('status'))
