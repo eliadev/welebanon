@@ -20,15 +20,9 @@ class ProvidersController extends Controller
 
     public function book(Request $request, $id)
     {
-    	$user = User::where('email', 'sarah@bridgeofmind.com')->firstOrFail();
     	$provider = Provider::findOrFail($id);
     		
 			if(Auth::check()){
-				// $user->notify( new UserBooking(
-				// 	$provider->name_en,
-				// 	$user = Auth::user()->first_name.' '.Auth::user()->last_name,
-				// 	$request->only(['checkin', 'checkout', 'adult', 'children'])
-				// ));
 				auth()->user()->providers()->attach([
 					$provider->id => [
 						'nb_children' => $request->get('children'),

@@ -28,6 +28,7 @@ Route::middleware(['language'])->group(function () {
 	// user route
 	Route::get('/my-profile', 'UserController@show')->name('front.profile');
 	Route::post('/providers/{id}/delete', 'UserController@remove')->name('front.remove');
+	Route::post('/providers/checkout', 'UserController@checkout')->name('front.checkout');
 
 	// services routes
 	Route::get('/search-res', 'ServicesController@search')->name('front.search.prov');

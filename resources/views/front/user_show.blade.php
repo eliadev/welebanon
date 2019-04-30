@@ -99,43 +99,38 @@
 										</td>
 									</tr>
 								@endforeach
+								<tr>
+									<td colspan="7" align="right">
+										<b>Total Points: {!! $pointSum!!}</b>
+									</td>
+									<td>&nbsp;</td>
+								</tr>
 							</tbody>
 							</table>
 							<div class="col-md-12">
 								<div class="row">
 									<div class="col-sm-6">
 										<a class="btn theme-btn" type="button" href="{{ route('front.services') }}">Add more services</a>
+										<form onsubmit="return confirm('Are you sure you want to proceed?');" class="d-inline-block" method="post" action="{{route('front.checkout')}}" style="display:inline">
+												@csrf
+												<input type="hidden" name="checkin" value="{!! $user_provider->pivot->from_date !!}" />
+												<input type="hidden" name="checkout" value="{!! $user_provider->pivot->to_date !!}"/>
+												<input type="hidden" name="adult" value="{!! $user_provider->pivot->nb_adults !!}"/>
+												<input type="hidden" name="children" value="{!! $user_provider->pivot->nb_children !!}"/>
+												
+												<button type="submit " class="btn btn-success">Checkout</button>
+											</form>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
 					{{-- Before confirm:
-                          - Make sure points = full plan points
+                          - Make sure points = full plan points?
                           After Confirm:
                           - Add the points to the user
-                          - reset the user plan
+                          - reset the user plan?
                           - send the notification --}}
-
-{{-- 					<div class="col-md-4 col-sm-4">
-						<div class="tr-single-box">
-							<div class="tr-single-header">
-								<h4>Total Points<span class="fl-right">{!! $pointSum !!}</span></h4>
-							</div>
-							<div class="tr-single-body">
-								<div class="booking-price-detail side-list no-border">
-									<ul>
-										<li>Plan Name<b class="pull-right">{!! $user->plan->translate('name') !!}</b></li>
-										<li>Plan Points<b class="pull-right">{!! $user->plan->points !!}</b></li>
-										<li>Used Points<b class="pull-right">{!! $user->points !!}</b></li>
-										<li>Remaining Points<b class="pull-right">{!! $user->remaining_points !!}</b></li>
-									</ul>
-									<br>
-									<a href="#" class="btn btn-success full-width">PROCEED NOW</a>
-								</div>
-							</div>
-						</div>
-					</div> --}}
 				</div>
 				@endif
 				@else
