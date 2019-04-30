@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Auth;
+use App\UserProvider;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -20,12 +21,19 @@ class UserController extends Controller
     	});
 		
 		$pointSum = number_format(($user->providers)->sum('points'));
-
     	return view('front.user_show', [
     		'user' => $user,
     		'user_providers' => $user_providers,
 			'pointSum' => $pointSum,
     	]);
+    }
+
+    public function remove($userProviderId)
+    {
+        $user = Auth::user();
+        $userProvider = UserProvider::find($userProviderId);
+        $userProvider->delete();
+        return redirect( route('front.profile') );
     }
 	
 

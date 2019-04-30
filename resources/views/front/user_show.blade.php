@@ -8,64 +8,7 @@
             </div>
          </div>
       </div>
-		<!--<section class="tour-type">
-         <div class="container">
-            <div class="row"> 
-               <div class="col-md-12 col-sm-12">	
-					@if (session('status'))
-						<div class="alert alert-success">
-						  {{ session('status') }}
-						</div>
-					@endif  
-					<br>
-               		@if($user->plan)			
-						<ul>
-							<li>Plan: {!! $user->plan->translate('name') !!}</li>
-							<li>Used points: {!! $user->points !!} </li>
-							<li>Remaining points: {!! $user->remaining_points !!}</li> 
-						</ul>
-
-                    @if($user->providers)
-                      <table>
-                        <tr>
-                          <td>#</td>
-                          <td>Provider</td>
-                          <td>Adults</td>
-                          <td>Children</td>
-                          <td>From</td>
-                          <td>To</td>
-                          <td>Points</td>
-                        </tr>
-                          @foreach($user_providers as $key => $user_provider)
-                          <?php $provider = \App\Provider::find($user_provider->pivot->provider_id) ?>
-                            <tr>
-                              <td>{!! $key + 1!!}</td>
-                              <td>{!! $provider->translate('name') !!}</td>
-                              <td>{!! $user_provider->pivot->nb_adults !!}</td>
-                              <td>{!! $user_provider->pivot->nb_children !!}</td>
-                              <td>{!! $user_provider->pivot->from_date !!}</td>
-                              <td>{!! $user_provider->pivot->to_date !!}</td>
-                              <td>{!! $provider->points !!}</td>
-                            </tr>
-                          @endforeach
-                        </table>
-
-                        <!-- 
-                          Before confirm:
-                          - Make sure points = full plan points
-                          After Confirm:
-                          - Add the points to the user
-                          - reset the user plan
-                          - send the notification
-                        <button type="submit">Confirm</button>
-                    @endif
-					@else
-						You did not select any plan yet.
-					@endif
-               </div>
-           </div>
-       </div>
-   </section>-->
+		
 		<section class="cart gray-bg">
 			<div class="container">
 				<div class="row">
@@ -80,26 +23,23 @@
 				</div>
 				<div class="clearfix"></div>
 				@if($user->plan)
-				<div class="col-md-4 col-sm-4">
-						<div class="tr-single-box">
-							<div class="tr-single-header">
-								<h4>Total Points<span class="fl-right">{!! $pointSum !!}</span></h4>
-							</div>
-							<div class="tr-single-body">
-								<div class="booking-price-detail side-list no-border">
-									<ul>
-										<li>Plan Name<b class="pull-right">{!! $user->plan->translate('name') !!}</b></li>
-										<li>Plan Points<b class="pull-right">{!! $user->plan->points !!}</b></li>
-										<li>Used Points<b class="pull-right">{!! $user->points !!}</b></li>
-										<li>Remaining Points<b class="pull-right">{!! $user->remaining_points !!}</b></li>
-									</ul>
-								</div>
-							</div>
-						</div>
-					</div>
+				<div class="col-md-12 col-sm-12">
+					<h4>Your current plan</h4><hr/>
+					<p>Plan Name: <b>{!! $user->plan->translate('name') !!}</b></p>
+					<p>Plan Points: <b>{!! $user->plan->points !!}</b></p>
+					<p>Used Points: <b>{!! $user->points !!}</b></p>
+					<p>Remaining Points: <b>{!! $user->remaining_points !!}</b></p>
+				</div>
+
+				@if(!$user_providers->count())
+					<a class="btn theme-btn" type="button" href="{{ route('front.services') }}">Add provider</a>
+				@endif
+				
 				@if($user_providers->count())
+				<h4 style="margin-top: 20px;">Your current selection</h4>
+				<hr/>
 				<div class="row">
-					<div class="col-md-8 col-sm-12">
+					<div class="col-md-12 col-sm-12">
 						<div class="tg-cartproductdetail table-responsive">
 							<table class="table" cellspacing="0">
 								<thead>
@@ -138,7 +78,9 @@
 											<span class="Price-amount amount">{!! $user_provider->pivot->from_date !!}</span>
 										</td>
 										<td>
-											<span class="Price-amount amount">{!! $user_provider->pivot->to_date !!}</span>
+											<span class="Price-amount amount">
+												{!! $user_provider->pivot->to_date !!}
+											</span>
 										</td>
 										<td>
 											<span class="Price-amount amount">{!! $user_provider->pivot->nb_adults !!}</span>
@@ -150,7 +92,10 @@
 											<span class="Price-amount amount">{!! $provider->points !!}</span>
 										</td>
 										<td class="product-remove">
-											<a href="#" class="remove"><i class="fa fa-remove"></i></a>
+											<form onsubmit="return confirm('Are you sure you want to remove?');" class="d-inline-block" method="post" action="{{route('front.remove', $user_provider->pivot->id)}}">
+												@csrf
+												<button type="submit " class="remove"><i class="fa fa-remove"></i></button>
+											</form>
 										</td>
 									</tr>
 								@endforeach
@@ -159,13 +104,20 @@
 							<div class="col-md-12">
 								<div class="row">
 									<div class="col-sm-6">
-										<a class="btn theme-btn" type="button" href="{{ route('front.services') }}">Update Cart</a>
+										<a class="btn theme-btn" type="button" href="{{ route('front.services') }}">Add more services</a>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
-					<div class="col-md-4 col-sm-4">
+					{{-- Before confirm:
+                          - Make sure points = full plan points
+                          After Confirm:
+                          - Add the points to the user
+                          - reset the user plan
+                          - send the notification --}}
+
+{{-- 					<div class="col-md-4 col-sm-4">
 						<div class="tr-single-box">
 							<div class="tr-single-header">
 								<h4>Total Points<span class="fl-right">{!! $pointSum !!}</span></h4>
@@ -183,7 +135,7 @@
 								</div>
 							</div>
 						</div>
-					</div>
+					</div> --}}
 				</div>
 				@endif
 				@else
