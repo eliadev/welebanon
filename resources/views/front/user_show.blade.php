@@ -108,7 +108,11 @@
 								@endforeach
 								<tr>
 									<td colspan="7" align="right">
-										<b>Total Points: {!! $pointSum!!}</b>
+										<b>Total Points: {!! $pointSum !!} / {!! $user->remaining_points !!}</b>
+										<br/>
+										@if( $pointSum  > $user->remaining_points )
+											<span class="alert-danger">You have exceeded your plan points!</span>
+										@endif
 									</td>
 									<td>&nbsp;</td>
 								</tr>
@@ -124,7 +128,11 @@
 											<input type="hidden" name="checkout" value="{!! $user_provider->pivot->to_date !!}"/>
 											<input type="hidden" name="adult" value="{!! $user_provider->pivot->nb_adults !!}"/>
 											<input type="hidden" name="children" value="{!! $user_provider->pivot->nb_children !!}"/>
-											<button type="submit " class="btn btn-success">CHECKOUT</button>
+											<button 
+												type="submit " 
+												class="btn btn-success"
+												@if( $pointSum  > $user->remaining_points ) disabled @endif
+											>CHECKOUT</button>
 										</form>
 									</div>
 								</div>
