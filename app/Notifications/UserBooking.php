@@ -11,18 +11,17 @@ class UserBooking extends Notification
 {
     use Queueable;
 
-    protected $providerName, $user, $data;
+    protected $userProviders, $loggedInUser;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct($providerName, $user, $data)
+    public function __construct($userProviders, $loggedInUser)
     {
-        $this->providerName = $providerName;
-        $this->user = $user;
-        $this->data = $data;
+        $this->userProviders = $userProviders;
+        $this->loggedInUser = $loggedInUser;
     }
 
     /**
@@ -44,17 +43,25 @@ class UserBooking extends Notification
      */
     public function toMail($notifiable)
     {
-        $firstLine = 'The user '.$this->user.' has booked a reservation in '.$this->providerName;
-
-        return (new MailMessage)
-                    ->subject('New user booking')
+        $firstLine = 'The user '.$this->loggedInUser.' has booked a new reservation.';
+        $mailMessage = new MailMessage;
+        $mailMessage->subject('New user booking')
                     ->greeting('Dear Sarah,')
                     ->line($firstLine)
                     ->line('The booking details are:')
-                    ->line('From:'.$this->data['checkin'])
-                    ->line('To:'.$this->data['checkout'])
-                    ->line('Nbr. Adults:'.$this->data['adult'])
-                    ->line('Nbr. Children:'.$this->data['children']);
+                    ->line('---');
+
+        foreach ($this->userProviders as $userProvider) {
+            $mailMessage
+                    ->line('Provider:'.$userProvider->provider->name_en)
+                    ->line('From:'.$userProvider->from_date)
+                    ->line('To:'.$userProvider->to_date)
+                    ->line('Nbr. Adults:'.$userProvider->nb_adults)
+                    ->line('Nbr. Children:'.$userProvider->nb_children)
+                    ->line('---');
+        }
+
+        return $mailMessage;
     }
 
     /**

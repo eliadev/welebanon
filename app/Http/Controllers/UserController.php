@@ -62,10 +62,8 @@ class UserController extends Controller
         if($totalPoints > $user->plan->points)
             return redirect()->route('front.profile')->with('danger', 'You have exceeded your plan points!');
         
-        // update the user providers:
-        // 1. set is confirmed on provider_user records to 1 (they will be history)
-        // 2. update user total points
-        // 3. send email
+
+        // get the user providers active bookings (to checkout)  
         $userProviders = UserProvider::where('is_confirmed', 0)
                         ->where('user_id', $user->id)
                         ->get();
@@ -74,22 +72,22 @@ class UserController extends Controller
         $updatedUserPoints = $currentUserPoints;
         $adminUser = User::where('email', 'sarah@bridgeofmind.com')->firstOrFail();
 
+        // 1. set is confirmed on provider_user records to 1 (they will be history)
         foreach($userProviders as $userProvider) {
             
             $userProvider->is_confirmed = 1;
             $userProvider->save();
-    
             $updatedUserPoints += $userProvider->provider->points;
-
-             $adminUser->notify( new UserBooking(
-                 $userProvider->provider->name_en,
-                 $user->first_name.' '.$user->last_name,
-                 $request->only(['checkin', 'checkout', 'adult', 'children'])
-             ));
-
         }
 
+        // 2. update user total points
         $user->update(['points' => $updatedUserPoints]);
+
+        // 3. send email
+        $adminUser->notify( new UserBooking(
+                 $userProviders,
+                 $user->first_name.' '.$user->last_name
+             ));
 
         return redirect(route('front.profile'))->with('status', 'Thank you for you reservation. we will contact you very soon!');
     }
