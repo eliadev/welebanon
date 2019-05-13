@@ -19,5 +19,5 @@
         </div>
     </div>
 </div>-->
-You are logged in!
+Welcome to We Lebanon CMS, Please select a menu in order to start.
 @endsection

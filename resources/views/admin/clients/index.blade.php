@@ -4,6 +4,7 @@
 		<div class="col-12">
 			<div class="card-box table-responsive">
 				<h4 class="m-t-0 header-title">Users</h4>
+				<br>
 				@if(session()->has('message'))
 					<div class="alert alert-success">
 						{{session()->get('message')}}
@@ -23,13 +24,12 @@
 					@foreach($users as $user)
 					<tr>
 						<td><img class="img-circle" src="{{$user->getFirstMediaUrl('avatars', 'thumb')}}"></td>
-						<td>{{$user->first_name}} {{$user->last_name}}</td>
+						<td><a href="{{ route('clients.show', $user->id) }}">{{$user->first_name}} {{$user->last_name}}</a></td>
 						<td>{{$user->email}}</td>
 						<td>{{$user->phone}}</td>
 						<td> 
-						<form onsubmit="return confirm('Are you sure you want to delete?');" class="d-inline-block" method="post" action="{{route('clients.destroy', $user->id)}}">
+						<form onsubmit="return confirm('Are you sure you want to delete?');" class="d-inline-block" method="post" action="{{route('clients.remove', $user->id)}}">
 						@csrf
-							@method('delete')
 							<button type="submit" class="btn btn-danger btn-xs webtn">Delete</button>
 						</form>
 						</td>

@@ -18,7 +18,8 @@ class UserController extends Controller
         }
 		
 		$user = Auth::user();
-    	$user_providers = collect($user->providers)->filter(function ($value, $key){
+	
+    	$user_providers = $user->providers->filter(function ($value, $key){
     		return $value->pivot->is_confirmed === 0;
     	});
 		
@@ -59,7 +60,7 @@ class UserController extends Controller
         $totalPoints = $this->getCheckoutPoints() + $user->points;
 
         if($totalPoints > $user->plan->points)
-            return redirect()->route('front.profile')->with('status', 'You have exceeded your plan points!');
+            return redirect()->route('front.profile')->with('danger', 'You have exceeded your plan points!');
         
         // update the user providers:
         // 1. set is confirmed on provider_user records to 1 (they will be history)
@@ -96,7 +97,7 @@ class UserController extends Controller
     protected function getCheckoutPoints()
     {
         $user = Auth::user();
-        $user_providers = collect($user->providers)->filter(function ($value, $key){
+        $user_providers = $user->providers->filter(function ($value, $key){
             return $value->pivot->is_confirmed === 0;
         });
         
@@ -105,10 +106,12 @@ class UserController extends Controller
 
     public function history()
     {
-        $userProviders = UserProvider::where('is_confirmed', 0)
+		$user = Auth::user();
+        $userProviders = UserProvider::where('is_confirmed', 1)
                         ->where('user_id', $user->id)
                         ->get();
-        dd($userProviders);
+		//dd($userProviders->toArray());
+		return view('front.history', ['userProviders' => $userProviders]);
     }
 	
 

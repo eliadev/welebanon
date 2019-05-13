@@ -35,7 +35,7 @@ class HomeController extends Controller
     	$providers = Provider::where('name_'.$activeLanguage, 'LIKE', $input)
     		->orWhere('description_'.$activeLanguage, 'LIKE', $input )->get();
 
-    	return view('front.search_results', ['providers' => $providers, 'input' => $request->search_input]);
+    	return view('front.search_results_home', ['providers' => $providers, 'input' => $request->search_input]);
     }
 
     public function login()

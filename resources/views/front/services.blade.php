@@ -4,11 +4,10 @@
          <div class="container">
             <div class="page-title-wrap">
                <h2>{!! __('messages.service') !!}</h2>
-               <p><a href="/" class="theme-cl">Home</a> | <span>Services</span></p> 
+               <p><a href="/" class="theme-cl">Home</a> | <span>{!! __('messages.service') !!}</span></p> 
             </div>
          </div>
       </div>
-	  <br>
       <section class="tour-type" id="services">
 		<div class="container">
 			<div class="row">     

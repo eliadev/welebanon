@@ -54,7 +54,7 @@
                                  <h4 class="hotel-name">
                                     <a href="{{ route('front.providers.show', $provider->id) }}">{{ $provider->translate('name') }}</a>
                                  </h4>
-                                    <p>{!! $provider->translate('description') !!}</p>
+                                    <p>{!! $provider->ShortDescription !!}</p>
                                  </div>
                                 </div>
                                 <div class="hotel-inner inner-box">

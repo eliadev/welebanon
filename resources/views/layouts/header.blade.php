@@ -47,29 +47,21 @@
 						<div class="navbar-collapse collapse">
 							<ul class="nav navbar-nav mainmenu pull-right">   
 								<li><a href="/">{!! __('messages.home') !!}</a></li>							  
-								<li><a href="about.html">{!! __('messages.about') !!}</a></li> 
+								<li><a href="{!! route('front.about') !!}">{!! __('messages.about') !!}</a></li> 
 								<li><a href="{!! route('front.services') !!}">{!! __('messages.services') !!}</a></li> 
-								@auth
-									<!--<li><a href="{!! route('front.profile') !!}">{!! __('messages.profile') !!}</a></li>--> 
-								@endauth    
 								<li><a href="{!! route('front.contact') !!}">{!! __('messages.contact') !!}</a></li>        
 								@guest
-									<li class="br-right">
-										<a class="getstarted" href="{!! route('front.login') !!}">
-											<i class="fa fa-user"></i> {!! __('messages.getstarted') !!}
-										</a>
-									</li>
+								<li class="br-right">
+									<a class="getstarted" href="{!! route('front.login') !!}">
+										<i class="fa fa-user"></i> {!! __('messages.getstarted') !!}
+									</a>
+								</li>
 								@endguest
 								@auth
-									<!--<li class="br-right">
-										<a class="getstarted" href="/logout">
-											<i class="fa fa-user"></i> {!! __('messages.logout') !!}
-										</a>
-									</li>-->
 								<li class="dropdown">
-								   <a href="#" class="dropdown-toggle getstarted" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user"></i> User <span class="caret"></span></a>
+								   <a href="#" class="dropdown-toggle getstarted" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user"></i> {{ Auth::user()->ShortName }} <span class="caret"></span></a>
 								   <ul class="dropdown-menu">
-									  <li><a href="#">Elias Elia</a></li>
+									  <li><a href="{!! route('front.history') !!}">History</a></li>
 									  <li><a href="{!! route('front.profile') !!}">{!! __('messages.profile') !!}</a></li>
 									  <li><a href="/logout"><i class="fa fa-user"></i> {!! __('messages.logout') !!}</a></li>
 								   </ul>

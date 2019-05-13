@@ -3,7 +3,7 @@
 	<div class="page-title image-title" style="background-image:url(assets/img/bg1.jpg);">
          <div class="container">
             <div class="page-title-wrap">
-               <h2>Search Results for "{!! $input_name !!}"</h2>
+               <h2>Search Results for "{!! $input !!}"</h2>
                <p><a href="/" class="theme-cl">Home</a> | <span>Search Results</span></p> 
             </div>
          </div>

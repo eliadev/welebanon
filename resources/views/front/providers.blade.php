@@ -16,8 +16,7 @@
 		<link rel="stylesheet" href="{{asset('assets/css/owl.carousel.min.css')}}"/>
 		<link rel="stylesheet" href="{{asset('assets/css/owl.theme.default.min.css')}}"/>
 		<link rel="stylesheet" href="{{asset('assets/css/lightbox.min.css')}}"/>
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/3.1.3/css/bootstrap-datetimepicker.min.css">
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.3/css/bootstrapValidator.min.css">
+		<link rel="stylesheet" href="{{asset('assets/css/bootstrap-datepicker.css')}}">
 	  @else
 		<link rel="stylesheet" href="{{asset('assets/css/bootstrap.min.css')}}">
 		<link rel="stylesheet" href="{{asset('assets/css/menu.css')}}">
@@ -29,8 +28,7 @@
 		<link rel="stylesheet" href="{{asset('assets/css/owl.carousel.min.css')}}"/>
 		<link rel="stylesheet" href="{{asset('assets/css/owl.theme.default.min.css')}}"/>
 		<link rel="stylesheet" href="{{asset('assets/css/lightbox.min.css')}}"/>
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/3.1.3/css/bootstrap-datetimepicker.min.css">
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.3/css/bootstrapValidator.min.css">
+		<link rel="stylesheet" href="{{asset('assets/css/bootstrap-datepicker.css')}}">
 	  @endif	  	
 	</head>
 <body @if(App::getLocale() == 'ar') dir="rtl" @endif>
@@ -45,29 +43,32 @@
                               <span class="icon-bar"></span>
                               <span class="icon-bar"></span>
                               </button>
-                  <a class="navbar-brand logo navbar-brand" href="{!! route('front.home') !!}">
+						<a class="navbar-brand logo navbar-brand" href="{!! route('front.home') !!}">
 							<img src="{{asset('assets/img/logo-black.png')}}" alt="We Lebanon">
 						</a>
 						<div class="navbar-collapse collapse">
 							<ul class="nav navbar-nav mainmenu pull-right">   
 								<li><a href="/">{!! __('messages.home') !!}</a></li>							  
-								<li><a href="about.html">{!! __('messages.about') !!}</a></li> 
-								<li><a href="{!! route('front.services') !!}">{!! __('messages.services') !!}</a></li> 								
+								<li><a href="{!! route('front.about') !!}">{!! __('messages.about') !!}</a></li> 
+								<li><a href="{!! route('front.services') !!}">{!! __('messages.services') !!}</a></li> 
 								<li><a href="{!! route('front.contact') !!}">{!! __('messages.contact') !!}</a></li>        
 								@guest
-									<li class="br-right">
-										<a class="getstarted" href="{!! route('front.login') !!}">
-											<i class="fa fa-user"></i> {!! __('messages.getstarted') !!}
-										</a>
-									</li>
+								<li class="br-right">
+									<a class="getstarted" href="{!! route('front.login') !!}">
+										<i class="fa fa-user"></i> {!! __('messages.getstarted') !!}
+									</a>
+								</li>
 								@endguest
 								@auth
-									<li class="br-right">
-										<a class="getstarted" href="/logout">
-											<i class="fa fa-user"></i> {!! __('messages.logout') !!}
-										</a>
-									</li>
-								@endauth							
+								<li class="dropdown">
+								   <a href="#" class="dropdown-toggle getstarted" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user"></i> {{ Auth::user()->first_name }} {{ Auth::user()->ShortName }} <span class="caret"></span></a>
+								   <ul class="dropdown-menu">
+									  <li><a href="{!! route('front.history') !!}">History</a></li>
+									  <li><a href="{!! route('front.profile') !!}">{!! __('messages.profile') !!}</a></li>
+									  <li><a href="/logout"><i class="fa fa-user"></i> {!! __('messages.logout') !!}</a></li>
+								   </ul>
+								</li>
+								@endauth
 								<li class="br-right">
 								<div class="language">
 									<a class="lang-ar" href="{!! route('change-language', 'en')!!}">EN</a>
@@ -173,13 +174,13 @@
                               <div class="col-xs-12">
                                  <div class="form-group">
                                     <label for="checkin">From</label>
-                                    <input type="text" name="checkin" id="checkin" class="form-control" required>
+                                    <input type="text" name="checkin" id="startdate" class="form-control" autocomplete="off" placeholder="{{ date('d/m/Y') }}" required>
                                  </div>
                               </div>
                               <div class="col-xs-12">
                                  <div class="form-group">
                                     <label for="checkout">To</label>
-                                    <input type="text" name="checkout" id="checkout" class="form-control" required>
+                                    <input type="text" name="checkout" id="enddate" class="form-control" autocomplete="off" placeholder="{{ date('d/m/Y') }}" required>
                                  </div>
                               </div>
                            </div>
@@ -201,13 +202,13 @@
 								<div class="col-xs-12 mrg-top-15">
 								@auth
 									@if(!auth()->user()->plan)
-										<a href="/">You must have a plan first.</a>
+										<a href="/" class="btn theme-btn full-width">You must have a plan first</a>
 									@else
-										<button type="submit" class="btn btn-arrow theme-btn full-width">Submit</button>
+										<button type="submit" class="btn btn-arrow theme-btn full-width">Add</button>
 									@endif
 								@endauth
 								@guest
-									<button type="submit" class="btn btn-arrow theme-btn full-width">Submit</button>
+									<button type="submit" class="btn btn-arrow theme-btn full-width">Add</button>
 								@endguest		
 								</div>
 							</div>
@@ -279,108 +280,33 @@
 	<script type="text/javascript" src="{{asset('assets/js/owl.carousel.min.js')}}"></script>
 	<script type="text/javascript" src="{{asset('assets/js/jquery-ui.js')}}"></script>
 	<script type="text/javascript" src="{{asset('assets/js/lightbox-plus-jquery.min.js')}}"></script> 
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.3/js/bootstrapValidator.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/3.1.3/js/bootstrap-datetimepicker.min.js"></script>
+	<script type="text/javascript" src="{{asset('assets/js/bootstrap-datepicker.js')}}"></script>
 	<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDOZmjVskSQgV7V6oXgCX1_C5TUuwkUKjY"></script>
 	<script>
-   var bindDateRangeValidation = function (f, s, e) {
-    if(!(f instanceof jQuery)){
-			console.log("Not passing a jQuery object");
-    }
-  
-    var jqForm = f,
-        checkinId = s,
-        checkoutId = e;
-  
-    var checkDateRange = function (checkin, checkout) {
-        var isValid = (checkin != "" && checkout != "") ? checkin <= checkout : true;
-        return isValid;
-    }
+	$(document).ready(function(){
+		var date = new Date();
+		date.setDate(date.getDate());
 
-    var bindValidator = function () {
-        var bstpValidate = jqForm.data('bootstrapValidator');
-        var validateFields = {
-            checkin: {
-                validators: {
-                    notEmpty: { message: 'This field is required.' },
-                    callback: {
-                        message: 'Start Date must less than or equal to End Date.',
-                        callback: function (checkin, validator, $field) {
-                            return checkDateRange(checkin, $('#' + checkoutId).val())
-                        }
-                    }
-                }
-            },
-            checkout: {
-                validators: {
-                    notEmpty: { message: 'This field is required.' },
-                    callback: {
-                        message: 'End Date must greater than or equal to Start Date.',
-                        callback: function (checkout, validator, $field) {
-                            return checkDateRange($('#' + checkinId).val(), checkout);
-                        }
-                    }
-                }
-            },
-          	customize: {
-                validators: {
-                    customize: { message: 'customize.' }
-                }
-            }
-        }
-        if (!bstpValidate) {
-            jqForm.bootstrapValidator({
-                excluded: [':disabled'], 
-            })
-        }
-      
-        jqForm.bootstrapValidator('addField', checkinId, validateFields.checkin);
-        jqForm.bootstrapValidator('addField', checkoutId, validateFields.checkout);
-      
-    };
-
-    var hookValidatorEvt = function () {
-        var dateBlur = function (e, bundleDateId, action) {
-            jqForm.bootstrapValidator('revalidateField', e.target.id);
-        }
-
-        $('#' + checkinId).on("dp.change dp.update blur", function (e) {
-            $('#' + checkoutId).data("DateTimePicker").setMinDate(e.date);
-            dateBlur(e, checkoutId);
-        });
-
-        $('#' + checkoutId).on("dp.change dp.update blur", function (e) {
-            $('#' + checkinId).data("DateTimePicker").setMaxDate(e.date);
-            dateBlur(e, checkinId);
-        });
-    }
-
-    bindValidator();
-    hookValidatorEvt();
-};
-
-
-$(function () {
-    var sd = new Date(), ed = new Date();
-  
-    $('#checkin').datetimepicker({ 
-      pickTime: false, 
-      format: "DD/MM/YYYY", 
-      defaultDate: sd, 
-      maxDate: ed 
-    });
-  
-    $('#checkout').datetimepicker({ 
-      pickTime: false, 
-      format: "DD/MM/YYYY", 
-      defaultDate: ed, 
-      minDate: sd 
-    });
-
-    //passing 1.jquery form object, 2.start date dom Id, 3.end date dom Id
-    bindDateRangeValidation($("#form"), 'checkin', 'checkout');
-});
+		$("#startdate").datepicker({
+			todayBtn:  1,
+			autoclose: true,
+			format:'dd/mm/yyyy',
+			startDate: date,
+			todayHighlight: true,
+		}).on('changeDate', function (selected) {
+			var minDate = new Date(selected.date.valueOf());
+			$('#enddate').datepicker('setStartDate', minDate);
+		});
+		
+		$("#enddate").datepicker({
+			autoclose: true,
+			format:'dd/mm/yyyy',
+		}).on('changeDate', function (selected) {
+				var minDate = new Date(selected.date.valueOf());
+				$('#startdate').datepicker('setEndDate', minDate);
+		});
+		$("#startdate").datepicker().datepicker("setDate", new Date());
+	});
    </script>
    <script type="text/javascript">
 		   $(document).ready(function() {
@@ -417,6 +343,5 @@ $(function () {
 		           google.maps.event.addDomListener(window, 'load', initialize);
 		       });		   
 		</script>	
-
    </body>
 </html>

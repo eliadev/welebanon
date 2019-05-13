@@ -4,6 +4,7 @@
 		<div class="col-12">
 			<div class="card-box table-responsive">
 				<h4 class="m-t-0 header-title">Users</h4>
+				<br>
 				@if(session()->has('message'))
 					<div class="alert alert-success">
 						{{session()->get('message')}}

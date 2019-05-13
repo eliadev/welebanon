@@ -4,6 +4,7 @@
 		<div class="col-12">
 			<div class="card-box table-responsive">
 				<h4 class="m-t-0 header-title">About</h4>
+				<br>
 				@if(session()->has('message'))
 					<div class="alert alert-success">
 						{{session()->get('message')}}
@@ -22,7 +23,6 @@
 					<tr>
 						<td><img class="img-circle" src="{{$staticPage->getFirstMediaUrl('staticPage', 'thumb')}}"></td>
 						<td>{{$staticPage->name_en}}</td>
-						<td>{{$staticPage->order}}</td>
 						<td><a href="{{route('staticPages.edit', $staticPage->id)}}" class="btn btn-info btn-xs webtn">Edit</a> 
 						<form onsubmit="return confirm('Are you sure you want to delete?');" class="d-inline-block" method="post" action="{{route('staticPages.destroy', $staticPage->id)}}">
 						@csrf

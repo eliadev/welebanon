@@ -93,6 +93,38 @@ a:focus {
   text-decoration: none;
 }
 
+ul.permission-box {
+    padding: 10px;
+    list-style: none;
+}
+
+.tg-tourname figure {
+    float: left;
+    margin: 0 12px 0 0;
+}
+
+.tg-cartproductdetail td{
+    vertical-align: middle !important;
+}
+
+.tg-tourname {
+    width: 100%;
+    float: left;
+    display: flex;
+    padding: 0;
+    justify-content: flex-start;
+    align-items: center;
+    align-content: center;
+}
+
+.tg-populartourtitle a{
+	color:#000;
+	font-weight: 500;
+    font-size: 15px;
+    display: inline-block;
+    text-decoration: none;
+}
+
 .container {
   width: auto;
 }

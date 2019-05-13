@@ -3,7 +3,6 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<link rel="shortcut icon" href="{{asset('cms/images/favicon.ico')}}">
 		<title>CMS</title>
 		<link href="{{asset('cms/plugins/morris/morris.css')}}" rel="stylesheet" type="text/css" />
 		<link href="{{asset('cms/plugins/bootstrap-tagsinput/dist/bootstrap-tagsinput.css')}}" rel="stylesheet" />

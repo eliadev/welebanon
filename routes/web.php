@@ -27,6 +27,7 @@ Route::middleware(['language'])->group(function () {
 
 	// user route
 	Route::get('/my-profile', 'UserController@show')->name('front.profile');
+	Route::get('/history', 'UserController@history')->name('front.history');
 	Route::post('/providers/{id}/delete', 'UserController@remove')->name('front.remove');
 	Route::post('/providers/checkout', 'UserController@checkout')->name('front.checkout');
 
@@ -39,6 +40,7 @@ Route::middleware(['language'])->group(function () {
 	Route::get('/providers/{id}', 'ProvidersController@show')->name('front.providers.show');
 	Route::post('/providers/{id}/book', 'ProvidersController@book')->name('front.providers.book');
 	Route::get('/contact', 'ContactController@index')->name('front.contact');
+	Route::get('/about', 'AboutController@index')->name('front.about');
 	
 });
 
@@ -52,7 +54,8 @@ Route::namespace('Admin')->prefix('admin')->middleware(['auth', 'is_admin'])->gr
 	Route::resource('staticPages', 'StaticPageController')->middleware(['has_permission:staticPages']);
 	Route::resource('plans', 'PlanController')->middleware(['has_permission:plans']);
 	Route::get('clients', 'ClientsController@index')->name('clients.index')->middleware(['has_permission:users']);
-	Route::post('clients/{id}/delete', 'ClientsController@destroy')->name('clients.destroy');
+	Route::get('clients-show/{id}', 'ClientsController@show')->name('clients.show')->middleware(['has_permission:users']);
+	Route::post('clients/{id}/delete', 'ClientsController@destroy')->name('clients.remove');
 
 	Route::post('providers/media', 'ProviderController@storeMedia')->name('providers.storeMedia');
 

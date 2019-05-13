@@ -33,8 +33,8 @@ class Provider extends Model implements HasMedia
 	public function registerMediaConversions(Media $media = null)
     {
         $this->addMediaConversion('thumb-medium')
-            ->width(120)
-            ->height(110);
+            ->width(250)
+            ->height(176);
 
         $this->addMediaConversion('thumb')
             ->width(50)
@@ -58,4 +58,5 @@ class Provider extends Model implements HasMedia
     {
         return $this->translate('description');
     }
+	
 }

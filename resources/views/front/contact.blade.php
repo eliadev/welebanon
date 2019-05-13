@@ -4,43 +4,42 @@
          <div class="container">
             <div class="page-title-wrap">
                <h2>Contact Us</h2>
-               <p><a href="/" class="theme-cl">Home</a> |<span> Contact Us</span></p>
+               <p><a href="/" class="theme-cl">Home</a> | <span>Contact Us</span></p>
             </div>
          </div>
       </div>
 	  <section class="gray-bg">
 			<div class="container">
-				<div class="row">
-					<div class="col-md-5 col-sm-5 bg-white border-form">
-					<div class="form-box">
-							<i class="c-icon ti-map-alt theme-cl"></i>
-							<div class="c-detail">
-								<b>Address:</b>
-								<p>Achrafieh,Gouraud Street, Azirian Bldg, 1st Floor</p>
+					<div class="col-md-5 col-sm-5 padding-00 bg-margin">
+						<div class="bg-white border-form">
+							<div class="form-box">
+								<i class="c-icon ti-map-alt theme-cl"></i>
+								<div class="c-detail">
+									<b>Address:</b>
+									<p>Achrafieh,Gouraud Street, Azirian Bldg, 1st Floor</p>
+								</div>
 							</div>
-						</div>
-						
-						<div class="form-box">
-							<i class="c-icon ti-email theme-cl"></i>
-							<div class="c-detail">
-								<b>Email:</b>
-								<p>info@welebanon.com</p>
+							
+							<div class="form-box">
+								<i class="c-icon ti-email theme-cl"></i>
+								<div class="c-detail">
+									<b>Email:</b>
+									<p>info@welebanon.com</p>
+								</div>
 							</div>
-						</div>
-						
-						<div class="form-box">
-							<i class="c-icon ti-headphone-alt theme-cl"></i>
-							<div class="c-detail">
-								<b>Call Us:</b>
-								<p>+961 70 111 222</p>
+							
+							<div class="form-box">
+								<i class="c-icon ti-headphone-alt theme-cl"></i>
+								<div class="c-detail">
+									<b>Call Us:</b>
+									<p>+961 70 111 222</p>
+								</div>
 							</div>
 						</div>
 					</div>
-					
-					<div class="col-md-7 col-sm-7">
+					<div class="col-md-7 col-sm-7 padding-00">
 						<div class="form-box border-form">
 							<form class="c-form">
-							
 								<div class="row">
 									<div class="col-sm-6">
 										<label>Full Name</label>
@@ -75,11 +74,9 @@
 										<button type="button" class="btn theme-btn btn-arrow">Send</button>
 									</div>
 								</div>
-								
 							</form>
 						</div>
 					</div>
-					
 				</div>
 			</div>
 		</section>

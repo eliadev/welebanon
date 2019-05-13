@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Illuminate\Support\Str;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -98,5 +99,12 @@ class User extends Authenticatable implements HasMedia
     public function getRemainingPointsAttribute()
     {
         return ($this->plan->points - $this->points);
+    }
+	
+		
+	public function getShortNameAttribute()
+    {
+        $string = $this->last_name;
+        return $this->first_name.' '.Str::limit($string, 1, '.');
     }
 }

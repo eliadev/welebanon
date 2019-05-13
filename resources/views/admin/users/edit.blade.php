@@ -71,13 +71,17 @@
 					<div class="form-group row">
 						<div class="col-md-1"></div>
 						<label for="permission" class="col-sm-2 col-form-label">Permissions</label>
-						@foreach($permissions as $permission)
-							<div class="checkbox checkbox-primary">
-								<input id="{{ $permission->id }}" type="checkbox" name="permission[]" value="{{ $permission->id }}"
-								@if($user->permissions->contains($permission->id)) checked=checked @endif>
-								<label for="{{ $permission->id }}"> {{ $permission->name }}</label>
-							</div>
-						@endforeach
+						<ul class="permission-box">
+							@foreach($permissions as $permission)
+							<li>
+								<div class="checkbox checkbox-primary">
+									<input id="{{ $permission->id }}" type="checkbox" name="permission[]" value="{{ $permission->id }}"
+									@if($user->permissions->contains($permission->id)) checked=checked @endif>
+									<label for="{{ $permission->id }}"> {{ $permission->name }}</label>
+								</div>
+							</li>
+							@endforeach
+						</ul>
 					</div>
 			   </div>
 			</div>
@@ -85,6 +89,7 @@
 			   <div class="card-box">
 				<h4 class="header-title m-t-0 m-b-30">Action</h4>
 				<button type="submit" class="btn btn-success btn-rounded w-md waves-effect waves-light m-b-5" style="width:100%;">UPDATE</button>
+				<a href="{{route('users.create')}}" class="btn btn-secondary btn-rounded w-md waves-effect waves-light m-b-5" style="width:100%;">ADD NEW</a>
 				<a href="{{route('users.index')}}" class="btn btn-primary btn-rounded w-md waves-effect waves-light m-b-5" style="width:100%;">BACK</a>
 			   </div>
 			</div>

@@ -18,24 +18,32 @@
 							  {{ session('status') }}
 							</div>
 							<br>
-						@endif  
+						@endif 
+						@if (session('danger'))
+							<div class="alert alert-danger">
+							  {{ session('danger') }}
+							</div>
+							<br>
+						@endif						
 					</div>
 				</div>
 				<div class="clearfix"></div>
 				@if($user->plan)
-				<div class="col-md-12 col-sm-12">
-					<h4>Your current plan</h4><hr/>
-					<p>Plan Name: <b>{!! $user->plan->translate('name') !!}</b></p>
-					<p>Plan Points: <b>{!! $user->plan->points !!}</b></p>
-					<p>Used Points: <b>{!! $user->points !!}</b></p>
-					<p>Remaining Points: <b>{!! $user->remaining_points !!}</b></p>
+				<div class="row">
+					<div class="col-md-12 col-sm-12">
+						<h4>Your current plan</h4><hr/>
+						<p>Plan Name: <b>{!! $user->plan->translate('name') !!}</b></p>
+						<p>Plan Points: <b>{!! $user->plan->points !!}</b></p>
+						<p>Used Points: <b>{!! $user->points !!}</b></p>
+						<p>Remaining Points: <b>{!! $user->remaining_points !!}</b></p>
+					</div>
 				</div>
-
 				@if(!$user_providers->count() && !$resetPlan)
 					<a class="btn theme-btn" type="button" href="{{ route('front.services') }}">Add provider</a>
 				@endif
 				
 				@if($user_providers->count())
+				<br>
 				<h4 style="margin-top: 20px;">Your current selection</h4>
 				<hr/>
 				<div class="row">
@@ -55,7 +63,6 @@
 									</tr>
 								</thead>
 							<tbody>
-							
 								@foreach($user_providers as $key => $user_provider)
 								<?php $provider = \App\Provider::find($user_provider->pivot->provider_id) ?>
 									<tr class="cart_item">
@@ -112,14 +119,13 @@
 									<div class="col-sm-6">
 										<a class="btn theme-btn" type="button" href="{{ route('front.services') }}">Add more services</a>
 										<form onsubmit="return confirm('Are you sure you want to proceed?');" class="d-inline-block" method="post" action="{{route('front.checkout')}}" style="display:inline">
-												@csrf
-												<input type="hidden" name="checkin" value="{!! $user_provider->pivot->from_date !!}" />
-												<input type="hidden" name="checkout" value="{!! $user_provider->pivot->to_date !!}"/>
-												<input type="hidden" name="adult" value="{!! $user_provider->pivot->nb_adults !!}"/>
-												<input type="hidden" name="children" value="{!! $user_provider->pivot->nb_children !!}"/>
-
-												<button type="submit " class="btn btn-success">Checkout</button>
-											</form>
+											@csrf
+											<input type="hidden" name="checkin" value="{!! $user_provider->pivot->from_date !!}" />
+											<input type="hidden" name="checkout" value="{!! $user_provider->pivot->to_date !!}"/>
+											<input type="hidden" name="adult" value="{!! $user_provider->pivot->nb_adults !!}"/>
+											<input type="hidden" name="children" value="{!! $user_provider->pivot->nb_children !!}"/>
+											<button type="submit " class="btn btn-success">CHECKOUT</button>
+										</form>
 									</div>
 								</div>
 							</div>

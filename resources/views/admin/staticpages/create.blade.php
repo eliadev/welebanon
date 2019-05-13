@@ -104,13 +104,6 @@
 						</div>
 					</div>
 				  </div>
-				  <div class="form-group row">
-					<div class="col-md-1"></div>
-					<label for="order" class="col-sm-2 col-form-label">Order</label>
-					<div class="col-sm-8">
-						<input type="number" name="order" class="form-control" id="order" placeholder="Order">
-					 </div>
-				  </div>
 			   </div>
 			</div>
 			<div class="col-xl-4">

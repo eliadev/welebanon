@@ -173,6 +173,21 @@
 		float: none !important;
 		margin: 0;
 	}
+	.getstarted {
+		margin-right: 0 !important;
+	}
+	.page-title-wrap{
+		width:100%;
+	}
+	.padding-00{
+		padding:0;
+	}
+	.bg-margin{
+		margin-bottom:20px;
+	}
+	.image-title h2 {
+		font-size: 46px;
+	}
 	.navbar-collapse {
 		background: #fff none repeat scroll 0 0;
 		-webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
@@ -188,7 +203,7 @@
 		
 	ul.nav.navbar-nav.pull-right li a {
 		margin-top: 18px;
-		color: #739849 !important;
+		color: #739849;
 		font-weight: 500;
 		font-size: 16px;
 		margin: 0;
