@@ -88,4 +88,19 @@ class RegisterController extends Controller
 
         return $user;
     }
+
+    /**
+     * The user has been registered.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  mixed  $user
+     * @return mixed
+     */
+    protected function registered(Request $request, $user)
+    {
+        if($user->plan_id)
+            return redirect()->route('front.profile');
+
+        return redirect('/');
+    }
 }
