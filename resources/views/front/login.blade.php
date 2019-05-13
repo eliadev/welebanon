@@ -46,10 +46,12 @@
 									</div>
 								</div>
 								
+								<input type="hidden" name="plan_id" value="{{ session('plan_id') }}" />
+
 								<div class="row">
 									<div class="col-sm-12">
 										<button type="submit" class="btn theme-btn btn-arrow register-btn">{{ __('Login') }}</button>
-										<a href="{!! route('register') !!}" class="text-center">&nbsp; Register a new membership</a>
+										<a href="{!! route('register') !!}?plan_id={!! session('plan_id') !!}" class="text-center">&nbsp; Register a new membership</a>
 									</div>
 								</div>
 							</form>

@@ -53,6 +53,12 @@ class HomeController extends Controller
         {
             $user = User::where('email', $request->email)->first();
             Auth::login($user, true);
+            if($request->get('plan_id') && !$user->plan_id)
+            {
+                $user->update(['plan_id' => $request->get('plan_id')]);
+                return redirect()->route('front.profile');
+            }
+
             return redirect('/');
         }
 
@@ -75,7 +81,9 @@ class HomeController extends Controller
         
         if(!Auth::check())
         {
-            return redirect()->route('front.login')->with('status', 'Login before chosing a plan!');
+            return redirect()->route('front.login')
+                ->with('status', 'Login before chosing a plan!')
+                ->with('plan_id', $request->get('plan_id'));
         }
 
         $user = Auth::user();

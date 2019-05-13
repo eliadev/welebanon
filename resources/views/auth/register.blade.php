@@ -108,6 +108,7 @@
 										<a href="{!! route('front.login') !!}" class="text-center">&nbsp; I already have a membership</a>
 									</div>
 								</div>
+								<input type="hidden" name="plan_id" value="{!! request()->get('plan_id') !!}" />
 							</form>
 						</div>
 					</div>

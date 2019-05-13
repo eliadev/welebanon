@@ -81,6 +81,11 @@ class RegisterController extends Controller
             $user->addMediaFromRequest('avatar')->toMediaCollection('avatars');
         }
 
+        if($data['plan_id'])
+        {
+            $user->update(['plan_id' => $data['plan_id'] ]);
+        }
+
         return $user;
     }
 }
